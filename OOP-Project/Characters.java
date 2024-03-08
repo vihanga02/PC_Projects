@@ -45,4 +45,20 @@ public abstract class Characters {
     public void setHealth(double health) {
         this.health = health;
     }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setDefence(double defence) {
+        this.defence = defence;
+    }
+
+    public void setAttac(double attac) {
+        this.attac = attac;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 }
