@@ -4,7 +4,7 @@ public class User {
     private double coins;
     private int id;
     private double xp;
-    public User(String name, String userName, int id, double xp){
+    public User(String name, String userName,String homeGround){
         this.name = name;
         this.userName = userName;
         this.coins = 500;

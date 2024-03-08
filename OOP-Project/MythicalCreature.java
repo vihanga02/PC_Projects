@@ -12,6 +12,7 @@ public class MythicalCreature extends Character {
                 this.setHealth(15);
                 this.setSpeed(8);
                 this.setCharacterType("Sunchild");
+                break;
             case "Basilisk":
                 this.setPrice(165);
                 this.setAttack(15);
@@ -19,6 +20,7 @@ public class MythicalCreature extends Character {
                 this.setHealth(10);
                 this.setSpeed(12);
                 this.setCharacterType("Marshlander");
+                break;
             case "Hydra":
                 this.setPrice(205);
                 this.setAttack(12);
@@ -26,6 +28,7 @@ public class MythicalCreature extends Character {
                 this.setHealth(15);
                 this.setSpeed(11);
                 this.setCharacterType("Marshlander");
+                break;
             case "Phoenix":
                 this.setPrice(275);
                 this.setAttack(17);
@@ -33,6 +36,7 @@ public class MythicalCreature extends Character {
                 this.setHealth(17);
                 this.setSpeed(19);
                 this.setCharacterType("Sunchild");
+                break;
             case "Pegasus":
                 this.setPrice(340);
                 this.setAttack(14);
@@ -40,6 +44,7 @@ public class MythicalCreature extends Character {
                 this.setHealth(20);
                 this.setSpeed(20);
                 this.setCharacterType("Mystic");
+                break;
         }
     }
 }

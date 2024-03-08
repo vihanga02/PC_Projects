@@ -61,4 +61,5 @@ public abstract class Character {
             this.characterType = characterType;
         }
     }
+
 }
