@@ -1,5 +1,5 @@
-public class Mages extends Character {
-    public Mages(String name){
+public class Mage extends Character {
+    public Mage(String name){
         super(name, 0, 0, 0, 0, 0);
         this.createArcher(name);
     }

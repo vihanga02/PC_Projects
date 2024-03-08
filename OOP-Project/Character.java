@@ -14,12 +14,6 @@ public abstract class Character {
         this.health = health;
         this.speed = speed;
     }
-    public Character(String name){
-        this.name = name;
-    }
-
-    protected Character() {
-    }
 
     public String getName() {
         return name;
