@@ -1,15 +1,15 @@
 public abstract class Characters {
     private String name;
     private double price;
-    private double attac;
+    private double attack;
     private double defence;
     private double health;
     private double speed;
 
-    public Characters(String name, double price, double attac, double defence, double health, double speed){
+    public Characters(String name, double price, double attack, double defence, double health, double speed){
         this.name = name;
         this.price = price;
-        this.attac = attac;
+        this.attack = attack;
         this.defence = defence;
         this.health = health;
         this.speed = speed;
@@ -27,8 +27,8 @@ public abstract class Characters {
     public double getPrice() {
         return price;
     }
-    public double getAttac() {
-        return attac;
+    public double getAttack() {
+        return attack;
     }
     public double getDefence() {
         return defence;
@@ -54,7 +54,7 @@ public abstract class Characters {
         this.defence = defence;
     }
 
-    public void setAttac(double attac) {
+    public void setAttack(double attac) {
         this.attac = attac;
     }
 
