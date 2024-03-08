@@ -1,2 +1,2 @@
-public class Armour  {
+public class Armour{
 }
