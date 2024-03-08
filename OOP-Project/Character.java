@@ -5,14 +5,10 @@ public abstract class Character {
     private double defence;
     private double health;
     private double speed;
+    private String characterType;
 
-    public Character(String name, double price, double attack, double defence, double health, double speed){
+    public Character(String name){
         this.name = name;
-        this.price = price;
-        this.attack = attack;
-        this.defence = defence;
-        this.health = health;
-        this.speed = speed;
     }
 
     public String getName() {
@@ -54,5 +50,15 @@ public abstract class Character {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+
+    public String getCharacterType() {
+        return characterType;
+    }
+
+    public void setCharacterType(String characterType) {
+        if (this.characterType == null) {
+            this.characterType = characterType;
+        }
     }
 }
