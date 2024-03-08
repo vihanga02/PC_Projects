@@ -1,4 +1,4 @@
-import java.util.Vector;
+import java.util.*;
 
 public class User {
     private static int userCount = 1;
