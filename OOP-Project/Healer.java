@@ -12,6 +12,7 @@ public class Healer extends Character {
                 this.setHealth(9);
                 this.setSpeed(6);
                 this.setCharacterType("Sunchild");
+                break;
             case "Medic":
                 this.setPrice(125);
                 this.setAttack(12);
@@ -19,6 +20,7 @@ public class Healer extends Character {
                 this.setHealth(10);
                 this.setSpeed(7);
                 this.setCharacterType("Highlander");
+                break;
             case "Alchemist":
                 this.setPrice(150);
                 this.setAttack(13);
@@ -26,6 +28,7 @@ public class Healer extends Character {
                 this.setHealth(13);
                 this.setSpeed(13);
                 this.setCharacterType("Marshlander");
+                break;
             case "Saint":
                 this.setPrice(200);
                 this.setAttack(16);
@@ -33,6 +36,7 @@ public class Healer extends Character {
                 this.setHealth(17);
                 this.setSpeed(9);
                 this.setCharacterType("Mystic");
+                break;
             case "Lightbringer":
                 this.setPrice(260);
                 this.setAttack(17);
@@ -40,6 +44,7 @@ public class Healer extends Character {
                 this.setHealth(19);
                 this.setSpeed(12);
                 this.setCharacterType("Sunchild");
+                break;
         }
     }
 }

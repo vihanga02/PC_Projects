@@ -13,6 +13,7 @@ public class Archer extends Character {
                 this.setHealth(6);
                 this.setSpeed(9);
                 this.setCharacterType("Highlander");
+                break;
             case "Ranger":
                 this.setPrice(115);
                 this.setAttack(14);
@@ -20,6 +21,7 @@ public class Archer extends Character {
                 this.setHealth(8);
                 this.setSpeed(10);
                 this.setCharacterType("Highlander");
+                break;
             case "Sunfire":
                 this.setPrice(160);
                 this.setAttack(15);
@@ -27,6 +29,7 @@ public class Archer extends Character {
                 this.setHealth(8);
                 this.setSpeed(14);
                 this.setCharacterType("SunChild");
+                break;
             case "Saggitarius":
                 this.setPrice(230);
                 this.setAttack(18);
@@ -34,6 +37,7 @@ public class Archer extends Character {
                 this.setHealth(12);
                 this.setSpeed(17);
                 this.setCharacterType("Mystic");
+                break;
             case "Zing":
                 this.setPrice(200);
                 this.setAttack(16);
@@ -41,6 +45,7 @@ public class Archer extends Character {
                 this.setHealth(11);
                 this.setSpeed(14);
                 this.setCharacterType("SunChild");
+                break;
         }
     }
 }

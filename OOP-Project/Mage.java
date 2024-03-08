@@ -12,6 +12,7 @@ public class Mage extends Character {
                 this.setHealth(10);
                 this.setSpeed(12);
                 this.setCharacterType("Marshlander");
+                break;
             case "Illusionist":
                 this.setPrice(120);
                 this.setAttack(13);
@@ -19,6 +20,7 @@ public class Mage extends Character {
                 this.setHealth(12);
                 this.setSpeed(14);
                 this.setCharacterType("Mystic");
+                break;
             case "Enchanter":
                 this.setPrice(160);
                 this.setAttack(16);
@@ -26,6 +28,7 @@ public class Mage extends Character {
                 this.setHealth(13);
                 this.setSpeed(16);
                 this.setCharacterType("Highlander");
+                break;
             case "Conjurer":
                 this.setPrice(195);
                 this.setAttack(18);
@@ -33,6 +36,7 @@ public class Mage extends Character {
                 this.setHealth(14);
                 this.setSpeed(12);
                 this.setCharacterType("Highlander");
+                break;
             case "Eldritch":
                 this.setPrice(270);
                 this.setAttack(19);
@@ -40,6 +44,7 @@ public class Mage extends Character {
                 this.setHealth(18);
                 this.setSpeed(14);
                 this.setCharacterType("Mystic");
+                break;
         }
     }
 }

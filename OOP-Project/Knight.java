@@ -12,6 +12,7 @@ public class Knight extends Character {
                 this.setHealth(7);
                 this.setSpeed(8);
                 this.setCharacterType("Marshlander");
+                break;
             case "Cavalier":
                 this.setPrice(110);
                 this.setAttack(10);
@@ -19,6 +20,7 @@ public class Knight extends Character {
                 this.setHealth(7);
                 this.setSpeed(10);
                 this.setCharacterType("Highlander");
+                break;
             case "Templar":
                 this.setPrice(155);
                 this.setAttack(14);
@@ -26,6 +28,7 @@ public class Knight extends Character {
                 this.setHealth(12);
                 this.setSpeed(12);
                 this.setCharacterType("Sunchild");
+                break;
             case "Zoro":
                 this.setPrice(180);
                 this.setAttack(17);
@@ -33,6 +36,7 @@ public class Knight extends Character {
                 this.setHealth(13);
                 this.setSpeed(14);
                 this.setCharacterType("Highlander");
+                break;
             case "Swiftblade":
                 this.setPrice(250);
                 this.setAttack(18);
@@ -40,6 +44,7 @@ public class Knight extends Character {
                 this.setHealth(17);
                 this.setSpeed(13);
                 this.setCharacterType("Marshlander");
+                break;
         }
     }
 
