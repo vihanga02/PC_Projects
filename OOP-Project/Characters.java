@@ -54,8 +54,8 @@ public abstract class Characters {
         this.defence = defence;
     }
 
-    public void setAttack(double attac) {
-        this.attac = attac;
+    public void setAttack(double attack) {
+        this.attack = attack;
     }
 
     public void setSpeed(double speed) {

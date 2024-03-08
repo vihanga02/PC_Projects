@@ -7,31 +7,31 @@ public class Healers extends Characters{
         switch (name){
             case "Soother":
                 this.setPrice(95);
-                this.setAttac(10);
+                this.setAttack(10);
                 this.setDefence(8);
                 this.setHealth(9);
                 this.setSpeed(6);
             case "Medic":
                 this.setPrice(125);
-                this.setAttac(12);
+                this.setAttack(12);
                 this.setDefence(9);
                 this.setHealth(10);
                 this.setSpeed(7);
             case "Alchemist":
                 this.setPrice(150);
-                this.setAttac(13);
+                this.setAttack(13);
                 this.setDefence(13);
                 this.setHealth(13);
                 this.setSpeed(13);
             case "Saint":
                 this.setPrice(200);
-                this.setAttac(16);
+                this.setAttack(16);
                 this.setDefence(14);
                 this.setHealth(17);
                 this.setSpeed(9);
             case "Lightbringer":
                 this.setPrice(260);
-                this.setAttac(17);
+                this.setAttack(17);
                 this.setDefence(15);
                 this.setHealth(19);
                 this.setSpeed(12);
