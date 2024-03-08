@@ -26,7 +26,7 @@ public class War {
         this.challengerArmy = challenger.getArmy();
         this.opponentArmy= opponent.getArmy();
         for(Character character:challengerArmy){
-            switch (challenger.getHomeGround()) {
+            switch (opponent.getHomeGround()) {
                 case "hillCrest" -> {
                     if (character.getCharacterType().equals("highLander")) {
                         character.setAttack(character.getAttack() + 1);
