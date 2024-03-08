@@ -1,4 +1,4 @@
-public class Characters {
+public abstract class Characters {
     private String name;
     private double price;
     private double attac;
@@ -13,6 +13,12 @@ public class Characters {
         this.defence = defence;
         this.health = health;
         this.speed = speed;
+    }
+    public Characters(String name){
+        this.name = name;
+    }
+
+    protected Characters() {
     }
 
     public String getName() {

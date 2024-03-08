@@ -1,10 +1,9 @@
 public class User {
     private String name;
-    private String userName;
+    private final String userName;
     private double coins;
     private int id;
     private double xp;
-
     public User(String name, String userName, int id, double xp){
         this.name = name;
         this.userName = userName;
