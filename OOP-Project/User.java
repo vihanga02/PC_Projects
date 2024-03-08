@@ -20,9 +20,12 @@ public class User {
         userCount++;
     }
     public void addTroopToArmy(Character troop) {
+        // checks whether troop is already in the army
         if (!isAbsent(troop)){
+            // checks whether user have enough money
             if ((coins - troop.getPrice()) > 0){
                 myArmy.add(troop);
+                // decrease the total coins
                 coins -= troop.getPrice();
                 System.out.println("You Purchased a New" + troop.getName());
             }
@@ -37,24 +40,30 @@ public class User {
     }
 
     public void replaceTroop(Character oldTroop, Character newTroop){
+        // checks whether troop is already in the army
         if (isAbsent(oldTroop)){
             System.out.println("Troop You Want to Sell is not in Your Army");
         }
         else {
+            // sell the current troop
             sellTroop(oldTroop);
             System.out.println(oldTroop.getName() + " is Sold");
         }
+        // add the new troop to the army
         addTroopToArmy(newTroop);
     }
 
     private void sellTroop(Character troop) {
+        // checks whether troop is already in the army
         if (!isAbsent(troop)){
             myArmy.remove(troop);
+            // increase the total coins with the coins gain from selling
             coins += troop.getPrice();
         }
     }
 
     private boolean isAbsent(Character troop) {
+        // checks whether troop is already in the army
         for (Character existingTroop : myArmy) {
             if (existingTroop.getClass().equals(troop.getClass())) {
                 return false;
@@ -63,9 +72,30 @@ public class User {
         return true;
     }
 
-    public int addEquipment(){
-        return 0;
+    public void addEquipment(Character troop, Equipment equipment) {
+        // checks whether user have enough money
+        if (coins - equipment.getPrice() > 0){
+            if (equipment instanceof Artefact) {
+                // checks whether user already have an artefact
+                if (troop.getArtefact() == null) {
+                    troop.setArtefact((Artefact) equipment);
+                }
+            } else if (equipment instanceof Armour) {
+                // checks whether user already have an artefact
+                if (troop.getArmour() == null) {
+                    troop.setArmour((Armour) equipment);
+                }
+            }
+            // set the new price of the troop after adding an equipment
+            troop.setPrice(troop.getPrice() * 1.2);
+            System.out.println("Equipment of Type " + equipment.getClass().toString() +
+                    " is added to " + troop.getName());
+        }
+        else {
+            System.out.println("Not Enough Coins");
+        }
     }
+
     public Vector<Character> getArmy(){
         return myArmy;
     }
