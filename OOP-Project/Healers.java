@@ -1,4 +1,4 @@
-public class Healers extends Characters{
+public class Healers extends Character {
     public Healers(String name){
         super(name, 0, 0, 0, 0, 0);
         this.createArcher(name);
