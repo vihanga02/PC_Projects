@@ -1,4 +1,4 @@
-public class Knight extends Characters{
+public class Knight extends Character {
     public Knight(String name){
         super(name, 0, 0, 0, 0, 0);
         this.createArcher(name);

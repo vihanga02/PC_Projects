@@ -1,4 +1,4 @@
-public class Mages extends Characters{
+public class Mages extends Character {
     public Mages(String name){
         super(name, 0, 0, 0, 0, 0);
         this.createArcher(name);
