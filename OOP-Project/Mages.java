@@ -24,16 +24,16 @@ public class Mages extends Characters{
                 this.setHealth(13);
                 this.setSpeed(16);
             case "Conjurer":
-                this.setPrice(230);
+                this.setPrice(195);
                 this.setAttac(18);
-                this.setDefence(7);
-                this.setHealth(12);
-                this.setSpeed(17);
-            case "Zing":
-                this.setPrice(200);
-                this.setAttac(16);
-                this.setDefence(9);
-                this.setHealth(11);
+                this.setDefence(15);
+                this.setHealth(14);
+                this.setSpeed(12);
+            case "Eldritch":
+                this.setPrice(270);
+                this.setAttac(19);
+                this.setDefence(17);
+                this.setHealth(18);
                 this.setSpeed(14);
         }
     }
