@@ -63,8 +63,8 @@ public class User {
         return true;
     }
 
-    public void addEquipment(){
-        return ;
+    public int addEquipment(){
+        return 0;
     }
     public Vector<Character> getArmy(){
         return myArmy;
