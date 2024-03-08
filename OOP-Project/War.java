@@ -11,7 +11,7 @@ public class War {
     boolean isWarEnded=false;
 
 
-3
+
     public War(User initialChallenger,User initialOpponent){
         this.initialChallenger = initialChallenger;
         this.initialOpponent = initialOpponent;
@@ -21,44 +21,44 @@ public class War {
     }
     void startWar(){
 
-        this.challenger = intialChallenger;
-        this.opponent = intialOpponent;
+        this.challenger = initialChallenger;
+        this.opponent = initialOpponent;
         this.challengerArmy = challenger.getArmy();
-        this.defenderArmy= opponent.getArmy();
+        this.opponentArmy= opponent.getArmy();
         for(Character character:challengerArmy){
-            if(challenger.homeGround.equals("hIllCrest")) {
-                if (character.characterType.equals("highLander")) {
+            if(challenger.getHomeGround().equals("hillCrest")) {
+                if (character.getCharacterType().equals("highLander")) {
                     character.setAttack(character.getAttack() + 1);
                     character.setDefence(character.getDefence() + 1);
                 }
-            }else if(challenger.homeGround.equals("marshLand")) {
-                if (character.characterType.equals("marshLander")) {
+            }else if(challenger.getHomeGround().equals("marshLand")) {
+                if (character.getCharacterType().equals("marshLander")) {
                     character.setDefence(character.getDefence() + 2);
                 }
-                if (character.characterType.equals("sunChild")) {
+                if (character.getCharacterType().equals("sunChild")) {
                     character.setAttack(character.getAttack() - 1);
 
                 }
-                if (character.characterType.equals("mystics")) {
+                if (character.getCharacterType().equals("mystics")) {
                     character.setSpeed(character.getSpeed() - 1);
 
                 }
-            }else if(challenger.homeGround.equals("desert")){
-                    if(character.characterType.equals("marshLander")){
+            }else if(challenger.getHomeGround().equals("desert")){
+                    if(character.getCharacterType().equals("marshLander")){
                         character.setHealth(character.getHealth() - 1);
-                    }if(character.characterType.equals("sunChild")){
+                    }if(character.getCharacterType().equals("sunChild")){
                         character.setAttack(character.getAttack() + 1);
 
                     }
 
-            }else(challenger.homeGround.equals("arcane")){
-                if(character.characterType.equals("mystics")){
+            }else if(challenger.getHomeGround().equals("arcane")){
+                if(character.getCharacterType().equals("mystics")){
                     character.setAttack(character.getAttack() + 2);
-                }if(character.characterType.equals("highLander")){
-                    character.setSpeed(character.getspeed() - 1);
+                }if(character.getCharacterType().equals("highLander")){
+                    character.setSpeed(character.getSpeed() - 1);
                     character.setDefence(character.getDefence() - 1);
-                }if(character.characterType.equals("marshLander")) {
-                    character.setSpeed(character.getspeed() - 1);
+                }if(character.getCharacterType().equals("marshLander")) {
+                    character.setSpeed(character.getSpeed() - 1);
                     character.setDefence(character.getDefence() - 1);
                 }
 
