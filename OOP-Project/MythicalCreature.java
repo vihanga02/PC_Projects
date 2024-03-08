@@ -1,5 +1,5 @@
-public class MythicalCreatures extends Character {
-    public MythicalCreatures(String name){
+public class MythicalCreature extends Character {
+    public MythicalCreature(String name){
         super(name, 0, 0, 0, 0, 0);
         this.createArcher(name);
     }
