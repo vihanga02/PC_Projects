@@ -214,7 +214,6 @@ public class Menu {
         }
         System.out.println("\n");
     }
-
     private void challenge(){
         for (User user:userList){
             if (!user.equals(curretUser)) {
@@ -229,6 +228,9 @@ public class Menu {
                         break;
                     }
                 }
+            }
+            if (challenger != null){
+                break;
             }
         }
     }
