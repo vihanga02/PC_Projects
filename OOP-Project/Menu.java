@@ -147,7 +147,7 @@ public class Menu {
                     curretUser.replaceTroop(curretUser.getMyArmyMap().get("Healer"), new Healer(newCharacterName));
                     break;
                 }
-            } else if (charactertype == 5) {
+            } else {
                 if (mythicalCreatures.contains(newCharacterName.toLowerCase().strip())) {
                     curretUser.replaceTroop(curretUser.getMyArmyMap().get("MythicalCreature"), new MythicalCreature(newCharacterName));
                     break;
@@ -203,10 +203,10 @@ public class Menu {
         int choice = scanner.nextInt();
         System.out.print("Enter the name of the equipment: ");
         String equipment = scanner.next();
-        switch (choice) {
-            case 1:
-                currentUser.addEquipment();
-        }
+//        switch (choice) {
+//            case 1:
+//                currentUser.addEquipment();
+//        }
 
     }
     public User getCurrentUser() {
