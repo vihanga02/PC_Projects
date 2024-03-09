@@ -112,7 +112,6 @@ public class Menu {
         printUserData(newUser);
         this.loadProfile();
     }
-
     public void changeCharacters(User curretUser) {
         Table.displayTroopsTable();
         System.out.print("Choose replacing character type.\n" +
@@ -210,7 +209,6 @@ public class Menu {
         }
 
     }
-
     public User getCurrentUser() {
         return curretUser;
     }
@@ -256,6 +254,9 @@ public class Menu {
                         break;
                     }
                 }
+            }
+            if (challenger != null){
+                break;
             }
         }
     }
