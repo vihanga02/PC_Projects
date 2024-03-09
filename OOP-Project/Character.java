@@ -6,6 +6,8 @@ public abstract class Character {
     private double health;
     private double speed;
     private String characterType;
+    private Artefact artefact;
+    private Armour armour;
 
     public Character(String name){
         this.name = name;
@@ -31,6 +33,13 @@ public abstract class Character {
     public double getSpeed() {
         return speed;
     }
+    public Artefact getArtefact() {
+        return artefact;
+    }
+
+    public Armour getArmour() {
+        return armour;
+    }
 
     public void setHealth(double health) {
         this.health = health;
@@ -50,6 +59,12 @@ public abstract class Character {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+    }
+    public void setArtefact(Artefact artefact) {
+        this.artefact = artefact;
+    }
+    public void setArmour(Armour armour) {
+        this.armour = armour;
     }
 
     public String getCharacterType() {

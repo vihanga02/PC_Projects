@@ -6,7 +6,7 @@ public class Archer extends Character {
     }
     private void createArcher(String name){
         switch (name){
-            case "Shooter":
+            case "shooter":
                 this.setPrice(80);
                 this.setAttack(11);
                 this.setDefence(4);
@@ -14,7 +14,7 @@ public class Archer extends Character {
                 this.setSpeed(9);
                 this.setCharacterType("Highlander");
                 break;
-            case "Ranger":
+            case "ranger":
                 this.setPrice(115);
                 this.setAttack(14);
                 this.setDefence(5);
@@ -22,7 +22,7 @@ public class Archer extends Character {
                 this.setSpeed(10);
                 this.setCharacterType("Highlander");
                 break;
-            case "Sunfire":
+            case "sunfire":
                 this.setPrice(160);
                 this.setAttack(15);
                 this.setDefence(5);
@@ -30,7 +30,7 @@ public class Archer extends Character {
                 this.setSpeed(14);
                 this.setCharacterType("SunChild");
                 break;
-            case "Saggitarius":
+            case "saggitarius":
                 this.setPrice(230);
                 this.setAttack(18);
                 this.setDefence(7);
@@ -38,7 +38,7 @@ public class Archer extends Character {
                 this.setSpeed(17);
                 this.setCharacterType("Mystic");
                 break;
-            case "Zing":
+            case "zing":
                 this.setPrice(200);
                 this.setAttack(16);
                 this.setDefence(9);

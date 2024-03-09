@@ -5,7 +5,7 @@ public class Healer extends Character {
     }
     private void createArcher(String name){
         switch (name){
-            case "Soother":
+            case "soother":
                 this.setPrice(95);
                 this.setAttack(10);
                 this.setDefence(8);
@@ -13,7 +13,7 @@ public class Healer extends Character {
                 this.setSpeed(6);
                 this.setCharacterType("Sunchild");
                 break;
-            case "Medic":
+            case "medic":
                 this.setPrice(125);
                 this.setAttack(12);
                 this.setDefence(9);
@@ -21,7 +21,7 @@ public class Healer extends Character {
                 this.setSpeed(7);
                 this.setCharacterType("Highlander");
                 break;
-            case "Alchemist":
+            case "alchemist":
                 this.setPrice(150);
                 this.setAttack(13);
                 this.setDefence(13);
@@ -29,7 +29,7 @@ public class Healer extends Character {
                 this.setSpeed(13);
                 this.setCharacterType("Marshlander");
                 break;
-            case "Saint":
+            case "saint":
                 this.setPrice(200);
                 this.setAttack(16);
                 this.setDefence(14);
@@ -37,7 +37,7 @@ public class Healer extends Character {
                 this.setSpeed(9);
                 this.setCharacterType("Mystic");
                 break;
-            case "Lightbringer":
+            case "lightbringer":
                 this.setPrice(260);
                 this.setAttack(17);
                 this.setDefence(15);

@@ -5,7 +5,7 @@ public class Knight extends Character {
     }
     private void createArcher(String name){
         switch (name){
-            case "Squire":
+            case "squire":
                 this.setPrice(85);
                 this.setAttack(8);
                 this.setDefence(9);
@@ -13,7 +13,7 @@ public class Knight extends Character {
                 this.setSpeed(8);
                 this.setCharacterType("Marshlander");
                 break;
-            case "Cavalier":
+            case "cavalier":
                 this.setPrice(110);
                 this.setAttack(10);
                 this.setDefence(12);
@@ -21,7 +21,7 @@ public class Knight extends Character {
                 this.setSpeed(10);
                 this.setCharacterType("Highlander");
                 break;
-            case "Templar":
+            case "templar":
                 this.setPrice(155);
                 this.setAttack(14);
                 this.setDefence(16);
@@ -29,7 +29,7 @@ public class Knight extends Character {
                 this.setSpeed(12);
                 this.setCharacterType("Sunchild");
                 break;
-            case "Zoro":
+            case "zoro":
                 this.setPrice(180);
                 this.setAttack(17);
                 this.setDefence(16);
@@ -37,7 +37,7 @@ public class Knight extends Character {
                 this.setSpeed(14);
                 this.setCharacterType("Highlander");
                 break;
-            case "Swiftblade":
+            case "swiftblade":
                 this.setPrice(250);
                 this.setAttack(18);
                 this.setDefence(20);

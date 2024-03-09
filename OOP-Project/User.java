@@ -8,7 +8,7 @@ public class User {
     private final String userID;
     private double xp;
     private final String homeGround;
-    private Vector<Character> myArmy;
+    private ArrayList<Character> myArmy = new ArrayList<>();
     public User(String name, String userName, String homeGround){
         this.name = name;
         this.userName = userName;
@@ -21,45 +21,36 @@ public class User {
     }
     public void addTroopToArmy(Character troop) {
         // checks whether troop is already in the army
-        if (!isAbsent(troop)){
+        if (isAbsent(troop)){
             // checks whether user have enough money
             if ((coins - troop.getPrice()) > 0){
                 myArmy.add(troop);
                 // decrease the total coins
                 coins -= troop.getPrice();
-                System.out.println("You Purchased a New" + troop.getName());
+                System.out.println("You Purchased a new " + troop.getName());
             }
             else {
                 System.out.println("Not Enough Coins");
             }
         }
         else {
-            System.out.println("Troop of type " + troop.getClass().getName() + " Already Exists in Your Army" );
+            System.out.println("Troop of type " + troop.getClass().getName() + " already exists in your army" );
         }
 
     }
-
     public void replaceTroop(Character oldTroop, Character newTroop){
         // checks whether troop is already in the army
         if (isAbsent(oldTroop)){
-            System.out.println("Troop You Want to Sell is not in Your Army");
+            System.out.println("Troop you want to sell is not in your army");
         }
         else {
             // sell the current troop
-            sellTroop(oldTroop);
-            System.out.println(oldTroop.getName() + " is Sold");
+            myArmy.remove(oldTroop);
+            coins += oldTroop.getPrice();
+            System.out.println(oldTroop.getName() + " is sold");
         }
         // add the new troop to the army
         addTroopToArmy(newTroop);
-    }
-
-    private void sellTroop(Character troop) {
-        // checks whether troop is already in the army
-        if (!isAbsent(troop)){
-            myArmy.remove(troop);
-            // increase the total coins with the coins gain from selling
-            coins += troop.getPrice();
-        }
     }
 
     private boolean isAbsent(Character troop) {
@@ -96,7 +87,7 @@ public class User {
         }
     }
 
-    public Vector<Character> getArmy(){
+    public ArrayList<Character> getArmy(){
         return myArmy;
     }
     public String getName() {
