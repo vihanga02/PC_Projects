@@ -9,6 +9,7 @@ public class User {
     private double xp;
     private final String homeGround;
     private ArrayList<Character> myArmy = new ArrayList<>();
+    private Map<String, Character> myArmyMap = new HashMap<>();
     public User(String name, String userName, String homeGround){
         this.name = name;
         this.userName = userName;
@@ -25,6 +26,7 @@ public class User {
             // checks whether user have enough money
             if ((coins - troop.getPrice()) > 0){
                 myArmy.add(troop);
+                myArmyMap.put(troop.getClass().getName(), troop);
                 // decrease the total coins
                 coins -= troop.getPrice();
                 System.out.println("You Purchased a new " + troop.getName());
@@ -52,7 +54,6 @@ public class User {
         // add the new troop to the army
         addTroopToArmy(newTroop);
     }
-
     private boolean isAbsent(Character troop) {
         // checks whether troop is already in the army
         for (Character existingTroop : myArmy) {
@@ -90,6 +91,11 @@ public class User {
     public ArrayList<Character> getArmy(){
         return myArmy;
     }
+
+    public Map<String, Character> getMyArmyMap() {
+        return myArmyMap;
+    }
+
     public String getName() {
         return name;
     }
@@ -120,8 +126,5 @@ public class User {
     public void setXp(double xp) {
         this.xp = xp;
     }
-
-
-
 }
 
