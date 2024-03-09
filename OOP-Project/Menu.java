@@ -14,7 +14,6 @@ public class Menu {
     private final List<String> artefacts = List.of("excalibur", "amulet", "crystal");
     Scanner scanner = new Scanner(System.in);
     private User currentUser;
-    private User curretUser;
     private User challenger;
 
     public Menu() {
@@ -189,32 +188,54 @@ public class Menu {
     }
 
     private void addEquipments() {
-        System.out.println("Here's a detailed table about Equipments available.");
-        System.out.println();
+        System.out.println("Here's a detailed table about Equipments available.\n");
         Table.displayEquipmentTable();
         System.out.println("You currently have: ");
         for (Character character : currentUser.getArmy()) {
             System.out.println("                 " + character.getName() + " with " + character.armourCount + " armour and "
                     + character.artefactCount + " artefact");
         }
-        System.out.println("Select the character to enforce with equipment");
-        System.out.println();
-        System.out.print("ARCHER [enter 1], KNIGHT [enter 2], MAGE [enter 3], HEALER [enter 4], MYTHICAL CREATURE [ enter 5]");
+        System.out.println("Select the character to enforce with equipment\n");
+        System.out.print("ARCHER [enter 1], KNIGHT [enter 2], MAGE [enter 3], HEALER [enter 4], MYTHICAL_CREATURE [enter 5]: ");
         int choice = scanner.nextInt();
         System.out.print("Enter the name of the equipment: ");
         String equipment = scanner.next();
-//        switch (choice) {
-//            case 1:
-//                currentUser.addEquipment();
-//        }
+        Armour armour = null;
+        Artefact artefact = null;
+        if (armours.contains(equipment)) {
+            armour = new Armour(equipment);
+        } else {
+            artefact = new Artefact(equipment);
+        }
 
+        switch (choice) {
+            case 1:
+                currentUser.addEquipment(currentUser.getMyArmyMap().get("Archer"), armour != null ? armour : artefact);
+                break;
+            case 2:
+                currentUser.addEquipment(currentUser.getMyArmyMap().get("Knight"), armour != null ? armour : artefact);
+                break;
+            case 3:
+                currentUser.addEquipment(currentUser.getMyArmyMap().get("Mage"), armour != null ? armour : artefact);
+                break;
+            case 4:
+                currentUser.addEquipment(currentUser.getMyArmyMap().get("Healer"), armour != null ? armour : artefact);
+                break;
+            case 5:
+                currentUser.addEquipment(currentUser.getMyArmyMap().get("Mythical Creature"), armour != null ? armour : artefact);
+                break;
+            default:
+                System.out.println("Invalid choice!");
+                break;
+        }
     }
+
     public User getCurrentUser() {
-        return curretUser;
+        return currentUser;
     }
 
     public void setCurrentUser(User user) {
-        curretUser = user;
+        currentUser = user;
     }
 
     private void printUserData(User user) {
@@ -242,7 +263,7 @@ public class Menu {
 
     private void challenge() {
         for (User user : userList) {
-            if (!user.equals(curretUser)) {
+            if (!user.equals(currentUser)) {
                 printUserData(user);
                 while (true) {
                     System.out.print("Challenge or Skip (C/S): ");
