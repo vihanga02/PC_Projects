@@ -10,8 +10,10 @@ public class Menu {
     private final List<String> mages = List.of("warlock","illusionist","enchanter","conjurer","eldritch");
     private final List<String> healers = List.of("soother","medic","alchemist","saint","lightbringer");
     private final List<String> mythicalCreatures = List.of("dragon", "basilisk","hydra","phoenix","pegasus");
+    private final List<String> armours = List.of("chainmail", "regalia", "fleece");
+    private final List<String> artefacts = List.of("excalibur", "amulet", "crystal");
     Scanner scanner = new Scanner(System.in);
-    private static User curretUser;
+    private User currentUser;
     public Menu(){
     }
     public void displayMenu(){
@@ -32,10 +34,6 @@ public class Menu {
         }
     }
 
-    public void changeArmy(User curretUser){
-
-    }
-
     private void createProfile(){
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
@@ -49,7 +47,6 @@ public class Menu {
                 System.out.println("Username Already Exists!");
             }
             else{
-                userNames.add(userName);
                 break;
             }
         }
@@ -60,20 +57,20 @@ public class Menu {
                 "3. Desert\n" +
                 "4. Arcane");
 
-        int homeGroundCoice = scanner.nextInt();
-        while (4 < homeGroundCoice || 1> homeGroundCoice){
+        int homeGroundChoice = scanner.nextInt();
+        while (4 < homeGroundChoice || 1> homeGroundChoice){
             System.out.println("Wrong Choice. Prompt again!!!!");
-            homeGroundCoice = scanner.nextInt();
+            homeGroundChoice = scanner.nextInt();
         }
 
         User newUser;
-        if (homeGroundCoice == 1){
+        if (homeGroundChoice == 1){
             newUser = new User(name, userName, "Hillcrest");
         }
-        else if (homeGroundCoice == 2){
+        else if (homeGroundChoice == 2){
             newUser = new User(name, userName, "Marshland");
         }
-        else if (homeGroundCoice == 3){
+        else if (homeGroundChoice == 3){
             newUser = new User(name, userName, "Desert");
         }
         else{
@@ -88,7 +85,6 @@ public class Menu {
         System.out.println("You have only " + newUser.getCoins() + " remaining");
 
         while(newUser.getArmy().size() < 5){
-
             System.out.print("Enter the name of the character from the categories above: ");
             String characterName = scanner.next().toLowerCase();
             if (archers.contains(characterName)){
@@ -116,10 +112,10 @@ public class Menu {
         System.out.println("PERFECT!! Now you have your own army");
         System.out.println();
         userList.add(newUser);
+        userNames.add(userName);
         System.out.println("New profile creation DONE!!");
         printUserData(newUser);
         setCurrentUser(newUser);
-
     }
 
     private void loadProfile() {
@@ -149,12 +145,33 @@ public class Menu {
         }
 
     }
+    private void addEquipments(){
+        System.out.println("Here's a detailed table about Equipments available.");
+        System.out.println();
+        Table.displayEquipmentTable();
+        System.out.println("You currently have: ");
+        for (Character character: currentUser.getArmy()){
+            System.out.println("                 " + character.getName() + " with " + character.armourCount + " armour and "
+                                + character.artefactCount + " artefact");
+        }
+        System.out.println("Select the character to enforce with equipment");
+        System.out.println();
+        System.out.print("ARCHER [enter 1], KNIGHT [enter 2], MAGE [enter 3], HEALER [enter 4], MYTHICAL CREATURE [ enter 5]");
+        int choice = scanner.nextInt();
+        System.out.print("Enter the name of the equipment: ");
+        String equipment = scanner.next();
+        switch (choice){
+            case 1:
+                currentUser.addEquipment();
+        }
+
+    }
 
     public User getCurrentUser(){
-        return curretUser;
+        return currentUser;
     }
     public void setCurrentUser(User user){
-        curretUser = user;
+        this.currentUser = user;
     }
 
     private void printUserData(User user){

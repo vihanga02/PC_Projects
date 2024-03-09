@@ -27,7 +27,7 @@ public class User {
                 myArmy.add(troop);
                 // decrease the total coins
                 coins -= troop.getPrice();
-                System.out.println("You Purchased a new " + troop.getName());
+                System.out.println("You Purchased a new " + troop.getName().toUpperCase() + " of type " + troop.getClass().getName());
             }
             else {
                 System.out.println("Not Enough Coins");

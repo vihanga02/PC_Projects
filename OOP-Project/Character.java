@@ -7,7 +7,9 @@ public abstract class Character {
     private double speed;
     private String characterType;
     private Artefact artefact;
+    public int artefactCount = 0;
     private Armour armour;
+    public int armourCount = 0;
 
     public Character(String name){
         this.name = name;
@@ -62,9 +64,11 @@ public abstract class Character {
     }
     public void setArtefact(Artefact artefact) {
         this.artefact = artefact;
+        artefactCount++;
     }
     public void setArmour(Armour armour) {
         this.armour = armour;
+        armourCount++;
     }
 
     public String getCharacterType() {
