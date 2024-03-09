@@ -162,6 +162,7 @@ public class Menu {
         String equipment = scanner.next();
         switch (choice){
             case 1:
+
                 currentUser.addEquipment();
         }
 
