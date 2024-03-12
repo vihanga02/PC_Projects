@@ -24,7 +24,7 @@ public class War {
         this.challenger = initialChallenger;
         this.opponent = initialOpponent;
         this.challengerArmy = challenger.getArmy();
-        this.opponentArmy= opponent.getArmy();
+        this.opponentArmy = opponent.getArmy();
         for(Character character:challengerArmy){
             switch (opponent.getHomeGround()) {
                 case "hillCrest" -> {
