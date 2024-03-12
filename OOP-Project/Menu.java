@@ -22,7 +22,11 @@ public class Menu {
     public void displayMenu() {
         System.out.println("-----Menu-----\n" +
                 "1. New Profile.\n" +
-                "2. Load Profile.");
+                "2. Load Profile.\n" +
+                "3. Edit Profile \n" +
+                "4. View Profile \n" +
+                "5. Start War \n" +
+                "6. Exit");
         int choice = scanner.nextInt();
 
         switch (choice) {
@@ -32,8 +36,15 @@ public class Menu {
             case 2:
                 this.loadProfile();
                 break;
-            default:
-                System.out.println("Enter a number!!");
+            case 3:
+                changeCharacters(currentUser);
+                addEquipments();
+                break;
+            case 4:
+                printUserData(currentUser);
+                break;
+            case 5:
+                break;
         }
     }
 
@@ -110,12 +121,13 @@ public class Menu {
         System.out.println("New profile creation DONE!!");
         printUserData(newUser);
         this.loadProfile();
+        displayMenu();
     }
     public void changeCharacters(User curretUser) {
         Table.displayTroopsTable();
         System.out.print("Choose replacing character type.\n" +
                 "1. Archer\n" +
-                "2. Knghit\n" +
+                "2. Knight\n" +
                 "3. Mage\n" +
                 "4. Healer\n" +
                 "5. Mythical Creature");
@@ -153,15 +165,14 @@ public class Menu {
                 }
             }
         }
-        System.out.println("New character added successfully!!");
     }
 
     private void loadProfile() {
         boolean validUsernameEntered = false;
-        userList.add(new User("Muthumala", "muthu", "HillCrest"));
-        userList.add(new User("Rusiru", "russ", "Marshland"));
-        userList.add(new User("Rivindu", "rivi", "Desert"));
-        userList.add(new User("Thrinith", "wick", "Arcane"));
+//        userList.add(new User("Muthumala", "muthu", "HillCrest"));
+//        userList.add(new User("Rusiru", "russ", "Marshland"));
+//        userList.add(new User("Rivindu", "rivi", "Desert"));
+//        userList.add(new User("Thrinith", "wick", "Arcane"));
         while (!validUsernameEntered) {
             System.out.println("Select a profile to load from below");
             for (User user : userList) {
@@ -184,6 +195,7 @@ public class Menu {
                 System.out.println("Profile with username '" + userNameToLoad + "' not found. Please try again.");
             }
         }
+        displayMenu();
 
     }
 
@@ -199,12 +211,12 @@ public class Menu {
         System.out.print("ARCHER [enter 1], KNIGHT [enter 2], MAGE [enter 3], HEALER [enter 4], MYTHICAL_CREATURE [enter 5]: ");
         int choice = scanner.nextInt();
         System.out.print("Enter the name of the equipment: ");
-        String equipment = scanner.next();
+        String equipment = scanner.next().toLowerCase();
         Armour armour = null;
         Artefact artefact = null;
         if (armours.contains(equipment)) {
             armour = new Armour(equipment);
-        } else {
+        } else if (artefacts.contains(equipment)) {
             artefact = new Artefact(equipment);
         }
 
@@ -239,26 +251,31 @@ public class Menu {
     }
 
     private void printUserData(User user) {
-        System.out.println("Username: " + user.getUserName());
-        System.out.println("UserID: " + user.getUserID());
-        System.out.println("Coins Remaining: " + user.getCoins());
-        System.out.println("Xp: " + user.getXp());
-        if (user.getArmy() != null) {
-            for (Character character : user.getArmy()) {
-                if (character instanceof Archer) {
-                    System.out.println("Archer: " + character.getName());
-                } else if (character instanceof Knight) {
-                    System.out.println("Knight: " + character.getName());
-                } else if (character instanceof Mage) {
-                    System.out.println("Mage: " + character.getName());
-                } else if (character instanceof Healer) {
-                    System.out.println("Healer: " + character.getName());
-                } else {
-                    System.out.println("Mythical Creature: " + character.getName());
+        try {
+            System.out.println("Username: " + user.getUserName());
+            System.out.println("UserID: " + user.getUserID());
+            System.out.println("Coins Remaining: " + user.getCoins());
+            System.out.println("Xp: " + user.getXp());
+            if (user.getArmy() != null) {
+                for (Character character : user.getArmy()) {
+                    if (character instanceof Archer) {
+                        System.out.println("Archer: " + character.getName());
+                    } else if (character instanceof Knight) {
+                        System.out.println("Knight: " + character.getName());
+                    } else if (character instanceof Mage) {
+                        System.out.println("Mage: " + character.getName());
+                    } else if (character instanceof Healer) {
+                        System.out.println("Healer: " + character.getName());
+                    } else {
+                        System.out.println("Mythical Creature: " + character.getName());
+                    }
                 }
             }
+            System.out.println("\n");
+        } catch (NullPointerException e){
+            System.out.println("Sorry you haven't created any profiles yet");
+            displayMenu();
         }
-        System.out.println("\n");
     }
 
     private void challenge() {

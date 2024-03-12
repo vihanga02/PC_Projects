@@ -45,14 +45,14 @@ public class User {
         if (isAbsent(oldTroop)){
             System.out.println("Troop you want to sell is not in your army");
         }
-        else {
+        else if ((coins + oldTroop.getPrice() - newTroop.getPrice()) > 0) {
             // sell the current troop
             myArmy.remove(oldTroop);
             coins += oldTroop.getPrice();
             System.out.println(oldTroop.getName() + " is sold");
+            addTroopToArmy(newTroop);
         }
-        // add the new troop to the army
-        addTroopToArmy(newTroop);
+
     }
     private boolean isAbsent(Character troop) {
         // checks whether troop is already in the army
