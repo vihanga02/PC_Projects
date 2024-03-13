@@ -25,8 +25,8 @@ public class War {
 
         this.challenger = initialChallenger;
         this.opponent = initialOpponent;
-        this.challengerArmy = challenger.getArmy();
-        this.opponentArmy = opponent.getArmy();
+        this.challengerArmy = new Vector<>(challenger.getArmy());
+        this.opponentArmy = new Vector<>(opponent.getArmy());
         for(Character character:challengerArmy){
             switch (opponent.getHomeGround()) {
                 case "hillCrest" -> {
@@ -107,9 +107,18 @@ public class War {
         opponentArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));;
 
         int attackingSide = 0; //set to 0 when challenger is attacking and set to 1 when opponent is attacking
-        int turn=0;
-        double previousHealth=opponentArmyDefendingArray.get(0);
+        int turn=1;
+        double previousHealth=opponentArmyDefendingArray.get(0).getHealth();
         while (!isWarEnded) {
+            System.out.println("Round no="+turn);
+            if(attackingSide==0){
+                System.out.print("Attacking Player=" + initialChallenger.getName() + " " + "Diffending Player=" + initialOpponent.getName());
+
+            }
+            else{
+                System.out.print("Attacking player=" + initialOpponent.getName() + " " + "Diffending Player=" + initialChallenger.getName());
+
+            }
             if (attackingSide == 0) {//initially first attacking side is challenger
 
                 if(!challengerArmyAttackingArray.get(0).getName().equals("healer")) {//check the challenger attacking army character is a healer?
@@ -117,6 +126,9 @@ public class War {
 
                     double dmg = 0.5 * (challengerArmyAttackingArray.get(0).getAttack()) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());//get the damge value of challenger army attacking array
                     opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - dmg);//reduce the health of defending array army charactrer according to the damage value
+
+                    System.out.println(opponentArmyDefendingArray.get(0).getName()+"'s health reduce by"+dmg+"by the attck of"+challengerArmyAttackingArray.get(0).getName());
+
                     if(initialChallenger.getHomeGround().equals("hillcrest") && challengerArmyAttackingArray.get(0).getCharacterType().equals("highlander")){
                         double bonusdmg = 0.5 * (challengerArmyAttackingArray.get(0).getAttack()*0.2) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());//get the damge value of challenger army attacking array
                         opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - bonusdmg);//reduce the health of defending array army charactrer according to the damage value
@@ -167,6 +179,9 @@ public class War {
                     challengerArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));;//sort the challengerarmyhealingarray according to current hea,th values
                     double healvalue=0.1*(challengerArmyAttackingArray.get(0).getAttack());//calculate the healvalue of the healer
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth()+healvalue);//get the lowest health character and heal it
+
+                    System.out.println("Healer is healed"+challengerArmyHealingArray.get(0).getHealth()+"by"+healvalue);
+
                     Character healedchar=challengerArmyHealingArray.get(0);//save the healed charactor into a varibale
                     for (Character character : opponentArmyDefendingArray) {//also update the health value on opponentArmyDiffenderArray the lowest health charactor health
                         if(character.getName().equals(healedchar.getName())){
@@ -196,6 +211,9 @@ public class War {
 
                     double dmg = 0.5 * (opponentArmyAttackingArray.get(0).getAttack()) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());//calculate the damage value of opponnet army attacking  value
                     challengerArmyDefendingArray.get(0).setHealth(challengerArmyDefendingArray.get(0).getHealth() - dmg);//reduce health of challenger army difending  character according to the dmg value
+
+                    System.out.println(opponentArmyDefendingArray.get(0).getName()+"'s health reduce by"+dmg+"by the attck of"+challengerArmyAttackingArray.get(0).getName());
+
                     if(initialChallenger.getHomeGround().equals("hillcrest") && opponentArmyAttackingArray.get(0).getCharacterType().equals("highlander")){
                         double bonusdmg = 0.5 * (opponentArmyAttackingArray.get(0).getAttack()*0.2) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());//get the damge value of challenger army attacking array
                         opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - bonusdmg);//reduce the health of defending array army charactrer according to the damage value
@@ -244,6 +262,11 @@ public class War {
                     challengerArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));;
                     double healvalue=0.1*(challengerArmyAttackingArray.get(0).getAttack());
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth()+healvalue);//update the heal value on charactor healing value
+
+                    System.out.println("Healer is healed"+challengerArmyHealingArray.get(0).getHealth()+"by"+healvalue);
+
+
+
                     Character healedchar=challengerArmyHealingArray.get(0);//save the healed charactor into a varibale
                     for (Character character : challengerArmyDefendingArray) {//also update the health value on challengerArmyDiffenderArray the lowest health charactor health
                         if(character.getName().equals(healedchar.getName())){
@@ -260,7 +283,7 @@ public class War {
 
 
                 }
-                double previousHealth=opponentArmyDefendingArray.get(0).getHealth();
+                previousHealth=opponentArmyDefendingArray.get(0).getHealth();
 
 
 
@@ -272,6 +295,7 @@ public class War {
             turn=turn+1;
             if(turn==10){
                 isWarEnded=true;
+                System.out.println("WarEnded");
 
 
             }
@@ -280,6 +304,7 @@ public class War {
 
 
         }
+        System.out.println("------Results----------");
         int finalcountchallengerArmy=challengerArmyAttackingArray.size();
         int finalcountopponentArmy=opponentArmyAttackingArray.size();
         if(finalcountchallengerArmy>finalcountopponentArmy) {
