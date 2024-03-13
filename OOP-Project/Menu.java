@@ -1,8 +1,9 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
-public class Menu {
+public class Menu implements Serializable {
     static List<User> userList = new ArrayList<>();
     static List<String> userNames = new ArrayList<>();
     private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "sagittarius");
@@ -19,6 +20,7 @@ public class Menu {
     private User challenger;
 
     public Menu() {
+        loadFile();
     }
 
     public void displayMenu() {
@@ -66,7 +68,27 @@ public class Menu {
         }
     }
 
-
+    public void saveUserList(){
+        try{
+            FileOutputStream data = new FileOutputStream("Data.ser");
+            ObjectOutputStream obj = new ObjectOutputStream(data);
+            obj.writeObject(userList);
+            obj.close();
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public void loadFile() {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
+            List<User> pr = (List<User>) in.readObject();
+            userList = pr;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("errorrrrrrrrrrrr");
+            e.printStackTrace();
+        }
+    }
     private void createProfile() {
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
@@ -121,7 +143,6 @@ public class Menu {
         System.out.println("Embark on yout journey by selecting characters from above categories");
 
         while (newUser.getArmy().size() < 5) {
-
             System.out.print("Provide a name to bring it to life: ");
             String characterName = scanner.next().toLowerCase();
             if (archers.contains(characterName)) {
@@ -142,6 +163,7 @@ public class Menu {
 
         System.out.println("PERFECT!! Your legion is now complete");
         userList.add(newUser);
+        saveUserList();
         System.out.println("\nWELCOME to the world of Mystic Mayhem" + "\nYou are all set to go\n");
         printUserData(newUser);
         printArmy(newUser);
@@ -175,8 +197,6 @@ public class Menu {
                 scanner.next(); // Clear the scanner buffer
             }
         }
-
-
     }
     public void changeCharacters(User curretUser) {
         if (curretUser != null) {
@@ -249,13 +269,12 @@ public class Menu {
             for (User user : userList) {
                 if (user.getUserName().equals(userNameToLoad)) {
                     System.out.println("\nProfile loaded successfully!\n");
-                    printUserData(user);
                     setCurrentUser(user);
+                    printUserData(user);
                     validUsernameEntered = true; // Valid username entered, exit the loop
                     break;
                 }
             }
-
             if (!validUsernameEntered) {
                 System.out.println("\nProfile with username '" + userNameToLoad + "' not found. Please try again.\n");
             }
@@ -300,6 +319,27 @@ public class Menu {
                         System.out.println("Equipment not added. Insufficient funds or troop already equipped.");
                     }
                     break;
+                case 3:
+                    if (currentUser.addEquipment(currentUser.getMyArmyMap().get("Mage"), armour != null ? armour : artefact)) {
+                        System.out.println("Equipment added successfully.");
+                    } else {
+                        System.out.println("Equipment not added. Insufficient funds or troop already equipped.");
+                    }
+                    break;
+                case 4:
+                    if (currentUser.addEquipment(currentUser.getMyArmyMap().get("MythicalCreature"), armour != null ? armour : artefact)) {
+                        System.out.println("Equipment added successfully.");
+                    } else {
+                        System.out.println("Equipment not added. Insufficient funds or troop already equipped.");
+                    }
+                    break;
+                case 5:
+                    if (currentUser.addEquipment(currentUser.getMyArmyMap().get("Healer"), armour != null ? armour : artefact)) {
+                        System.out.println("Equipment added successfully.");
+                    } else {
+                        System.out.println("Equipment not added. Insufficient funds or troop already equipped.");
+                    }
+                    break;
                 // Repeat for other cases...
                 default:
                     System.out.println("Invalid choice!");
@@ -316,7 +356,7 @@ public class Menu {
     }
 
     public void setCurrentUser(User user) {
-        currentUser = user;
+        this.currentUser = user;
     }
 
     private void printUserData(User user) {
@@ -329,6 +369,8 @@ public class Menu {
             System.out.println("▂ ▂ ▂ PROFILE ▂ ▂ ▂ \n");
         } catch (NullPointerException e){
             System.out.println("Sorry you haven't created any profiles yet");
+        }
+        finally {
             displayMenu();
         }
     }
@@ -455,7 +497,6 @@ public class Menu {
                     if (choice == 1) {
                         User opponent = getOpponent();
                         War war = new War(currentUser,opponent);
-                        war.startWar();
                         displayMenu();
                         break;
                     } else if (choice == 2) {
@@ -480,5 +521,4 @@ public class Menu {
             displayMenu();
         }
     }
-
 }
