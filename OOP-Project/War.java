@@ -178,7 +178,6 @@ public class War {
                         if(character.getName().equals(healedchar.getName())){
                             character.setHealth(character.getHealth()+healvalue);
                         }
-                        // Access each element using the variable 'character'
                     }
                 }
                 attackingSide = true;
@@ -193,7 +192,7 @@ public class War {
 
                     System.out.println(opponentArmyDefendingArray.get(0).getName()+"'s health reduce by"+dmg+"by the attck of"+challengerArmyAttackingArray.get(0).getName());
 
-                    if(initialChallenger.getHomeGround().equals("hillcrest") && opponentArmyAttackingArray.get(0).getCharacterType().equals("highlander")){
+                    if(initialChallenger.getHomeGround().equals("Hillcrest") && opponentArmyAttackingArray.get(0).getCharacterType().equals("highlander")){
                         //get the damge value of challenger army attacking array
                         double bonusdmg = 0.5 * (opponentArmyAttackingArray.get(0).getAttack()*0.2) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
                         //reduce the health of defending array army charactrer according to the damage value
@@ -211,20 +210,16 @@ public class War {
                         String diedChar=challengerArmyDefendingArray.get(0).getName();
                         //remove the died charactor from challengerarmy diffending array
                         challengerArmyDefendingArray.remove(0);
-                        //remove the died charactor from challengerArmy Attacking Array
-                        Iterator<Character> iterator3 =challengerArmyAttackingArray.iterator();
-                        while (iterator.hasNext()) {
-                            Character character = iterator3.next();
+
+                        for (Character character: challengerArmyAttackingArray){
                             if (character.getName().equals(diedChar)) {
-                                iterator3.remove();
+                                challengerArmyAttackingArray.remove(character);
                             }
                         }
-                        //remove the died character from challanging army healing array
-                        Iterator<Character> iterator4 =challengerArmyHealingArray.iterator();
-                        while (iterator.hasNext()) {
-                            Character character = iterator4.next();
+
+                        for (Character character: challengerArmyHealingArray){
                             if (character.getName().equals(diedChar)) {
-                                iterator4.remove();
+                                challengerArmyHealingArray.remove(character);
                             }
                         }
                     }
