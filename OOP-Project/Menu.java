@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
-public class Menu implements Serializable {
+public class Menu implements Serializable{
     static List<User> userList = new ArrayList<>();
     static List<String> userNames = new ArrayList<>();
     private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "sagittarius");
@@ -22,7 +22,6 @@ public class Menu implements Serializable {
     public Menu() {
         loadFile();
     }
-
     public void displayMenu() {
         System.out.println("""
         ╔═══════════════════╗
@@ -67,7 +66,6 @@ public class Menu implements Serializable {
             }
         }
     }
-
     public void saveUserList(){
         try{
             FileOutputStream data = new FileOutputStream("Data.ser");
@@ -194,7 +192,7 @@ public class Menu implements Serializable {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input. Please try again.");
-                scanner.next(); // Clear the scanner buffer
+                scanner.next();
             }
         }
     }
@@ -245,8 +243,8 @@ public class Menu implements Serializable {
                     }
                 }
             }catch (InputMismatchException e){
-                    System.out.println("Select a number from 1 to 5\n");
-                    changeCharacters(curretUser);
+                System.out.println("Select a number from 1 to 5\n");
+                changeCharacters(curretUser);
             }
         }else{
             System.out.println("You don't have an active profile yet\n"+
@@ -255,7 +253,6 @@ public class Menu implements Serializable {
             displayMenu();
         }
     }
-
     private void loadProfile() {
         boolean validUsernameEntered = false;
         while (!validUsernameEntered) {
@@ -281,7 +278,6 @@ public class Menu implements Serializable {
         }
         displayMenu();
     }
-
     private void addEquipments() {
         System.out.println("You currently have: ");
         for (Character character : currentUser.getArmy()) {
@@ -350,15 +346,12 @@ public class Menu implements Serializable {
             scanner.next(); // Clear the scanner buffer
         }
     }
-
     public User getCurrentUser() {
         return currentUser;
     }
-
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
-
     private void printUserData(User user) {
         try {
             System.out.println("▂ ▅ ▇ █ 🌟 █ ▇ ▅ ▂");
@@ -374,7 +367,6 @@ public class Menu implements Serializable {
             displayMenu();
         }
     }
-
     private void printUserDetailsinWar(User user) {
         System.out.println("╔═══════════════════════════╗");
         System.out.println(" 👑 Username: " + user.getUserName());
@@ -387,8 +379,6 @@ public class Menu implements Serializable {
         }
         System.out.println("╚════════════════════════════╝\n");
     }
-
-
     private void printArmy(User user) {
         System.out.println("⚔️══ Your Legion ══⚔️");
         for (Character character : user.getArmy()) {
@@ -411,19 +401,22 @@ public class Menu implements Serializable {
                     " | Speed " + character.getSpeed());
         }
     }
-
     private User getOpponent() {
         if (userList.size() < 2) {
             System.out.println("There are not enough users to challenge. Please add more users.");
             return null;
         }
 
-        int randomIndex;
-        User opponent;
-        do {
-            randomIndex = random.nextInt(userList.size());
-            opponent = userList.get(randomIndex);
-        } while (opponent.equals(currentUser));
+        List<User> availableOpponents = new ArrayList<>(userList);
+        availableOpponents.remove(currentUser);
+
+        if (availableOpponents.isEmpty()) {
+            System.out.println("No available opponents to challenge.");
+            return null;
+        }
+
+        Random random = new Random();
+        User opponent = availableOpponents.get(random.nextInt(availableOpponents.size()));
 
         printUserDetailsinWar(opponent);
 
@@ -434,12 +427,11 @@ public class Menu implements Serializable {
                 challenger = opponent;
                 return challenger;
             } else if (decision.equalsIgnoreCase("s")) {
-                // Print the details of the next random user
-                do {
-                    randomIndex = random.nextInt(userList.size());
-                    opponent = userList.get(randomIndex);
-                } while (opponent.equals(currentUser));
+                opponent = availableOpponents.get(random.nextInt(availableOpponents.size()));
                 printUserDetailsinWar(opponent);
+            } else if (decision.equalsIgnoreCase("e")) {
+                displayMenu();
+                return null;
             } else {
                 System.out.println("Enter 'c' to challenge , 's' to skip or 'e' to exit to main menu");
             }
@@ -479,9 +471,8 @@ public class Menu implements Serializable {
                     "Please create a new profile or load a profile to change troops\n");
             System.out.println("Directing back to Main Menu...\n");
             displayMenu();
-            }
+        }
     }
-
     private void initiateBattle(){
         if (currentUser != null) {
             System.out.println("""
