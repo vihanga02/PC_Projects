@@ -64,29 +64,46 @@ public class User {
         return true;
     }
 
-    public void addEquipment(Character troop, Equipment equipment) {
-        // checks whether user have enough money
-        if (coins - equipment.getPrice() > 0){
+    public boolean addEquipment(Character troop, Equipment equipment) {
+        // Check if the user has enough coins to purchase the equipment
+        if (coins - equipment.getPrice() >= 0) {
+            // Check if the equipment is an Artefact
             if (equipment instanceof Artefact) {
-                // checks whether user already have an artefact
+                // Check if the troop already has an artefact
                 if (troop.getArtefact() == null) {
+                    // Add the artefact to the troop
                     troop.setArtefact((Artefact) equipment);
+                    // Deduct the equipment price from the user's coins
+                    coins -= equipment.getPrice();
+                    // Update the troop's price
+                    troop.setPrice(troop.getPrice() * 1.2);
+                    return true; // Equipment successfully added
+                } else {
+                    System.out.println("Equipment not added. Troop already has an artefact.");
                 }
             } else if (equipment instanceof Armour) {
-                // checks whether user already have an artefact
+                // Check if the troop already has an armour
                 if (troop.getArmour() == null) {
+                    // Add the armour to the troop
                     troop.setArmour((Armour) equipment);
+                    // Deduct the equipment price from the user's coins
+                    coins -= equipment.getPrice();
+                    // Update the troop's price
+                    troop.setPrice(troop.getPrice() * 1.2);
+                    return true; // Equipment successfully added
+                } else {
+                    System.out.println("Equipment not added. Troop already has an armour.");
                 }
             }
-            // set the new price of the troop after adding an equipment
-            troop.setPrice(troop.getPrice() * 1.2);
-            System.out.println("Equipment of Type " + equipment.getClass().toString() +
-                    " is added to " + troop.getName());
+        } else {
+            System.out.println("Not enough coins to purchase the equipment.");
         }
-        else {
-            System.out.println("Not Enough Coins");
-        }
+        // If the equipment was not added, return false
+        return false;
     }
+
+
+
 
     public ArrayList<Character> getArmy(){
         return myArmy;

@@ -39,10 +39,10 @@ public class Table {
         String[] speed5 = {"17", "13", "14", "12", "20"};
 
         // Print table header
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n", "Name", "Price", "Attack", "Defense", "Health", "Speed");
-        System.out.println("-------------------------------------------------------------------------------------");
-        for (int i = 0; i <= 4 ; i++){
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
+        for (int i = 0; i <= 4; i++) {
             System.out.println(creatures[i]);
             System.out.println("-----------");
             System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n", name1[i], price1[i], attack1[i], defense1[i], health1[i], speed1[i]);
@@ -52,23 +52,7 @@ public class Table {
             System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n", name5[i], price5[i], attack5[i], defense5[i], health5[i], speed5[i]);
             System.out.println("-------------------------------------------------------------------------------------");
         }
-
-//        //Print creatures (row 1)
-//        printRow(creatures[0], name1, price1, attack1, defense1, health1, speed1);
-//
-//        // Print creatures (row 2)
-//        printRow(creatures[1], name2, price2, attack2, defense2, health2, speed2);
-//
-//        // Print creatures (row 3)
-//        printRow(creatures[2], name3, price3, attack3, defense3, health3, speed3);
-//
-//        // Print creatures (row 4)
-//        printRow(creatures[3], name4, price4, attack4, defense4, health4, speed4);
-//
-//        // Print creatures (row 5)
-//        printRow(creatures[4], name5, price5, attack5, defense5, health5, speed5);
-
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
     }
 
     public static void displayEquipmentTable() {
@@ -88,9 +72,9 @@ public class Table {
         String[] artefactSpeed = {"no change", "no change", "-1"};
 
         // Print table header
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("%-12s %-12s %-12s %-12s %-12s %-12s %-12s\n", "", "Name", "Price", "Attack", "Defense", "Health", "Speed");
-        System.out.println("----------------------------------------------------------------------------------------");
+        System.out.println("══════════════════════════════════════════════════════════════════════════════════════");
 
         // Print Armour data
         System.out.println("Armour:");
@@ -107,15 +91,4 @@ public class Table {
         System.out.println("----------------------------------------------------------------------------------------");
     }
 
-
-    // Method to print a row of creature details
-//    public static void printRow(String characterType, String[] names, String[] prices, String[] attacks,
-//                                String[] defenses, String[] healths, String[] speeds) {
-//        System.out.println("-------------------------------------------------------------------------------------");
-//        System.out.println("Character Type: " + characterType);
-//        for (int i = 0; i < names.length; i++) {
-//            System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s\n",
-//                    names[i], prices[i], attacks[i], defenses[i], healths[i], speeds[i]);
-//        }
-//    }
 }
