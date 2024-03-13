@@ -1,4 +1,6 @@
-public abstract class Equipment {
+import java.io.Serializable;
+
+public abstract class Equipment implements Serializable {
     private String name;
     private double price;
     private double attack;
@@ -6,13 +8,8 @@ public abstract class Equipment {
     private double health;
     private double speed;
 
-    public Equipment(String name, double price, double attack, double defence, double health, double speed){
+    public Equipment(String name){
         this.name = name;
-        this.price = price;
-        this.attack = attack;
-        this.defence = defence;
-        this.health = health;
-        this.speed = speed;
     }
 
     public void setPrice(double price) {
@@ -33,27 +30,21 @@ public abstract class Equipment {
     public void setSpeed(double speed) {
         this.speed = speed;
     }
-
     public String getName() {
         return name;
     }
-
     public double getPrice() {
-        return price;
+        return this.price;
     }
-
     public double getDefence() {
         return defence;
     }
-
     public double getAttack() {
         return attack;
     }
-
     public double getHealth() {
         return health;
     }
-
     public double getSpeed() {
         return speed;
     }

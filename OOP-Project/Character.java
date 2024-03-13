@@ -1,4 +1,6 @@
-public abstract class Character {
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
     private String name;
     private double price;
     private double attack;
@@ -74,11 +76,9 @@ public abstract class Character {
     public String getCharacterType() {
         return characterType;
     }
-
     public void setCharacterType(String characterType) {
         if (this.characterType == null) {
             this.characterType = characterType;
         }
     }
-
 }

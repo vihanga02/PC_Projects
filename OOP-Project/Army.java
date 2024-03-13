@@ -16,11 +16,9 @@ public class Army {
         }
         troops.add(troop);
     }
-
     public Vector<Character> getArmy(){
         return troops;
     }
-
     public void removeTroop(Character troop){
         troops.remove(troop);
     }
