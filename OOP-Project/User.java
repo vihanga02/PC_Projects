@@ -5,7 +5,7 @@ public class User implements Serializable {
     private static int userCount = 0;
     private String name;
     private final String userName;
-    private double coins;
+    private int coins;
     private final String userID;
     private double xp;
     private final String homeGround;

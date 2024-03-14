@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public abstract class Character implements Serializable {
-    private final String name;
+    private String name;
     private double price;
     private double attack;
     private double defence;
@@ -45,7 +45,12 @@ public abstract class Character implements Serializable {
     }
 
     public void setHealth(double health) {
-        this.health = health;
+        if (health <= 0){
+            this.health = 0;
+        }
+        else {
+            this.health = (double) Math.round(health * 100) /100;
+        }
     }
 
     public void setPrice(double price) {
