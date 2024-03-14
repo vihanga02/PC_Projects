@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
 
-public class Menu implements Serializable{
+public class Menu implements MenuInterface{
     static List<User> userList = new ArrayList<>();
     static List<String> userNames = new ArrayList<>();
     private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "sagittarius");
@@ -14,7 +14,6 @@ public class Menu implements Serializable{
     private final List<String> armours = List.of("chainmail", "regalia", "fleece");
     private final List<String> artefacts = List.of("excalibur", "amulet", "crystal");
 
-    private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
     private User currentUser;
     private User challenger;
@@ -87,7 +86,9 @@ public class Menu implements Serializable{
             e.printStackTrace();
         }
     }
-    private void createProfile() {
+
+
+    public void createProfile() {
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
 
@@ -253,7 +254,7 @@ public class Menu implements Serializable{
             displayMenu();
         }
     }
-    private void loadProfile() {
+    public void loadProfile() {
         boolean validUsernameEntered = false;
         while (!validUsernameEntered) {
             System.out.println("Select a profile to load from below");
@@ -278,7 +279,7 @@ public class Menu implements Serializable{
         }
         displayMenu();
     }
-    private void addEquipments() {
+    public void addEquipments() {
         System.out.println("You currently have: ");
         for (Character character : currentUser.getArmy()) {
             System.out.println("                 " + character.getName() + " with " + character.armourCount + " armour and "
@@ -352,7 +353,7 @@ public class Menu implements Serializable{
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
-    private void printUserData(User user) {
+    public void printUserData(User user) {
         try {
             System.out.println("▂ ▅ ▇ █ 🌟 █ ▇ ▅ ▂");
             System.out.println("Username: " + user.getUserName());
@@ -367,7 +368,7 @@ public class Menu implements Serializable{
             displayMenu();
         }
     }
-    private void printUserDetailsinWar(User user) {
+    public void printUserDetailsinWar(User user) {
         System.out.println("╔═══════════════════════════╗");
         System.out.println(" 👑 Username: " + user.getUserName());
         System.out.println(" 🌟 XP: " + user.getXp());
@@ -379,7 +380,7 @@ public class Menu implements Serializable{
         }
         System.out.println("╚════════════════════════════╝\n");
     }
-    private void printArmy(User user) {
+    public void printArmy(User user) {
         System.out.println("⚔️══ Your Legion ══⚔️");
         for (Character character : user.getArmy()) {
             String characterType = "";
@@ -438,7 +439,7 @@ public class Menu implements Serializable{
         }
     }
 
-    private void reinforceArmy(){
+    public void reinforceArmy(){
         System.out.println("""
         ════════════════════
         1. Replace Troops
@@ -473,7 +474,8 @@ public class Menu implements Serializable{
             displayMenu();
         }
     }
-    private void initiateBattle(){
+
+    public void initiateBattle(){
         if (currentUser != null) {
             System.out.println("""
         ════════════════════
