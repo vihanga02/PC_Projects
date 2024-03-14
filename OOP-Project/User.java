@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class User implements Serializable {
-    private static int userCount = 1;
+    private static int userCount = 0;
     private String name;
     private final String userName;
     private double coins;
@@ -17,9 +17,10 @@ public class User implements Serializable {
         this.homeGround = homeGround;
         this.coins = 500;
         this.xp = 0;
+        userCount++;
+        // userID is given by capitalized first 2 letters of the name and the count of the new user created
         this.userID = userName.substring(0, Math.min(userName.length(), 2)).toUpperCase() +
                 String.format("%03d", userCount);
-        userCount++;
     }
     public void addTroopToArmy(Character troop) {
         // checks whether troop is already in the army
@@ -40,19 +41,35 @@ public class User implements Serializable {
             System.out.println("Troop of type " + troop.getClass().getName() + " already exists in your army" );
         }
     }
-    public void replaceTroop(Character oldTroop, Character newTroop){
-        // checks whether troop is already in the army
-        if (isAbsent(oldTroop)){
+    public void replaceTroop(Character oldTroop, Character newTroop) {
+        // Check whether the troop to be replaced is already in the army
+        if (isAbsent(oldTroop)) {
             System.out.println("Troop you want to sell is not in your army");
+            return;
         }
-        else if ((coins + oldTroop.getPrice() - newTroop.getPrice()) > 0) {
-            // sell the current troop
+
+        // Calculate the total cost difference after selling the old troop and buying the new one
+        double costDifference = newTroop.getPrice() - oldTroop.getPrice()*0.9;
+
+        // Check if the user has enough coins to perform the replacement
+        if (coins + costDifference >= 0) {
+            // Sell the current troop
             myArmy.remove(oldTroop);
-            this.setCoins(oldTroop.getPrice());
+            this.setCoins(costDifference);
             System.out.println(oldTroop.getName() + " is sold");
+
+            // Add the new troop to the army
             addTroopToArmy(newTroop);
+
+            System.out.println(newTroop.getName() + " is added to your army");
+        } else {
+            System.out.println("Not enough coins to perform the troop replacement.");
+            System.out.println("You can only sell if you have enough coins to buy a new character.");
         }
     }
+
+
+
     private boolean isAbsent(Character troop) {
         // checks whether troop is already in the army
         for (Character existingTroop : myArmy) {
@@ -72,7 +89,7 @@ public class User implements Serializable {
                     // Add the artefact to the troop
                     troop.setArtefact((Artefact) equipment);
                     // Deduct the equipment price from the user's coins
-                    //coins -= equipment.getPrice();
+                    // coins -= equipment.getPrice();
                     this.setCoins(-equipment.getPrice());
                     // Update the troop's price
                     troop.setPrice(troop.getPrice() * 1.2);
