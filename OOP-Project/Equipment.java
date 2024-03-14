@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public abstract class Equipment implements Serializable {
-    private String name;
+    private final String name;
     private double price;
     private double attack;
     private double defence;

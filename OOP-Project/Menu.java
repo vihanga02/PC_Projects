@@ -52,6 +52,8 @@ public class Menu implements MenuInterface{
                         return;
                     case 4:
                         this.printUserData(currentUser);
+                        this.waitForInput();
+                        this.displayMenu();
                         return;
                     case 5:
                         this.printUserDetailsinWar(currentUser);
@@ -87,8 +89,7 @@ public class Menu implements MenuInterface{
     }
     public void loadFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
-            List<User> pr = (List<User>) in.readObject();
-            userList = pr;
+            userList = (List<User>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("errorrrrrrrrrrrr");
             e.printStackTrace();
@@ -273,26 +274,31 @@ public class Menu implements MenuInterface{
     }
     public void loadProfile() {
         boolean validUsernameEntered = false;
-        while (!validUsernameEntered) {
-            System.out.println("Select a profile to load from below");
-            for (User user : userList) {
-                System.out.print(user.getUserName() + "  " + user.getXp() + "Xp | ");
-            }
-            System.out.println("\nEnter the username of the profile you want to load: ");
-            String userNameToLoad = scanner.next();
+        if (!userList.isEmpty()){
+            while (!validUsernameEntered) {
+                System.out.println("Select a profile to load from below");
+                for (User user : userList) {
+                    System.out.print(user.getUserName() + "  " + user.getXp() + "Xp \n");
+                }
+                System.out.print("\nEnter the username of the profile you want to load: ");
+                String userNameToLoad = scanner.next();
 
-            for (User user : userList) {
-                if (user.getUserName().equals(userNameToLoad)) {
-                    System.out.println("\nProfile loaded successfully!\n");
-                    setCurrentUser(user);
-                    printUserData(user);
-                    validUsernameEntered = true; // Valid username entered, exit the loop
-                    break;
+                for (User user : userList) {
+                    if (user.getUserName().equals(userNameToLoad)) {
+                        System.out.println("\nProfile loaded successfully!\n");
+                        setCurrentUser(user);
+                        printUserData(user);
+                        validUsernameEntered = true; // Valid username entered, exit the loop
+                        break;
+                    }
+                }
+                if (!validUsernameEntered) {
+                    System.out.println("\nProfile with username '" + userNameToLoad + "' not found. Please try again.\n");
                 }
             }
-            if (!validUsernameEntered) {
-                System.out.println("\nProfile with username '" + userNameToLoad + "' not found. Please try again.\n");
-            }
+        }
+        else{
+            System.out.println("No users!");
         }
         waitForInput();
         displayMenu();
@@ -378,10 +384,11 @@ public class Menu implements MenuInterface{
             System.out.println("▂ ▂ ▂ PROFILE ▂ ▂ ▂ \n");
         } catch (NullPointerException e){
             System.out.println("Sorry you haven't created any profiles yet");
-        }
-        finally {
             displayMenu();
         }
+//        finally {
+//            displayMenu();
+//        }
     }
     public void printUserDetailsinWar(User user) {
         clearScreen();

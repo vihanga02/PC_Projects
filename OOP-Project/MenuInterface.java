@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface MenuInterface {
+public interface MenuInterface{
     // Method to display the menu options
     void displayMenu();
 
