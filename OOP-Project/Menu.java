@@ -94,6 +94,12 @@ public class Menu implements MenuInterface{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void createProfile() {
+
+    }
+
     private void createNewProfile() {
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
@@ -265,7 +271,7 @@ public class Menu implements MenuInterface{
             displayMenu();
         }
     }
-    private void loadProfile() {
+    public void loadProfile() {
         boolean validUsernameEntered = false;
         while (!validUsernameEntered) {
             System.out.println("Select a profile to load from below");
@@ -291,7 +297,7 @@ public class Menu implements MenuInterface{
         waitForInput();
         displayMenu();
     }
-    private void addEquipments() {
+    public void addEquipments() {
         System.out.println("You currently have: ");
         for (Character character : currentUser.getArmy()) {
             System.out.println("                 " + character.getName().toUpperCase() + " with " + character.armourCount + " armour and "
@@ -362,7 +368,7 @@ public class Menu implements MenuInterface{
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
-    private void printUserData(User user) {
+    public void printUserData(User user) {
         try {
             System.out.println("▂ ▅ ▇ █ 🌟 █ ▇ ▅ ▂");
             System.out.println("Username: " + user.getUserName());
@@ -377,7 +383,7 @@ public class Menu implements MenuInterface{
             displayMenu();
         }
     }
-    private void printUserDetailsinWar(User user) {
+    public void printUserDetailsinWar(User user) {
         clearScreen();
         try {
             System.out.println(" 👑 Username: " + user.getUserName());
@@ -391,13 +397,10 @@ public class Menu implements MenuInterface{
             System.out.println("╚════════════════════════════╝\n");
         } catch (NullPointerException e){
             System.out.println("Please create or load a profile to view army\n");
-        }
-        finally {
-            waitForInput();
             displayMenu();
         }
     }
-    private void printArmy(User user) {
+    public void printArmy(User user) {
         System.out.println("⚔️══ Your Legion ══⚔️");
         for (Character character : user.getArmy()) {
             String characterType = "";
@@ -456,7 +459,7 @@ public class Menu implements MenuInterface{
             }
         }
     }
-    private void reinforceArmy(){
+    public void reinforceArmy(){
         System.out.println("""
         ════════════════════
         1. Replace Troops
@@ -492,7 +495,7 @@ public class Menu implements MenuInterface{
         }
         saveUserList();
     }
-    private void initiateBattle(){
+    public void initiateBattle(){
         if (currentUser != null) {
             System.out.println("""
         ════════════════════
@@ -675,7 +678,8 @@ public class Menu implements MenuInterface{
         }
     }
     private static void clearScreen() {
-        for (int i = 0; i < 50; ++i) System.out.println(); // Print empty lines
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     private void waitForInput() {
         System.out.println("Press Enter to continue...");

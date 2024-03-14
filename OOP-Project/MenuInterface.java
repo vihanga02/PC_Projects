@@ -28,8 +28,6 @@ public interface MenuInterface {
     // Method to reinforce the current user's army
     void reinforceArmy();
 
-    // Method to create a profile from a previous one
-
     // Method to print user data
     void printUserData(User user);
 

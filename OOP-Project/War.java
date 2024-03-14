@@ -311,8 +311,14 @@ public class War {
         System.out.println("------Result----------");
         if(opponentArmyAttackingArray.isEmpty()) {
             System.out.println("winner is = " + initialChallenger.getName());
+            initialChallenger.setXp(1);
+            initialChallenger.setCoins(initialOpponent.getCoins()*0.1);
+            initialOpponent.setCoins(-initialOpponent.getCoins()*0.1);
         } else if (challengerArmyAttackingArray.isEmpty()) {
             System.out.println("winner is = "+initialOpponent.getName());
+            initialOpponent.setXp(1);
+            initialOpponent.setCoins(initialChallenger.getCoins()*0.1);
+            initialChallenger.setCoins(-initialChallenger.getCoins()*0.1);
         }
         else{
             System.out.println("War is Draw");

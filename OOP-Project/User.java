@@ -152,6 +152,6 @@ public class User implements Serializable {
         this.coins += coins;
     }
     public void setXp(double xp) {
-        this.xp = xp;
+        this.xp += xp;
     }
 }
