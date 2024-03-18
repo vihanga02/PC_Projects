@@ -251,8 +251,8 @@ public class Menu implements MenuInterface{
                         }
                     }
                 }
+                saveUserList();
                 waitForInput();
-                displayMenu();
             }catch (InputMismatchException e){
                 System.out.println("Select a number from 1 to 5\n");
                 scanner.next();
@@ -313,15 +313,17 @@ public class Menu implements MenuInterface{
             String equipment = scanner.next().toLowerCase();
             Armour armour = null;
             Artefact artefact = null;
+
             if (armours.contains(equipment)) {
                 armour = new Armour(equipment);
             } else if (artefacts.contains(equipment)) {
                 artefact = new Artefact(equipment);
-            }else {
+            } else {
                 System.out.println("Equipment not found. Prompt Again ");
                 addEquipments();
                 return;
             }
+
             switch (choice) {
                 case 1:
                     if (currentUser.addEquipment(currentUser.getMyArmyMap().get("Archer"), armour != null ? armour : artefact)) {
@@ -355,7 +357,6 @@ public class Menu implements MenuInterface{
             waitForInput();
             System.out.println("\nDirecting back to main menu...\n");
             saveUserList();
-            displayMenu();
         } catch(InputMismatchException e){
             System.out.println("Invalid input!");
             scanner.next();
@@ -470,16 +471,19 @@ public class Menu implements MenuInterface{
             while (true) {
                 try {
                     int choice = scanner.nextInt();
-                    if (choice == 1) {
-                        changeCharacters(currentUser);
-                        break;
-                    } else if (choice == 2) {
-                        addEquipments();
+                    if (choice == 1 || choice == 2){
+                        if (choice == 1) {
+                            changeCharacters(currentUser);
+                        } else {
+                            addEquipments();
+                        }
                         break;
                     } else if (choice == 3){
                         displayMenu();
                         break;
-                    } else System.out.println("Invalid choice, choose a number from 1 to 3");
+                    } else {
+                        System.out.println("Invalid choice, choose a number from 1 to 3");
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input, choose a number from 1 to 3");
                     scanner.next();

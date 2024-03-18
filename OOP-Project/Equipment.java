@@ -44,7 +44,7 @@ public abstract class Equipment implements Serializable {
     }
 
     // Getter methods to retrieve various attributes of the equipment.
-    public double getPrice() {
+    public int getPrice() {
         return this.price;
     }
 

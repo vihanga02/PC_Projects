@@ -3,8 +3,6 @@ import java.util.*;
 public class War {
     User initialChallenger;
     User initialOpponent;
-    User challenger;
-    User opponent;
     Vector<Character> challengerArmy;
     Vector<Character> opponentArmy;
 
@@ -30,7 +28,6 @@ public class War {
         this.challengerArmyHealingArray = new Vector<>(challengerArmy);
         this.opponentArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));
         this.challengerArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));
-
     }
 
     public Vector<Character> attackPriorityCheck(Vector<Character> list){
@@ -42,8 +39,6 @@ public class War {
                     else if (character instanceof Knight) return 4;
                     else return 5;
                 }).reversed());
-
-
         return list;
     }
 
@@ -60,24 +55,20 @@ public class War {
     }
 
     void startWar(){
-        this.challenger = initialChallenger;
-        this.opponent = initialOpponent;
         this.challengerArmy = new Vector<>();
         for (Character character : initialChallenger.getArmy()) {
             this.challengerArmy.add(character.clone());
         }
-
         this.opponentArmy = new Vector<>();
         for (Character character : initialOpponent.getArmy()) {
             this.opponentArmy.add(character.clone());
         }
-        for(Character character:challengerArmy){
+        for (Character character : challengerArmy){
             switch (initialOpponent.getHomeGround()) {
                 case "Hillcrest" -> {
                     if (character.getCharacterType().equals("Highlander")) {
                         character.setAttack(character.getAttack() + 1);
                         character.setDefence(character.getDefence() + 1);
-
                     }
                     if (character.getCharacterType().equals("Marshlander")) {
                         character.setSpeed(character.getSpeed() - 1);
@@ -120,14 +111,12 @@ public class War {
                 }
             }
         }
-
         for(Character character:opponentArmy){
             switch (initialOpponent.getHomeGround()) {
                 case "Hillcrest" -> {
                     if (character.getCharacterType().equals("Highlander")) {
                         character.setAttack(character.getAttack() + 1);
                         character.setDefence(character.getDefence() + 1);
-
                     }
                     if (character.getCharacterType().equals("Marshlander")) {
                         character.setSpeed(character.getSpeed() - 1);
@@ -170,8 +159,6 @@ public class War {
                 }
             }
         }
-
-
         initialingArrays(challengerArmy, opponentArmy);
 
         Iterator<Character> challengerHealingIterator = challengerArmyHealingArray.iterator();
@@ -191,7 +178,7 @@ public class War {
         }
         boolean attackingSide = false;
         int turn = 1;
-        double previousHealth = opponentArmyDefendingArray.get(0).getHealth();
+        double previousHealth = opponentArmyDefendingArray.getFirst().getHealth();
         int ci = 0;
         int oi = 0;
 

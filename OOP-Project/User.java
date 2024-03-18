@@ -6,7 +6,7 @@ public class User implements Serializable {
     private static int userCount = 0;
     private String name;
     private final String userName;
-    private double coins;
+    private int coins;
     private final String userID;
     private double xp;
     private final String homeGround;
@@ -53,7 +53,7 @@ public class User implements Serializable {
         }
 
         // Calculate the total cost difference after selling the old troop and buying the new one
-        double costDifference = newTroop.getPrice() - oldTroop.getPrice()*0.9;
+        int costDifference = (int) (newTroop.getPrice() - oldTroop.getPrice()*0.9;
 
         // Check if the user has enough coins to perform the replacement
         if (coins + costDifference >= 0) {
@@ -118,6 +118,7 @@ public class User implements Serializable {
             }
         } else {
             System.out.println("Not enough coins to purchase the equipment.");
+            return true;
         }
         // If the equipment was not added, return false
         return false;
@@ -134,7 +135,7 @@ public class User implements Serializable {
     public String getUserName() {
         return userName;
     }
-    public double getCoins() {
+    public int getCoins() {
         return coins;
     }
     public String getUserID() {
@@ -152,7 +153,7 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public void setCoins(double coins) {
+    public void setCoins(int coins) {
         this.coins += coins;
     }
     public void setXp(double xp) {
