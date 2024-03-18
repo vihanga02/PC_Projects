@@ -467,13 +467,11 @@ public class Menu implements MenuInterface{
         }
     }
     public void reinforceArmy(){
-        System.out.println("""
-        ════════════════════
-        1. Replace Troops
-        2. GearUp Troops   
-        3. Back to Main Menu   
-        ════════════════════    
-        """);
+        System.out.println("\n════════════════════\n" +
+            "1. Replace Troops\n" +
+            "2. GearUp Troops\n" +
+            "3. Back to Main Menu\n" +
+            "════════════════════\n");
         if (currentUser != null) {
             while (true) {
                 try {
