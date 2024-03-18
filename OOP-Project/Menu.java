@@ -90,6 +90,10 @@ public class Menu implements MenuInterface{
     public void loadFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
             userList = (List<User>) in.readObject();
+            userNames.clear(); // Clear the list before populating
+            for (User user : userList) {
+                userNames.add(user.getUserName()); // Add each user's username to the list
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("errorrrrrrrrrrrr");
             e.printStackTrace();
