@@ -47,4 +47,5 @@ public class MythicalCreature extends Character {
                 break;
         }
     }
+
 }

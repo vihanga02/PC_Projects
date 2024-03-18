@@ -10,9 +10,6 @@ public interface MenuInterface{
     // Method to load the user list
     void loadFile();
 
-    // Method to create a new profile
-    void createProfile();
-
     // Method to change characters in the current user's army
     void changeCharacters(User currentUser);
 

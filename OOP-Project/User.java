@@ -1,3 +1,4 @@
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
@@ -12,6 +13,7 @@ public class User implements Serializable {
     private ArrayList<Character> myArmy = new ArrayList<>();
     private Map<String, Character> myArmyMap = new HashMap<>();
 
+    @Serial
     private static final long serialVersionUID = -3920166077848690078L;
     public User(String name, String userName, String homeGround){
         this.name = name;
@@ -94,7 +96,7 @@ public class User implements Serializable {
                     // coins -= equipment.getPrice();
                     this.setCoins(-equipment.getPrice());
                     // Update the troop's price
-                    troop.setPrice(troop.getPrice() * 1.2);
+                    troop.setPrice((int) (troop.getPrice() * 1.2));
                     return true; // Equipment successfully added
                 } else {
                     System.out.println("Equipment not added. Troop already has an artefact.");
@@ -108,7 +110,7 @@ public class User implements Serializable {
                     //coins -= equipment.getPrice();
                     this.setCoins(-equipment.getPrice());
                     // Update the troop's price
-                    troop.setPrice(troop.getPrice() * 1.2);
+                    troop.setPrice((int) ( troop.getPrice() * 1.2));
                     return true; // Equipment successfully added
                 } else {
                     System.out.println("Equipment not added. Troop already has an armour.");

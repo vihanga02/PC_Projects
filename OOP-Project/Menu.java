@@ -96,11 +96,6 @@ public class Menu implements MenuInterface{
         }
     }
 
-    @Override
-    public void createProfile() {
-
-    }
-
     private void createNewProfile() {
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
@@ -511,7 +506,48 @@ public class Menu implements MenuInterface{
                     int choice = scanner.nextInt();
                     if (choice == 1) {
                         User opponent = getOpponent();
+                        ArrayList<Character> charactersOpponent = new ArrayList<>();
+                        ArrayList<Character> charactersCurrent = new ArrayList<>();
+                        for (Map.Entry<String, Character> entry : currentUser.getMyArmyMap().entrySet()) {
+                            String key = entry.getKey();
+                            Character value = entry.getValue();
+                            if (key.equals("Archer")){
+                                charactersCurrent.add(new Archer(value.getName()));
+                            }
+                            else if (key.equals("Knight")){
+                                charactersCurrent.add(new Knight(value.getName()));
+                            }
+                            else if (key.equals("Mage")){
+                                charactersCurrent.add(new Mage(value.getName()));
+                            }
+                            else if (key.equals("Healer")){
+                                charactersCurrent.add(new Healer(value.getName()));
+                            }
+                            else if (key.equals("MythicalCreature")){
+                                charactersCurrent.add(new MythicalCreature(value.getName()));
+                            }
+                        }
+                        for (Map.Entry<String, Character> entry : opponent.getMyArmyMap().entrySet()) {
+                            String key = entry.getKey();
+                            Character value = entry.getValue();
+                            if (key.equals("Archer")){
+                                charactersOpponent.add(new Archer(value.getName()));
+                            }
+                            else if (key.equals("Knight")){
+                                charactersOpponent.add(new Knight(value.getName()));
+                            }
+                            else if (key.equals("Mage")){
+                                charactersOpponent.add(new Mage(value.getName()));
+                            }
+                            else if (key.equals("Healer")){
+                                charactersOpponent.add(new Healer(value.getName()));
+                            }
+                            else if (key.equals("MythicalCreature")){
+                                charactersOpponent.add(new MythicalCreature(value.getName()));
+                            }
+                        }
                         War war = new War(currentUser,opponent);
+
                         waitForInput();
                         displayMenu();
                         break;
@@ -690,8 +726,4 @@ public class Menu implements MenuInterface{
             e.printStackTrace();
         }
     }
-
-
-
-
 }
