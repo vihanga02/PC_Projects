@@ -62,8 +62,15 @@ public class War {
     void startWar(){
         this.challenger = initialChallenger;
         this.opponent = initialOpponent;
-        this.challengerArmy = new Vector<>(challenger.getArmy());
-        this.opponentArmy = new Vector<>(opponent.getArmy());
+        this.challengerArmy = new Vector<>();
+        for (Character character : initialChallenger.getArmy()) {
+            this.challengerArmy.add(character.clone());
+        }
+
+        this.opponentArmy = new Vector<>();
+        for (Character character : initialOpponent.getArmy()) {
+            this.opponentArmy.add(character.clone());
+        }
         for(Character character:challengerArmy){
             switch (opponent.getHomeGround()) {
                 case "HillCrest" -> {
