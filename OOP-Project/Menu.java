@@ -22,21 +22,20 @@ public class Menu implements MenuInterface{
         loadFile();
     }
     public void displayMenu() {
-        System.out.println(""
-                + "╔═══════════════════╗\n"
-                + "   Ｍａｉｎ Ｍｅｎｕ  \n"
-                + "╚═══════════════════╝\n"
-                + "1. New Adventure\n"
-                + "2. Add a Custom Profile\n"
-                + "3. Load Your Journey\n"
-                + "4. View Your Journey\n"
-                + "5. View Your Army\n"
-                + "6. Reinforce Army\n"
-                + "7. Initiate a Battle\n"
-                + "8. Exit Arena\n"
-                + "═════════════════════");
-
         while (true) {
+            System.out.println(""
+                    + "╔═══════════════════╗\n"
+                    + "   Ｍａｉｎ Ｍｅｎｕ  \n"
+                    + "╚═══════════════════╝\n"
+                    + "1. New Adventure\n"
+                    + "2. Add a Custom Profile\n"
+                    + "3. Load Your Journey\n"
+                    + "4. View Your Journey\n"
+                    + "5. View Your Army\n"
+                    + "6. Reinforce Army\n"
+                    + "7. Initiate a Battle\n"
+                    + "8. Exit Arena\n"
+                    + "═════════════════════");
             try {
                 int choice = scanner.nextInt();
 
@@ -56,9 +55,11 @@ public class Menu implements MenuInterface{
                         break;
                     case 5:
                         this.printUserDetailsinWar(currentUser);
+                        this.waitForInput();
                         break;
                     case 6:
                         this.reinforceArmy();
+                        this.waitForInput();
                         break;
                     case 7:
                         this.initiateBattle();
@@ -687,8 +688,10 @@ public class Menu implements MenuInterface{
         System.out.println("Press Enter to continue...");
         try {
             System.in.read(); // Wait for user to press Enter
+            return;
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         }
     }
 }

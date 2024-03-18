@@ -15,7 +15,8 @@
       <change beforePath="$PROJECT_DIR$/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Data.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710740027901</updated>
-      <workItem from="1710740029328" duration="9104000" />
+      <workItem from="1710740029328" duration="12100000" />
     </task>
     <servers />
   </component>
