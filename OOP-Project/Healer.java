@@ -47,4 +47,5 @@ public class Healer extends Character {
                 break;
         }
     }
+
 }

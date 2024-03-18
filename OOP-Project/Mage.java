@@ -47,4 +47,5 @@ public class Mage extends Character {
                 break;
         }
     }
+
 }
