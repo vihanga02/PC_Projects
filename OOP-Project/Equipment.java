@@ -7,6 +7,8 @@ public abstract class Equipment implements Serializable {
     private double defence;
     private double health;
     private double speed;
+    private static final long serialVersionUID = 7896356060120723561L;
+
 
     public Equipment(String name){
         this.name = name;

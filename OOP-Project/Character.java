@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public abstract class Character implements Serializable {
+public abstract class Character implements Serializable, Cloneable {
     private String name;
     private double price;
     private double attack;
@@ -12,6 +12,8 @@ public abstract class Character implements Serializable {
     public int artefactCount = 0;
     private Armour armour;
     public int armourCount = 0;
+
+    private static final long serialVersionUID = 8787261772055597799L;
 
     public Character(String name){
         this.name = name;
@@ -76,6 +78,19 @@ public abstract class Character implements Serializable {
         this.armour = armour;
         armourCount++;
     }
+
+
+        @Override
+        public Character clone() {
+            try {
+                Character cloned = (Character) super.clone();
+                // copy fields if needed
+                return cloned;
+            } catch (CloneNotSupportedException e) {
+                throw new AssertionError(); // Can't happen
+            }
+        }
+
 
     public String getCharacterType() {
         return characterType;

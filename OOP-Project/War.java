@@ -18,6 +18,8 @@ public class War {
     public War(User initialChallenger,User initialOpponent){
         this.initialChallenger = initialChallenger;
         this.initialOpponent = initialOpponent;
+        this.challenger = initialChallenger;
+        this.opponent = initialOpponent;
         this.startWar();
     }
 
@@ -60,10 +62,16 @@ public class War {
     }
 
     void startWar(){
-        this.challenger = initialChallenger;
-        this.opponent = initialOpponent;
-        this.challengerArmy = new Vector<>(initialChallenger.getArmy());
-        this.opponentArmy = new Vector<>(initialOpponent.getArmy());
+        this.challengerArmy = new Vector<>();
+        for (Character character : initialChallenger.getArmy()) {
+            this.challengerArmy.add(character.clone());
+        }
+
+        this.opponentArmy = new Vector<>();
+        for (Character character : initialOpponent.getArmy()) {
+            this.opponentArmy.add(character.clone());
+        }
+
         for(Character character:challengerArmy){
             switch (initialOpponent.getHomeGround()) {
                 case "HillCrest" -> {
@@ -106,7 +114,7 @@ public class War {
                 }
             }
         }
-        initialingArrays(challengerArmy, opponentArmy);
+        initialingArrays(this.challengerArmy, this.opponentArmy);
 
         Iterator<Character> challengerHealingIterator = challengerArmyHealingArray.iterator();
         while (challengerHealingIterator.hasNext()) {
