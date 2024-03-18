@@ -5,12 +5,14 @@ public class User implements Serializable {
     private static int userCount = 0;
     private String name;
     private final String userName;
-    private int coins;
+    private double coins;
     private final String userID;
     private double xp;
     private final String homeGround;
     private ArrayList<Character> myArmy = new ArrayList<>();
     private Map<String, Character> myArmyMap = new HashMap<>();
+
+    private static final long serialVersionUID = -3920166077848690078L;
     public User(String name, String userName, String homeGround){
         this.name = name;
         this.userName = userName;
