@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87e91578-e36f-49b2-872f-3b028a72cd1b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/OOP-Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Equipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Equipment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/War.java" beforeDir="false" afterPath="$PROJECT_DIR$/War.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/OOP-Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Equipment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/War.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/War.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710740027901</updated>
-      <workItem from="1710740029328" duration="1549000" />
+      <workItem from="1710740029328" duration="3532000" />
     </task>
     <servers />
   </component>

@@ -18,8 +18,6 @@ public class War {
     public War(User initialChallenger,User initialOpponent){
         this.initialChallenger = initialChallenger;
         this.initialOpponent = initialOpponent;
-        this.challenger = initialChallenger;
-        this.opponent = initialOpponent;
         this.startWar();
     }
 
@@ -62,6 +60,9 @@ public class War {
     }
 
     void startWar(){
+        this.challenger = initialChallenger;
+        this.opponent = initialOpponent;
+
         this.challengerArmy = new Vector<>();
         for (Character character : initialChallenger.getArmy()) {
             this.challengerArmy.add(character.clone());
@@ -114,7 +115,7 @@ public class War {
                 }
             }
         }
-        initialingArrays(this.challengerArmy, this.opponentArmy);
+        initialingArrays(challengerArmy, opponentArmy);
 
         Iterator<Character> challengerHealingIterator = challengerArmyHealingArray.iterator();
         while (challengerHealingIterator.hasNext()) {
@@ -134,29 +135,30 @@ public class War {
         boolean attackingSide = false; //set to 0 when challenger is attacking and set to 1 when opponent is attacking
         int turn = 1;
         double previousHealth = opponentArmyDefendingArray.get(0).getHealth();
-        int i = 0;
+        int ci = 0;
+        int oi = 0;
 
         System.out.println("\n\n" + initialChallenger.getName() + "  VS  " + initialOpponent.getName() + "\n");
 
         while (true) {
             //initially first attacking side is challenger
             if (!attackingSide) {
-                System.out.println("\nTurn " + turn + ": " + initialChallenger.getName());
+                System.out.println("Turn " + turn + ": " + initialChallenger.getName());
 
                 //check the challenger attacking army character is a healer?
                 if(!(challengerArmyAttackingArray.getFirst() instanceof Healer)) {
-                    System.out.println(challengerArmyAttackingArray.get(i).getName() + " attacks " + opponentArmyDefendingArray.getFirst().getName());
+                    System.out.println(challengerArmyAttackingArray.get(ci).getName() + " attacks " + opponentArmyDefendingArray.getFirst().getName());
 
                     //get the damge value of challenger army attacking array
-                    double damage = 0.5 * (challengerArmyAttackingArray.get(i).getAttack()) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());
+                    double damage = 0.5 * (challengerArmyAttackingArray.get(ci).getAttack()) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());
 
                     //reduce the health of defending array army charactrer according to the damage value
                     opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - damage);
-                    System.out.println(opponentArmyDefendingArray.get(0).getName()+"'s health reduce by " + damage + " by the attack of " + challengerArmyAttackingArray.get(i).getName());
+                    System.out.println(opponentArmyDefendingArray.get(0).getName()+"'s health reduce by " + damage + " by the attack of " + challengerArmyAttackingArray.get(ci).getName());
 
-                    if(initialChallenger.getHomeGround().equals("Hillcrest") && challengerArmyAttackingArray.get(i).getCharacterType().equals("Highlander")){
+                    if(initialChallenger.getHomeGround().equals("Hillcrest") && challengerArmyAttackingArray.get(ci).getCharacterType().equals("Highlander")){
                         //get the damge value of challenger army attacking array
-                        double bonusDamage = 0.5 * (challengerArmyAttackingArray.get(i).getAttack()*0.2) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());
+                        double bonusDamage = 0.5 * (challengerArmyAttackingArray.get(ci).getAttack()*0.2) - 0.1 * (opponentArmyDefendingArray.get(0).getDefence());
                         //reduce the health of defending array army charactrer according to the damage value
                         opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - bonusDamage);
                     }
@@ -166,7 +168,7 @@ public class War {
                         }
                     }
                     System.out.println(opponentArmyDefendingArray.getFirst().getName() + "'s health: " + opponentArmyDefendingArray.getFirst().getHealth());
-                    //System.out.println(challengerArmyAttackingArray.get(i).getName() + "'s health: " + challengerArmyAttackingArray.get(i).getHealth());
+                    System.out.println(challengerArmyAttackingArray.get(ci).getName() + "'s health: " + challengerArmyAttackingArray.get(ci).getHealth());
                     //check the opponentdifendingaramkycharacter is die or not
                     if(opponentArmyDefendingArray.get(0).getHealth() <= 0){
                         //if died print
@@ -189,6 +191,7 @@ public class War {
                             }
                             opponentArmyDefendingArray.remove(index);
                             opponentArmyHealingArray.remove(index);
+                            opponentArmyAttackingArray.remove(opponentArmyDefendingArray.get(0));
                         }
                     }
 
@@ -201,7 +204,7 @@ public class War {
                     double healvalue = 0.1*(challengerArmyHealingArray.get(0).getAttack());
                     //get the lowest health character and heal it
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth() + healvalue);
-                    System.out.println(challengerArmyAttackingArray.get(i).getName() + " heeals " + challengerArmyHealingArray.getFirst().getName());
+                    System.out.println(challengerArmyAttackingArray.get(ci).getName() + " heeals " + challengerArmyHealingArray.getFirst().getName());
                     System.out.println(challengerArmyHealingArray.getFirst().getName() + " is healed "+challengerArmyHealingArray.get(0).getHealth()+" by " + healvalue);
                     //save the healed charactor into a varibale
                     Character healedchar = challengerArmyHealingArray.get(0);
@@ -212,26 +215,32 @@ public class War {
                         }
                     }
                     System.out.println(challengerArmyHealingArray.getFirst().getName() + "'s health: " + challengerArmyHealingArray.getFirst().getHealth());
-                    //System.out.println(challengerArmyAttackingArray.get(i).getName() + "'s health: " + challengerArmyAttackingArray.get(i).getHealth());
+                    System.out.println(challengerArmyAttackingArray.get(ci).getName() + "'s health: " + challengerArmyAttackingArray.get(ci).getHealth());
                 }
                 attackingSide = true;
+                ci++;
+                System.out.println("CI incremented " + ci);
+                if (ci == challengerArmyAttackingArray.size()){
+                    System.out.println("ci zero1111");
+                    ci = 0;
+                }
             }
             else{
-                System.out.println("\nTurn " + turn + ": " + initialOpponent.getName());
+                System.out.println("Turn " + turn + ": " + initialOpponent.getName());
                 //opponent attacking turn
                 if(!(opponentArmyAttackingArray.getFirst() instanceof Healer)) {
-                    System.out.println(opponentArmyAttackingArray.get(i).getName() + " attacks " + challengerArmyDefendingArray.getFirst().getName());
+                    System.out.println(opponentArmyAttackingArray.get(oi).getName() + " attacks " + challengerArmyDefendingArray.getFirst().getName());
 
                     //calculate the damage value of opponnet army attacking  value
-                    double dmg = 0.5 * (opponentArmyAttackingArray.get(i).getAttack()) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
+                    double dmg = 0.5 * (opponentArmyAttackingArray.get(oi).getAttack()) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
                     //reduce health of challenger army difending  character according to the dmg value
                     challengerArmyDefendingArray.get(0).setHealth(challengerArmyDefendingArray.get(0).getHealth() - dmg);
 
-                    System.out.println(challengerArmyDefendingArray.get(0).getName() + "'s health reduce by " + dmg + " by the attack of " + opponentArmyAttackingArray.get(i).getName());
+                    System.out.println(challengerArmyDefendingArray.get(0).getName() + "'s health reduce by " + dmg + " by the attack of " + opponentArmyAttackingArray.get(oi).getName());
 
                     if(initialChallenger.getHomeGround().equals("Hillcrest") && opponentArmyAttackingArray.get(0).getCharacterType().equals("Highlander")){
                         //get the damge value of challenger army attacking array
-                        double bonusdmg = 0.5 * (opponentArmyAttackingArray.get(i).getAttack()*0.2) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
+                        double bonusdmg = 0.5 * (opponentArmyAttackingArray.get(oi).getAttack()*0.2) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
                         //reduce the health of defending array army charactrer according to the damage value
                         opponentArmyDefendingArray.get(0).setHealth(opponentArmyDefendingArray.get(0).getHealth() - bonusdmg);
                     }
@@ -241,7 +250,7 @@ public class War {
                         }
                     }
                     System.out.println(challengerArmyDefendingArray.getFirst().getName() + "'s health: " + challengerArmyDefendingArray.getFirst().getHealth());
-                    //System.out.println(opponentArmyAttackingArray.get(i).getName() + "'s health: " + opponentArmyAttackingArray.get(i).getHealth());
+                    System.out.println(opponentArmyAttackingArray.get(oi).getName() + "'s health: " + opponentArmyAttackingArray.get(oi).getHealth());
                     //check whther challener army difending charactor is die or not
                     if(challengerArmyDefendingArray.get(0).getHealth() <= 0){
                         System.out.println(challengerArmyDefendingArray.get(0).getName()+" Died!");
@@ -262,6 +271,7 @@ public class War {
                             }
                             challengerArmyHealingArray.remove(index);
                             challengerArmyDefendingArray.remove(index);
+                            challengerArmyAttackingArray.remove(opponentArmyDefendingArray.get(0));
                         }
                     }
 
@@ -272,7 +282,7 @@ public class War {
                     double healvalue = 0.1*(challengerArmyHealingArray.get(0).getAttack());
                     //update the heal value on charactor healing value
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth()+healvalue);
-                    System.out.println(opponentArmyAttackingArray.get(i).getName() + " heals " + opponentArmyHealingArray.getFirst().getName());
+                    System.out.println(opponentArmyAttackingArray.get(oi).getName() + " heals " + opponentArmyHealingArray.getFirst().getName());
                     System.out.println(opponentArmyHealingArray.getFirst().getName() + " is healed " + opponentArmyHealingArray.get(0).getHealth()+" by " + healvalue);
 
                     //save the healed charactor into a varibale
@@ -292,24 +302,28 @@ public class War {
                 opponentArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));
                 attackingSide = false;
                 turn++;
-                i++;
+                oi++;
+                if (oi == opponentArmyAttackingArray.size()){
+                    oi = 0;
+                }
             }
-            if (i == 4){
-                i = 0;
-            }
+
             if(turn > 10){
-                System.out.println("\nWarEnded\n");
+                System.out.println("WarEnded");
                 break;
             }
+            System.out.println("challenger left= " + challengerArmyDefendingArray.size());
+            System.out.println("opponent left= " + opponentArmyDefendingArray.size());
+            System.out.println();
         }
 
-        System.out.println("----------Result----------");
-        if(opponentArmyDefendingArray.isEmpty()) {
-            System.out.println(initialChallenger.getName() + " Won!");
+        System.out.println("------Result----------");
+        if(opponentArmyAttackingArray.isEmpty()) {
+            System.out.println("winner is = " + initialChallenger.getName());
             initialChallenger.setXp(1);
             initialChallenger.setCoins(initialOpponent.getCoins()*0.1);
             initialOpponent.setCoins(-initialOpponent.getCoins()*0.1);
-        } else if (challengerArmyDefendingArray.isEmpty()) {
+        } else if (challengerArmyAttackingArray.isEmpty()) {
             System.out.println("winner is = "+initialOpponent.getName());
             initialOpponent.setXp(1);
             initialOpponent.setCoins(initialChallenger.getCoins()*0.1);
@@ -318,7 +332,5 @@ public class War {
         else{
             System.out.println("War is Draw");
         }
-        System.out.println(initialChallenger.getName() + " XP: " + initialChallenger.getXp() + "    gold coins: " + initialChallenger.getCoins());
-        System.out.println(initialOpponent.getName() + " XP: " + initialOpponent.getXp() + "    gold coins: " + initialOpponent.getCoins());
     }
 }
