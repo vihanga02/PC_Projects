@@ -22,19 +22,19 @@ public class Menu implements MenuInterface{
         loadFile();
     }
     public void displayMenu() {
-        System.out.println("""
-        ╔═══════════════════╗
-           Ｍａｉｎ Ｍｅｎｕ  
-        ╚═══════════════════╝
-        1. New Adventure
-        2. Add a Custom Profile
-        3. Load Your Journey
-        4. View Your Journey
-        5. View Your Army
-        6. Reinforce Army
-        7. Initiate a Battle
-        8. Exit Arena
-        ═════════════════════""");
+        System.out.println(""
+        + "╔═══════════════════╗\n"
+        + "   Ｍａｉｎ Ｍｅｎｕ  \n"
+        + "╚═══════════════════╝\n"
+        + "1. New Adventure\n"
+        + "2. Add a Custom Profile\n"
+        + "3. Load Your Journey\n"
+        + "4. View Your Journey\n"
+        + "5. View Your Army\n"
+        + "6. Reinforce Army\n"
+        + "7. Initiate a Battle\n"
+        + "8. Exit Arena\n"
+        + "═════════════════════");
 
         while (true) {
             try {
@@ -182,12 +182,11 @@ public class Menu implements MenuInterface{
         setCurrentUser(newUser);
         System.out.println();
 
-        System.out.println("""
-        ════════════════════
-        1. Initiate a Battle
-        2. Back to Main Menu       
-        ════════════════════    
-        """);
+        System.out.println("\n" +
+            "════════════════════\n" +
+            "1. Initiate a Battle\n" +
+            "2. Back to Main Menu\n" +
+            "════════════════════\n");
         while (true) {
             try {
                 int choice = scanner.nextInt();
@@ -502,13 +501,11 @@ public class Menu implements MenuInterface{
     }
     public void initiateBattle(){
         if (currentUser != null) {
-            System.out.println("""
-        ════════════════════
-        1. Find a Battle
-        2. Reinforce Army
-        3. Back to Main Menu      
-        ════════════════════    
-        """);
+            System.out.println("\n═════════════════════\n" +
+                "1. Find a Battle\n" +
+                "2. Reinforce Army\n" +
+                "3. Back to Main Menu\n" +
+                "═════════════════════\n");
             while (true) {
                 try {
                     int choice = scanner.nextInt();
@@ -653,12 +650,11 @@ public class Menu implements MenuInterface{
         printArmy(newUser);
         System.out.println();
 
-        System.out.println("""
-        ════════════════════
-        1. Initiate a Battle
-        2. Back to Main Menu       
-        ════════════════════    
-        """);
+        System.out.println("\n" +
+            "════════════════════\n" +
+            "1. Initiate a Battle\n" +
+            "2. Back to Main Menu\n" +
+            "════════════════════\n");
         while (true) {
             try {
                 int choice = scanner.nextInt();
