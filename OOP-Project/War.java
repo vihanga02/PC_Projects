@@ -62,10 +62,10 @@ public class War {
     void startWar(){
         this.challenger = initialChallenger;
         this.opponent = initialOpponent;
-        this.challengerArmy = new Vector<>(challenger.getArmy());
-        this.opponentArmy = new Vector<>(opponent.getArmy());
+        this.challengerArmy = new Vector<>(initialChallenger.getArmy());
+        this.opponentArmy = new Vector<>(initialOpponent.getArmy());
         for(Character character:challengerArmy){
-            switch (opponent.getHomeGround()) {
+            switch (initialOpponent.getHomeGround()) {
                 case "HillCrest" -> {
                     if (character.getCharacterType().equals("HighLander")) {
                         character.setAttack(character.getAttack() + 1);
@@ -128,7 +128,7 @@ public class War {
         double previousHealth = opponentArmyDefendingArray.get(0).getHealth();
         int i = 0;
 
-        System.out.println("\n\n" + challenger.getName() + "  VS  " + opponent.getName() + "\n");
+        System.out.println("\n\n" + initialChallenger.getName() + "  VS  " + initialOpponent.getName() + "\n");
 
         while (true) {
             //initially first attacking side is challenger
