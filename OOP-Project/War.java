@@ -72,7 +72,7 @@ public class War {
             this.opponentArmy.add(character.clone());
         }
         for(Character character:challengerArmy){
-            switch (opponent.getHomeGround()) {
+            switch (initialOpponent.getHomeGround()) {
                 case "HillCrest" -> {
                     if (character.getCharacterType().equals("HighLander")) {
                         character.setAttack(character.getAttack() + 1);
