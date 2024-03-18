@@ -23,18 +23,18 @@ public class Menu implements MenuInterface{
     }
     public void displayMenu() {
         System.out.println(""
-        + "╔═══════════════════╗\n"
-        + "   Ｍａｉｎ Ｍｅｎｕ  \n"
-        + "╚═══════════════════╝\n"
-        + "1. New Adventure\n"
-        + "2. Add a Custom Profile\n"
-        + "3. Load Your Journey\n"
-        + "4. View Your Journey\n"
-        + "5. View Your Army\n"
-        + "6. Reinforce Army\n"
-        + "7. Initiate a Battle\n"
-        + "8. Exit Arena\n"
-        + "═════════════════════");
+                + "╔═══════════════════╗\n"
+                + "   Ｍａｉｎ Ｍｅｎｕ  \n"
+                + "╚═══════════════════╝\n"
+                + "1. New Adventure\n"
+                + "2. Add a Custom Profile\n"
+                + "3. Load Your Journey\n"
+                + "4. View Your Journey\n"
+                + "5. View Your Army\n"
+                + "6. Reinforce Army\n"
+                + "7. Initiate a Battle\n"
+                + "8. Exit Arena\n"
+                + "═════════════════════");
 
         while (true) {
             try {
@@ -43,34 +43,35 @@ public class Menu implements MenuInterface{
                 switch (choice) {
                     case 1:
                         this.createNewProfile();
-                        return;
+                        break;
                     case 2:
                         this.createPreviousProfile();
-                        return;
+                        break;
                     case 3:
                         this.loadProfile();
-                        return;
+                        break;
                     case 4:
                         this.printUserData(currentUser);
                         this.waitForInput();
-                        this.displayMenu();
-                        return;
+                        break;
                     case 5:
                         this.printUserDetailsinWar(currentUser);
+                        break;
                     case 6:
                         this.reinforceArmy();
-                        return;
+                        break;
                     case 7:
                         this.initiateBattle();
+                        break;
                     case 8:
                         saveUserList();
                         System.out.println("Exiting program...");
                         System.exit(0);
                     default:
-                        System.out.println("Invalid choice, Please enter a digit from 1 to 6\n");
+                        System.out.println("Invalid choice, Please enter a digit from 1 to 8\n");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input, Please enter a digit from 1 to 6\n");
+                System.out.println("Invalid input, Please enter a digit from 1 to 8\n");
                 scanner.next();
             }
         }

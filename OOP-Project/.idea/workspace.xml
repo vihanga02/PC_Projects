@@ -12,21 +12,10 @@
     <list default="true" id="87e91578-e36f-49b2-872f-3b028a72cd1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Data.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Archer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Archer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Armour.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Armour.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Army.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Army.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Artefact.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Artefact.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Equipment.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Equipment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Healer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Healer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Knight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Knight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Mage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Mage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/MythicalCreature.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/MythicalCreature.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/War.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/War.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710740027901</updated>
-      <workItem from="1710740029328" duration="7522000" />
+      <workItem from="1710740029328" duration="9104000" />
     </task>
     <servers />
   </component>
