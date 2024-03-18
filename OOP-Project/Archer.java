@@ -48,4 +48,5 @@ public class Archer extends Character {
                 break;
         }
     }
+
 }
