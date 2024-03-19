@@ -8,7 +8,7 @@ public class User implements Serializable {
     private final String userName;
     private double coins;
     private final String userID;
-    private double xp;
+    private int xp;
     private final String homeGround;
     private ArrayList<Character> myArmy = new ArrayList<>();
     private Map<String, Character> myArmyMap = new HashMap<>();
@@ -26,6 +26,14 @@ public class User implements Serializable {
         this.userID = userName.substring(0, Math.min(userName.length(), 2)).toUpperCase() +
                 String.format("%03d", userCount);
     }
+    public void removeTroopFromArmy(Character troop) {
+        myArmy.remove(troop);
+        myArmyMap.remove(troop.getClass().getName(), troop);
+        // increase the total coins
+        this.setCoins(troop.getPrice());
+    }
+
+
     public void addTroopToArmy(Character troop) {
         // checks whether troop is already in the army
         if (isAbsent(troop)){
