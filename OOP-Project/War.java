@@ -285,7 +285,6 @@ public class War {
                     double dmg = 0.5 * (opponentArmyAttackingArray.get(oi).getAttack()) - 0.1 * (challengerArmyDefendingArray.get(0).getDefence());
 
                     challengerArmyDefendingArray.get(0).setHealth(challengerArmyDefendingArray.get(0).getHealth() - dmg);
-
                     //System.out.println(challengerArmyDefendingArray.get(0).getName() + "'s health reduce by " + dmg + " by the attack of " + opponentArmyAttackingArray.get(oi).getName());
 
                     if(initialChallenger.getHomeGround().equals("Hillcrest") && opponentArmyAttackingArray.get(0).getCharacterType().equals("Highlander")){
