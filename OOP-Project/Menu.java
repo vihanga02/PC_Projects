@@ -111,14 +111,13 @@ public class Menu implements MenuInterface{
      */
     public void saveUserList(){
         try{
-            FileOutputStream data = new FileOutputStream("Data.ser");
+            FileOutputStream data = new FileOutputStream("gamesave.ser");
             ObjectOutputStream obj = new ObjectOutputStream(data);
             obj.writeObject(userList);
             obj.close();
         }
         catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            System.out.println("Could not save the game file...");
         }
     }
 
@@ -126,15 +125,14 @@ public class Menu implements MenuInterface{
      * This method loads the list of users from a file.
      */
     public void loadFile() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("gamesave.ser"))){
             userList = (List<User>) in.readObject();
             userNames.clear(); // Clear the list before populating
             for (User user : userList) {
                 userNames.add(user.getUserName()); // Add each user's username to the list
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("An error occured");
-            e.printStackTrace();
+            System.out.println("Game save not found. Welcome to Mystic Mayhem...");
         }
     }
 
@@ -905,7 +903,7 @@ public class Menu implements MenuInterface{
             System.in.read(); // Wait for user to press Enter
             return;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error reading input");
             return;
         }
     }
