@@ -25,16 +25,8 @@ public class User implements Serializable {
         userCount++;
         // userID is given by capitalized first 2 letters of the name and the count of the new user created
         this.userID = userName.substring(0, Math.min(userName.length(), 2)).toUpperCase() +
-                String.format("%03d", userCount);
+                String.format("%03d", getUserCount());
     }
-    public void removeTroopFromArmy(Character troop) {
-        myArmy.remove(troop);
-        myArmyMap.remove(troop.getClass().getName(), troop);
-        // increase the total coins
-        this.setCoins(troop.getPrice());
-    }
-
-
     public void addTroopToArmy(Character troop) {
         // checks whether troop is already in the army
         if (isAbsent(troop)){
@@ -162,7 +154,7 @@ public class User implements Serializable {
     public void setCoins(double coins) {
         this.coins += coins;
     }
-    public void setXp(double xp) {
+    public void setXp(int xp) {
         this.xp += xp;
     }
 }
