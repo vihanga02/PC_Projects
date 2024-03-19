@@ -6,7 +6,7 @@ import java.util.*;
 public class Menu implements MenuInterface{
     static List<User> userList = new ArrayList<>();
     static List<String> userNames = new ArrayList<>();
-    private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "sagittarius");
+    private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "saggitarius");
     private final List<String> knights = List.of("squire", "cavalier", "templar", "zoro", "swiftblade");
     private final List<String> mages = List.of("warlock", "illusionist", "enchanter", "conjurer", "eldritch");
     private final List<String> healers = List.of("soother", "medic", "alchemist", "saint", "lightbringer");
@@ -108,32 +108,41 @@ public class Menu implements MenuInterface{
             e.printStackTrace();
         }
     }
+    //This function is to create a new profile with 500 coins given
     private void createNewProfile() {
+        // Prompt the user to enter their name
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
 
+        // Prompt the user to enter a unique username
         String userName;
         System.out.println("Now choose a USERNAME. This must be UNIQUE and you can't change this later.");
         while (true) {
             System.out.print("Enter Username: ");
             userName = scanner.next();
+            // Check if the username already exists
             if (userNames.contains(userName)) {
                 System.out.println("Username Already Exists!");
             } else {
+                // If the username is unique, add it to the list of usernames and break the loop
                 userNames.add(userName);
                 break;
             }
         }
+
+        // Prompt the user to choose a home ground for their army
         System.out.println("Now choose a home ground for your army\n" +
                 "1. Hillcrest\n" +
                 "2. Marshland\n" +
                 "3. Desert\n" +
                 "4. Arcane");
 
+        // Get the user's choice for the home ground
         int homeGroundChoice = 0;
         while (true) {
             try {
                 homeGroundChoice = scanner.nextInt();
+                // Check if the user's choice is valid
                 if (homeGroundChoice >= 1 && homeGroundChoice <= 4) {
                     break; // Exit the loop if a valid choice is made
                 } else {
@@ -141,9 +150,11 @@ public class Menu implements MenuInterface{
                 }
             } catch (InputMismatchException e) {
                 System.out.println("\nInvalid Input, Please enter a digit from 1 to 4");
-                scanner.next(); // Clear the scanner buffer
+                scanner.next(); // Clear the invalid input from the scanner buffer
             }
         }
+
+        // Create a new user based on the user's inputs
         User newUser;
         if (homeGroundChoice == 1) {
             newUser = new User(name, userName, "Hillcrest");
@@ -155,30 +166,72 @@ public class Menu implements MenuInterface{
             newUser = new User(name, userName, "Arcane");
         }
 
+        // Prompt the user to enforce their army by selecting characters
         System.out.println("\nPerfect! You're on the verge of your first battle. Let's now enforce your army");
         System.out.println("Here's a detailed table about troops. Be mindful to choose only one character from each type\n");
         Table.displayTroopsTable();
         System.out.println("\nYou have only " + Math.round(newUser.getCoins()) + " gc in your treasure");
         System.out.println("Embark on your journey by selecting characters from above categories\n");
 
+        // Loop until the user's army is complete
         while (newUser.getArmy().size() < 5) {
             System.out.print("Provide a name to bring it to life: ");
             String characterName = scanner.next().toLowerCase();
+            Character newCharacter = null;
+            // Check the type of the character and create a new character of that type
             if (archers.contains(characterName)) {
-                newUser.addTroopToArmy(new Archer(characterName));
+                newCharacter = new Archer(characterName);
             } else if (knights.contains(characterName)) {
-                newUser.addTroopToArmy(new Knight(characterName));
+                newCharacter = new Knight(characterName);
             } else if (mages.contains(characterName)) {
-                newUser.addTroopToArmy(new Mage(characterName));
+                newCharacter = new Mage(characterName);
             } else if (healers.contains(characterName)) {
-                newUser.addTroopToArmy(new Healer(characterName));
+                newCharacter = new Healer(characterName);
             } else if (mythicalCreatures.contains(characterName)) {
-                newUser.addTroopToArmy(new MythicalCreature(characterName));
+                newCharacter = new MythicalCreature(characterName);
             } else {
                 System.out.println("Enter a valid name!!");
+                continue;
             }
-            System.out.println("You have only " + Math.round(newUser.getCoins()) + " coins remaining\n");
+
+            // Check if the user has enough coins to add the character to their army
+            if (newUser.getCoins() < newCharacter.getPrice()) {
+                System.out.println("\nYou don't have enough coins to add this troop. You have " + Math.round(newUser.getCoins()) + " coins and the troop costs " + newCharacter.getPrice() + " coins.");
+                System.out.print("Do you want to continue (c) or start adding troops from the beginning (s)? ");
+                String decision = "";
+                while (true) {
+                    try {
+                        decision = scanner.next();
+                        // Check if the user's decision is valid
+                        if (decision.equalsIgnoreCase("s") || decision.equalsIgnoreCase("c")) {
+                            break; // Exit the loop if a valid input is provided
+                        } else {
+                            System.out.println("Invalid input. Please enter 's' or 'c'.");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter 's' or 'c'.");
+                        scanner.next(); // Clear the invalid input from the scanner buffer
+                    }
+                }
+
+                // If the user decides to start over, reset their coins and clear their army
+                if (decision.equalsIgnoreCase("s")) {
+                    System.out.println();
+                    newUser.setCoins(500 - newUser.getCoins());
+                    newUser.getArmy().clear();
+                    // continue with the rest of the code
+                } else if (decision.equalsIgnoreCase("c")) {
+                    // If the user decides to continue, skip this iteration and move on to the next one
+                    continue;
+                }
+            } else {
+                // If the user has enough coins, add the character to their army
+                newUser.addTroopToArmy(newCharacter);
+                System.out.println("You have only " + Math.round(newUser.getCoins()) + " coins remaining\n");
+            }
         }
+
+        // Once the user's army is complete, add the user's profile to the userList and save it to the file
         System.out.println("PERFECT!! Your legion is now complete");
         userList.add(newUser);
         saveUserList();
@@ -187,11 +240,12 @@ public class Menu implements MenuInterface{
         printArmy(newUser);
         setCurrentUser(newUser);
 
+        // Prompt the user to initiate a battle or return to the main menu
         System.out.println("\n" +
-            "════════════════════\n" +
-            "1. Initiate a Battle\n" +
-            "2. Back to Main Menu\n" +
-            "════════════════════\n");
+                "════════════════════\n" +
+                "1. Initiate a Battle\n" +
+                "2. Back to Main Menu\n" +
+                "════════════════════");
         while (true) {
             try {
                 int choice = scanner.nextInt();
@@ -215,43 +269,54 @@ public class Menu implements MenuInterface{
             }
         }
     }
+
     //This function is to create a custom profile like "GeraltofRivia" from the start
     private void createCustomProfile(){
+        // Prompt the user to enter their name
         System.out.print("Enter Your Name: ");
         String name = scanner.next();
 
+        // Prompt the user to enter a unique username
         String userName;
         System.out.println("Now choose a USERNAME. This must be UNIQUE and you can't change this later.");
         while (true) {
             System.out.print("Enter Username: ");
             userName = scanner.next();
+            // Check if the username already exists
             if (userNames.contains(userName)) {
                 System.out.println("Username Already Exists!");
             } else {
+                // If the username is unique, add it to the list of usernames and break the loop
                 userNames.add(userName);
                 break;
             }
         }
+
+        // Prompt the user to choose a home ground for their army
         System.out.println("Now choose a home ground for your army\n" +
                 "1. Hillcrest\n" +
                 "2. Marshland\n" +
                 "3. Desert\n" +
                 "4. Arcane");
 
+        // Get the user's choice for the home ground
         int homeGroundChoice = 0;
         while (true) {
             try {
                 homeGroundChoice = scanner.nextInt();
+                // Check if the user's choice is valid
                 if (homeGroundChoice >= 1 && homeGroundChoice <= 4) {
                     break; // Exit the loop if a valid choice is made
                 } else {
-                    System.out.println("\nInvalid Choice, Please enter a digit from 1 to 4");
+                    System.out.println("\nInvalid Input, Please enter a digit from 1 to 4");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("\nInvalid Input, Please enter a digit from 1 to 4");
-                scanner.next(); // Clear the scanner buffer
+                scanner.next(); // Clear the invalid input from the scanner buffer
             }
         }
+
+        // Create a new user based on the user's inputs
         User newUser;
         if (homeGroundChoice == 1) {
             newUser = new User(name, userName, "Hillcrest");
@@ -262,62 +327,75 @@ public class Menu implements MenuInterface{
         } else {
             newUser = new User(name, userName, "Arcane");
         }
+
+        // Set the current user to the new user
         setCurrentUser(newUser);
+
+        // Prompt the user to enter their XP value
         int xp = 0;
         while (true) {
             System.out.print("\nEnter the XP value: ");
             try {
                 xp = scanner.nextInt();
+                // Check if the user's XP value is valid
                 if (xp > 0) {
                     newUser.setXp(xp);
-                    break; // Exit the loop if a valid input is provided
+                    break; // Exit the loop if a valid XP value is entered
                 } else {
-                    System.out.println("Please enter a positive integer");
+                    System.out.println("Invalid input. Please enter a positive integer.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
+                System.out.println("Invalid input. Please enter a positive integer.");
                 scanner.next(); // Clear the invalid input from the scanner buffer
             }
         }
-        newUser.setCoins(1000000); // Set the gold coins to a large value until troops added.then get the input and change the gold coins to the required amount
+
+        // Prompt the user to enforce their army by selecting characters
         System.out.println("\nPerfect! You're on the verge of your first battle. Let's now enforce your army");
         System.out.println("Here's a detailed table about troops. Be mindful to choose only one character from each type\n");
         Table.displayTroopsTable();
         System.out.println("Embark on your journey by selecting characters from above categories\n");
 
+        // Loop until the user's army is complete
         while (newUser.getArmy().size() < 5) {
             System.out.print("Provide a name to bring it to life: ");
             String characterName = scanner.next().toLowerCase();
+            // Check the type of the character and add a new character of that type to the user's army for free
             if (archers.contains(characterName)) {
-                newUser.addTroopToArmy(new Archer(characterName));
+                newUser.addTroopFree(new Archer(characterName));
             } else if (knights.contains(characterName)) {
-                newUser.addTroopToArmy(new Knight(characterName));
+                newUser.addTroopFree(new Knight(characterName));
             } else if (mages.contains(characterName)) {
-                newUser.addTroopToArmy(new Mage(characterName));
+                newUser.addTroopFree(new Mage(characterName));
             } else if (healers.contains(characterName)) {
-                newUser.addTroopToArmy(new Healer(characterName));
+                newUser.addTroopFree(new Healer(characterName));
             } else if (mythicalCreatures.contains(characterName)) {
-                newUser.addTroopToArmy(new MythicalCreature(characterName));
+                newUser.addTroopFree(new MythicalCreature(characterName));
             } else {
                 System.out.println("Enter a valid name!!");
             }
         }
+
+        // Prompt the user to enter their coin amount
         int goldCoins = 0;
         while (true) {
             System.out.print("\nEnter the coin amount: ");
             try {
                 goldCoins = scanner.nextInt();
+                // Check if the user's coin amount is valid
                 if (goldCoins > 0) {
-                    newUser.setCoins(-1000000 + goldCoins);
-                    break; // Exit the loop if a valid input is provided
+                    newUser.setCoins(goldCoins);
+                    break; // Exit the loop if a valid coin amount is entered
                 } else {
-                    System.out.println("Please enter a positive integer");
+                    System.out.println("Invalid input. Please enter a positive integer.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
+                System.out.println("Invalid input. Please enter a positive integer.");
                 scanner.next(); // Clear the invalid input from the scanner buffer
             }
         }
+
+        // Once the user's army is complete, add the user's profile to the userList and save it to the file
         System.out.println("PERFECT!! Your legion is now complete");
         userList.add(newUser);
         setCurrentUser(newUser);
@@ -327,11 +405,12 @@ public class Menu implements MenuInterface{
         System.out.println();
         printArmy(newUser);
 
+        // Prompt the user to initiate a battle or return to the main menu
         System.out.println("\n" +
                 "════════════════════\n" +
                 "1. Initiate a Battle\n" +
                 "2. Back to Main Menu\n" +
-                "════════════════════\n");
+                "════════════════════");
         while (true) {
             try {
                 int choice = scanner.nextInt();
@@ -356,17 +435,26 @@ public class Menu implements MenuInterface{
         }
     }
     public void loadProfile() {
+        // Flag to check if a valid username has been entered
         boolean validUsernameEntered = false;
+
+        // Check if there are any users in the userList
         if (!userList.isEmpty()){
+            // Loop until a valid username is entered
             while (!validUsernameEntered) {
+                // Display all the available profiles
                 System.out.println("Select a profile to load from below");
                 for (User user : userList) {
-                    System.out.print(user.getUserName() + "  " + Math.round(user.getXp()) + "Xp \n");
+                    System.out.print(user.getUserName() + "  " + user.getXp() + "Xp \n");
                 }
+
+                // Prompt the user to enter the username of the profile they want to load
                 System.out.print("\nEnter the username of the profile you want to load: ");
                 String userNameToLoad = scanner.next();
 
+                // Loop through the userList to find the profile with the entered username
                 for (User user : userList) {
+                    // If the profile is found, load it and exit the loop
                     if (user.getUserName().equals(userNameToLoad)) {
                         System.out.println("\nProfile loaded successfully!\n");
                         setCurrentUser(user);
@@ -375,36 +463,58 @@ public class Menu implements MenuInterface{
                         break;
                     }
                 }
+
+                // If the profile is not found, display an error message and prompt the user to try again
                 if (!validUsernameEntered) {
                     System.out.println("\nProfile with username '" + userNameToLoad + "' not found. Please try again.\n");
                 }
             }
-        }
-        else{
+        } else {
+            // If there are no users in the userList, display a message
             System.out.println("No users!");
         }
+
+        // Wait for the user to press Enter before continuing
         waitForInput();
+
+        // Display the main menu
         displayMenu();
     }
     public void changeCharacters(User curretUser) {
+        // Check if the current user is not null
         if (curretUser != null) {
+            // Print the current user's army
             printArmy(curretUser);
+            System.out.println();
+
+            // Display the troops table
             Table.displayTroopsTable();
+
+            // Prompt the user to choose the type of character to replace
             System.out.println("\nChoose replacing character type.\n" +
                     "1. Archer\n" +
                     "2. Knight\n" +
                     "3. Mage\n" +
                     "4. Healer\n" +
                     "5. Mythical Creature");
+
             try {
+                // Get the user's choice for the character type
                 int charactertype = scanner.nextInt();
+
+                // Check if the user's choice is valid
                 while (1 > charactertype || charactertype > 5) {
                     System.out.println("Select a number from 1 to 5\n");
                     changeCharacters(curretUser);
                 }
+
+                // Loop until a valid character name is entered
                 while (true) {
+                    // Prompt the user to enter the name of the character to replace the current character
                     System.out.print("Enter character name to replace with the current character: ");
                     String newCharacterName = scanner.next().toLowerCase().strip();
+
+                    // Check the type of the character and replace the current character with a new character of that type
                     if (charactertype == 1) {
                         if (archers.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("Archer"), new Archer(newCharacterName));
@@ -432,15 +542,23 @@ public class Menu implements MenuInterface{
                         }
                     }
                 }
+
+                // Save the updated userList
                 saveUserList();
+
+                // Wait for the user to press Enter before continuing
                 waitForInput();
+
+                // Display the main menu
                 displayMenu();
-            }catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
+                // If the user enters an invalid input, display an error message and prompt the user to try again
                 System.out.println("Select a number from 1 to 5\n");
                 scanner.next();
                 changeCharacters(curretUser);
             }
-        }else{
+        } else {
+            // If the current user is null, display a message and prompt the user to create a new profile or load a profile
             System.out.println("You don't have an active profile yet\n"+
                     "Please create a new profile or load a profile to change troops\n");
             waitForInput();
@@ -526,7 +644,7 @@ public class Menu implements MenuInterface{
             System.out.println("Username: " + user.getUserName());
             System.out.println("UserID: " + user.getUserID());
             System.out.println("Coins: " + Math.round(user.getCoins()) + " gc");
-            System.out.println("Battle Xp: " + Math.round(user.getXp()));
+            System.out.println("Battle Xp: " + user.getXp());
             System.out.println("▂ ▂ ▂ PROFILE ▂ ▂ ▂ \n");
         } catch (NullPointerException e){
             System.out.println("Sorry you haven't created any profiles yet");
@@ -537,7 +655,7 @@ public class Menu implements MenuInterface{
         clearScreen();
         try {
             System.out.println("Username: " + user.getUserName());
-            System.out.println("XP: " + Math.round(user.getXp()));
+            System.out.println("XP: " + user.getXp());
             System.out.println("Characters:");
             int i = 1;
             for (Character character : user.getArmy()) {
@@ -625,7 +743,7 @@ public class Menu implements MenuInterface{
                         } else {
                             addEquipments();
                         }
-                        break;
+                        reinforceArmy();
                     } else if (choice == 3){
                         displayMenu();
                         break;

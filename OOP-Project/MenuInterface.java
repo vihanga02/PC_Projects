@@ -1,5 +1,3 @@
-import java.util.List;
-
 public interface MenuInterface{
     // Method to display the menu options
     void displayMenu();

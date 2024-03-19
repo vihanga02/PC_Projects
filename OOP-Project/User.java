@@ -46,6 +46,19 @@ public class User implements Serializable {
             System.out.println("Troop of type " + troop.getClass().getName() + " already exists in your army" );
         }
     }
+
+    //this method adds troops without deducting coins ( only to use in the createCustomProfile method)
+    public void addTroopFree(Character troop){
+        if (isAbsent(troop)){
+            myArmy.add(troop);
+            myArmyMap.put(troop.getClass().getName(), troop);
+            System.out.println("You Purchased a new " + troop.getName().toUpperCase() + " of type " + troop.getClass().getName());
+        }
+        else {
+            System.out.println("Troop of type " + troop.getClass().getName() + " already exists in your army" );
+        }
+    }
+
     public void replaceTroop(Character oldTroop, Character newTroop) {
         // Check whether the troop to be replaced is already in the army
         if (isAbsent(oldTroop)) {
@@ -61,7 +74,7 @@ public class User implements Serializable {
             // Sell the current troop
             myArmy.remove(oldTroop);
             this.setCoins(oldTroop.getPrice()*0.9);
-            System.out.println(oldTroop.getName() + " is sold");
+            System.out.println(oldTroop.getName().toUpperCase() + " is sold");
 
             // Add the new troop to the army
             addTroopToArmy(newTroop);

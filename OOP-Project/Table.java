@@ -31,7 +31,7 @@ public class Table {
         String[] health4 = {"11", "13", "14", "17", "17"};
         String[] speed4 = {"14", "14", "12", "9", "19"};
 
-        String[] name5 = {"Sagittarius", "Swiftblade", "Eldritch", "Lightbringer", "Pegasus"};
+        String[] name5 = {"Saggitarius", "Swiftblade", "Eldritch", "Lightbringer", "Pegasus"};
         String[] price5 = {"230 gc", "250 gc", "270 gc", "260 gc", "340 gc"};
         String[] attack5 = {"18", "18", "19", "17", "14"};
         String[] defense5 = {"7", "20", "17", "15", "18"};
