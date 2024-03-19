@@ -182,7 +182,7 @@ public class War {
         int ci = 0;
         int oi = 0;
 
-        System.out.println("\n\n" + initialChallenger.getUserName() + "  VS  " + initialOpponent.getUserName() + "\n");
+        System.out.println("\n\n" + initialChallenger.getUserName() + "  V/S  " + initialOpponent.getUserName() + "\n");
 
         while (true) {
             if (!attackingSide) {
