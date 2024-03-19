@@ -1,5 +1,4 @@
 public class Artefact extends Equipment {
-
     // Constructor for creating Artefact with a specified name.
     public Artefact(String name) {
         super(name); // Call the constructor of the superclass (Equipment) with the given name.

@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public abstract class Character implements Serializable, Cloneable {
     // Declaration of private instance variables representing attributes of a Character.
-    private String name;
+    private final String name;
     private int price;
     private double attack;
     private double defence;

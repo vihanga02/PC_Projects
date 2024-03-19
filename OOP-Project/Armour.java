@@ -1,5 +1,4 @@
 public class Armour extends Equipment {
-
     // Constructor for creating Armour with a specified name.
     public Armour(String name){
         super(name); // Call the constructor of the superclass (Equipment) with the given name.
