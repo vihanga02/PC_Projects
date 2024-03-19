@@ -271,7 +271,7 @@ public class War {
 
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth() + healvalue);
 
-                    System.out.println(String.format("-- %s's %s heals %s's %s",
+                    System.out.println(String.format("** %s's %s heals %s's %s **",
                             initialChallenger.getUserName(),
                             challengerArmyAttackingArray.get(ci).getName(),
                             initialChallenger.getUserName(),
@@ -356,7 +356,7 @@ public class War {
 
                     challengerArmyHealingArray.get(0).setHealth(challengerArmyHealingArray.get(0).getHealth()+healvalue);
 
-                    System.out.println(String.format("-- %s's %s heals %s's %s",
+                    System.out.println(String.format("** %s's %s heals %s's %s **",
                             initialOpponent.getUserName(),
                             opponentArmyAttackingArray.get(oi).getName(),
                             initialOpponent.getUserName(),
@@ -422,7 +422,8 @@ public class War {
             System.out.println("Drawn!");
         }
         System.out.println("----------------------");
-        System.out.println(initialChallenger.getUserName()  + " | XP: " + (initialChallenger.getXp()) + " | gold coins: " + Math.round(initialChallenger.getCoins()));
-        System.out.println(initialOpponent.getUserName() + " | XP: " + (initialOpponent.getXp()) + " | gold coins: " + Math.round(initialOpponent.getCoins()));
+        System.out.println(initialChallenger.getUserName()  + " | XP: " + Math.round(initialChallenger.getXp()) + " | gold coins: " + Math.round(initialChallenger.getCoins()));
+        System.out.println(initialOpponent.getUserName() + " | XP: " + Math.round(initialOpponent.getXp()) + " | gold coins: " + Math.round(initialOpponent.getCoins()));
+        System.out.println();
     }
 }

@@ -46,7 +46,7 @@ public class Menu implements MenuInterface{
         while (true) {
             System.out.println(""
                     + "╔═══════════════════╗\n"
-                    + "   Ｍａｉｎ Ｍｅｎｕ  \n"
+                    + "  M A I N  M E N U \n"
                     + "╚═══════════════════╝\n"
                     + "1. New Adventure\n"
                     + "2. Add a Custom Profile\n"
@@ -418,7 +418,7 @@ public class Menu implements MenuInterface{
                 goldCoins = scanner.nextInt();
                 // Check if the user's coin amount is valid
                 if (goldCoins > 0) {
-                    newUser.setCoins(goldCoins);
+                    newUser.setCoins(goldCoins-500);
                     break; // Exit the loop if a valid coin amount is entered
                 } else {
                     System.out.println("Invalid input. Please enter a positive integer.");
@@ -483,7 +483,7 @@ public class Menu implements MenuInterface{
                 // Display all the available profiles
                 System.out.println("Select a profile to load from below");
                 for (User user : userList) {
-                    System.out.print(user.getUserName() + "  " + user.getXp() + "Xp \n");
+                    System.out.print(user.getUserName() + "  " + Math.round(user.getXp()) + " Xp \n");
                 }
 
                 // Prompt the user to enter the username of the profile they want to load
@@ -698,12 +698,12 @@ public class Menu implements MenuInterface{
      */
     public void printUserData(User user) {
         try {
-            System.out.println("▂ ▅ ▇ █ █ ▇ ▅ ▂");
+            System.out.println("═════PROFILE══════");
             System.out.println("Username: " + user.getUserName());
             System.out.println("UserID: " + user.getUserID());
             System.out.println("Coins: " + Math.round(user.getCoins()) + " gc");
-            System.out.println("Battle Xp: " + user.getXp());
-            System.out.println("▂ ▂ ▂ PROFILE ▂ ▂ ▂ \n");
+            System.out.println("Battle Xp: " + Math.round(user.getXp()));
+            System.out.println("══════════════════\n");
         } catch (NullPointerException e){
             System.out.println("Sorry you haven't created any profiles yet");
             displayMenu();
@@ -716,15 +716,16 @@ public class Menu implements MenuInterface{
     public void printUserDetailsinWar(User user) {
         clearScreen();
         try {
+            System.out.println("═══════PROFILE═══════");
             System.out.println("Username: " + user.getUserName());
-            System.out.println("XP: " + user.getXp());
+            System.out.println("XP: " + Math.round(user.getXp()));
             System.out.println("Characters:");
             int i = 1;
             for (Character character : user.getArmy()) {
                 System.out.println("   " + i + ". " + character.getName().toUpperCase());
                 i++;
             }
-            System.out.println("╚════════════════════════════╝\n");
+            System.out.println("╚═════════════════════╝");
         } catch (NullPointerException e){
             System.out.println("Please create or load a profile to view army\n");
             displayMenu();
@@ -783,6 +784,7 @@ public class Menu implements MenuInterface{
         while (true) {
             System.out.print("Challenge , Skip or Exit to Main Menu (C/S/E): ");
             String decision = scanner.next();
+            System.out.println();
             if (decision.equalsIgnoreCase("c")) {
                 challenger = opponent;
                 return challenger;
@@ -806,7 +808,7 @@ public class Menu implements MenuInterface{
             "1. Replace Troops\n" +
             "2. GearUp Troops\n" +
             "3. Back to Main Menu\n" +
-            "════════════════════\n");
+            "════════════════════");
         if (currentUser != null) {
             while (true) {
                 try {
@@ -847,7 +849,7 @@ public class Menu implements MenuInterface{
             System.out.println("\n═════════════════════\n" +
                 "1. Find a Battle\n" +
                 "2. Back to Main Menu\n" +
-                "═════════════════════\n");
+                "═════════════════════");
             while (true) {
                 try {
                     int choice = scanner.nextInt();
