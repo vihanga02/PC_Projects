@@ -1,11 +1,18 @@
 import java.util.*;
 
+/**
+ * The War class represents a war between two users in a game.
+ * Each user has an army of characters, and the war is conducted in turns.
+ * The characters in the army can attack, defend, and heal.
+ */
 public class War {
-    User initialChallenger;
-    User initialOpponent;
-    Vector<Character> challengerArmy;
-    Vector<Character> opponentArmy;
+    User initialChallenger; // The user who initiates the war
+    User initialOpponent; // The user who is challenged to the war
+    Vector<Character> challengerArmy; // The army of the challenger
+    Vector<Character> opponentArmy; // The army of the opponent
 
+
+    // The following vectors are used for sorting the army characters
     private Vector<Character> challengerArmyAttackingArray;
     private Vector<Character> opponentArmyAttackingArray;
     private Vector<Character> challengerArmyDefendingArray;
@@ -13,12 +20,20 @@ public class War {
     private Vector<Character> opponentArmyHealingArray;
     private Vector<Character> challengerArmyHealingArray;
 
+    /**
+     * The constructor for the War class.
+     * It initializes the challenger and opponent, and starts the war.
+     */
     public War(User initialChallenger,User initialOpponent){
         this.initialChallenger = initialChallenger;
         this.initialOpponent = initialOpponent;
         this.startWar();
     }
 
+    /**
+     * This method initializes the attacking, defending, and healing arrays for both armies.
+     * It sorts the characters in the armies based on their speed and type.
+     */
     private void initialingArrays(Vector<Character> challengerArmy, Vector<Character> opponentArmy){
         this.challengerArmyAttackingArray = new Vector<>(attackPriorityCheck(challengerArmy));
         this.opponentArmyAttackingArray = new Vector<>(attackPriorityCheck(opponentArmy));
@@ -30,6 +45,10 @@ public class War {
         this.challengerArmyHealingArray.sort(Comparator.comparingDouble(Character::getHealth));
     }
 
+    /**
+     * This method sorts the characters in an army based on their speed and type.
+     * It is used to determine the order of attack.
+     */
     public Vector<Character> attackPriorityCheck(Vector<Character> list){
         list.sort(Comparator.comparingDouble(Character::getSpeed)
                 .thenComparing(character -> {
@@ -42,6 +61,10 @@ public class War {
         return list;
     }
 
+    /**
+     * This method sorts the characters in an army based on their defence and type.
+     * It is used to determine the order of defence.
+     */
     public Vector<Character> defencePriorityCheck(Vector<Character> list){
         list.sort(Comparator.comparingDouble(Character::getDefence)
                 .thenComparing(character -> {
@@ -54,6 +77,11 @@ public class War {
         return list;
     }
 
+    /**
+     * This method starts the war.
+     * It clones the armies of the challenger and opponent, and adjusts the attributes of the characters based on the home ground of the opponent.
+     * It then initializes the attacking, defending, and healing arrays for both armies.
+     */
     void startWar(){
         this.challengerArmy = new Vector<>();
         for (Character character : initialChallenger.getArmy()) {
@@ -330,7 +358,7 @@ public class War {
 
                     System.out.println(String.format("-- %s's %s heals %s's %s",
                             initialOpponent.getUserName(),
-                            opponentArmyAttackingArray.get(ci).getName(),
+                            opponentArmyAttackingArray.get(oi).getName(),
                             initialOpponent.getUserName(),
                             opponentArmyHealingArray.getFirst().getName()));
 

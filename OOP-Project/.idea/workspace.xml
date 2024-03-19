@@ -12,11 +12,12 @@
     <list default="true" id="87e91578-e36f-49b2-872f-3b028a72cd1b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copilot/chatSessions/00000000000.xd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/Data.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/War.java" beforeDir="false" afterPath="$PROJECT_DIR$/War.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/OOP_Project_jar/OOP-Project.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Data.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP-Project/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP-Project/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +27,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2dqeRHx8T8FNTZqfgxxr1Y3Nrez" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -80,5 +81,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/War.java</url>
+          <line>360</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

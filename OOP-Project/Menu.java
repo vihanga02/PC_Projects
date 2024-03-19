@@ -2,10 +2,20 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.*;
 
+/**
+ * This class represents the main menu of the game.
+ * It implements the MenuInterface and contains methods for displaying the menu, saving and loading user data, creating new profiles, and initiating battles.
+ */
 public class Menu implements MenuInterface{
+    // Lists to store user data and character names
     static List<User> userList = new ArrayList<>();
     static List<String> userNames = new ArrayList<>();
+    // Lists to store the names of different types of characters
     private final List<String> archers = List.of("shooter", "ranger", "sunfire", "zing", "saggitarius");
     private final List<String> knights = List.of("squire", "cavalier", "templar", "zoro", "swiftblade");
     private final List<String> mages = List.of("warlock", "illusionist", "enchanter", "conjurer", "eldritch");
@@ -14,13 +24,24 @@ public class Menu implements MenuInterface{
     private final List<String> armours = List.of("chainmail", "regalia", "fleece");
     private final List<String> artefacts = List.of("excalibur", "amulet", "crystal");
 
+    // Scanner to read user input
     private Scanner scanner = new Scanner(System.in);
+
+    // Current user and challenger in the game
     private User currentUser;
     private User challenger;
 
+    /**
+     * Constructor for the Menu class.
+     * It loads the user data from the file when a new Menu object is created.
+     */
     public Menu() {
         loadFile();
     }
+
+    /**
+     * This method displays the main menu of the game and handles user input to navigate through the menu.
+     */
     public void displayMenu() {
         while (true) {
             System.out.println(""
@@ -84,6 +105,10 @@ public class Menu implements MenuInterface{
             }
         }
     }
+
+    /**
+     * This method saves the list of users to a file.
+     */
     public void saveUserList(){
         try{
             FileOutputStream data = new FileOutputStream("Data.ser");
@@ -96,6 +121,10 @@ public class Menu implements MenuInterface{
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method loads the list of users from a file.
+     */
     public void loadFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
             userList = (List<User>) in.readObject();
@@ -108,7 +137,10 @@ public class Menu implements MenuInterface{
             e.printStackTrace();
         }
     }
-    //This function is to create a new profile with 500 coins given
+
+    /**
+     * This method creates a new user profile.
+     */
     private void createNewProfile() {
         // Prompt the user to enter their name
         System.out.print("Enter Your Name: ");
@@ -270,7 +302,9 @@ public class Menu implements MenuInterface{
         }
     }
 
-    //This function is to create a custom profile like "GeraltofRivia" from the start
+    /**
+     * This method creates a custom user profile.
+     */
     private void createCustomProfile(){
         // Prompt the user to enter their name
         System.out.print("Enter Your Name: ");
@@ -434,6 +468,10 @@ public class Menu implements MenuInterface{
             }
         }
     }
+
+    /**
+     * This method loads a user profile.
+     */
     public void loadProfile() {
         // Flag to check if a valid username has been entered
         boolean validUsernameEntered = false;
@@ -480,6 +518,10 @@ public class Menu implements MenuInterface{
         // Display the main menu
         displayMenu();
     }
+
+    /**
+     * This method allows the user to change the characters in their army.
+     */
     public void changeCharacters(User curretUser) {
         // Check if the current user is not null
         if (curretUser != null) {
@@ -566,6 +608,10 @@ public class Menu implements MenuInterface{
             displayMenu();
         }
     }
+
+    /**
+     * This method allows the user to add equipment to their characters.
+     */
     public void addEquipments() {
         System.out.println("You currently have: ");
         for (Character character : currentUser.getArmy()) {
@@ -632,12 +678,24 @@ public class Menu implements MenuInterface{
             addEquipments();// Clear the scanner buffer
         }
     }
+
+    /**
+     * This method returns the current user.
+     */
     public User getCurrentUser() {
         return currentUser;
     }
+
+    /**
+     * This method sets the current user.
+     */
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
+
+    /**
+     * This method prints the data of a user.
+     */
     public void printUserData(User user) {
         try {
             System.out.println("▂ ▅ ▇ █ █ ▇ ▅ ▂");
@@ -651,6 +709,10 @@ public class Menu implements MenuInterface{
             displayMenu();
         }
     }
+
+    /**
+     * This method prints the details of a user in a war.
+     */
     public void printUserDetailsinWar(User user) {
         clearScreen();
         try {
@@ -668,6 +730,10 @@ public class Menu implements MenuInterface{
             displayMenu();
         }
     }
+
+    /**
+     * This method prints the army of a user.
+     */
     public void printArmy(User user) {
         System.out.println("️══ Your Legion ══");
         for (Character character : user.getArmy()) {
@@ -691,6 +757,10 @@ public class Menu implements MenuInterface{
         }
         System.out.println();
     }
+
+    /**
+     * This method returns an opponent for the current user.
+     */
     private User getOpponent() {
         if (userList.size() < 2) {
             System.out.println("There are not enough users to challenge. Please add more users.");
@@ -727,6 +797,10 @@ public class Menu implements MenuInterface{
             }
         }
     }
+
+    /**
+     * This method allows the user to reinforce their army.
+     */
     public void reinforceArmy(){
         System.out.println("\n════════════════════\n" +
             "1. Replace Troops\n" +
@@ -764,6 +838,10 @@ public class Menu implements MenuInterface{
         }
         saveUserList();
     }
+
+    /**
+     * This method initiates a battle.
+     */
     public void initiateBattle(){
         if (currentUser != null) {
             System.out.println("\n═════════════════════\n" +
@@ -799,6 +877,10 @@ public class Menu implements MenuInterface{
         }
         saveUserList();
     }
+
+    /**
+     * This method clears the screen.
+     */
     public static void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -811,6 +893,10 @@ public class Menu implements MenuInterface{
             ex.printStackTrace();
         }
     }
+
+    /**
+     * This method waits for the user to press Enter to continue.
+     */
     private void waitForInput() {
         System.out.println("Press Enter to continue...");
         try {
