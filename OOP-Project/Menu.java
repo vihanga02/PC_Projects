@@ -497,7 +497,7 @@ public class Menu implements MenuInterface{
                     }
                     break;
                 case 5:
-                    if (currentUser.addEquipment(currentUser.getMyArmyMap().get("Mythical Creature"), armour != null ? armour : artefact)) {
+                    if (currentUser.addEquipment(currentUser.getMyArmyMap().get("MythicalCreature"), armour != null ? armour : artefact)) {
                         System.out.println("Equipment added successfully.");
                     }
                     break;

@@ -1,6 +1,4 @@
 public class Archer extends Character {
-    private String name; // Private variable to store the name of the Archer.
-
     // Constructor for creating an Archer with a specified name.
     public Archer(String name){
         super(name); // Call the constructor of the superclass (Character) with the given name.

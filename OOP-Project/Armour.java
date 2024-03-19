@@ -1,5 +1,4 @@
 public class Armour extends Equipment {
-
     // Constructor for creating Armour with a specified name.
     public Armour(String name){
         super(name); // Call the constructor of the superclass (Equipment) with the given name.
@@ -26,7 +25,7 @@ public class Armour extends Equipment {
                 this.setHealth(0);
                 this.setSpeed(0);
                 break;
-            case "rleece": // If the name is "rleece"...
+            case "fleece": // If the name is "rleece"...
                 // Set the attributes of the Armour with appropriate values.
                 this.setPrice(150);
                 this.setAttack(0);

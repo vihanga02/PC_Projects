@@ -1,5 +1,6 @@
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class User implements Serializable {
@@ -24,21 +25,13 @@ public class User implements Serializable {
         userCount++;
         // userID is given by capitalized first 2 letters of the name and the count of the new user created
         this.userID = userName.substring(0, Math.min(userName.length(), 2)).toUpperCase() +
-                String.format("%03d", userCount);
+                String.format("%03d", getUserCount());
     }
-    public void removeTroopFromArmy(Character troop) {
-        myArmy.remove(troop);
-        myArmyMap.remove(troop.getClass().getName(), troop);
-        // increase the total coins
-        this.setCoins(troop.getPrice());
-    }
-
-
     public void addTroopToArmy(Character troop) {
         // checks whether troop is already in the army
         if (isAbsent(troop)){
             // checks whether user have enough money
-            if ((coins - troop.getPrice()) > 0){
+            if ((coins - troop.getPrice()) >= 0){
                 myArmy.add(troop);
                 myArmyMap.put(troop.getClass().getName(), troop);
                 // decrease the total coins
@@ -61,13 +54,13 @@ public class User implements Serializable {
         }
 
         // Calculate the total cost difference after selling the old troop and buying the new one
-        int costDifference = (int) (newTroop.getPrice() - oldTroop.getPrice()*0.9);
+        int costDifference = (int) (-newTroop.getPrice() + oldTroop.getPrice()*0.9);
 
         // Check if the user has enough coins to perform the replacement
-        if (coins + costDifference >= 0) {
+        if (this.coins + costDifference >= 0) {
             // Sell the current troop
             myArmy.remove(oldTroop);
-            this.setCoins(costDifference);
+            this.setCoins(oldTroop.getPrice()*0.9);
             System.out.println(oldTroop.getName() + " is sold");
 
             // Add the new troop to the army
@@ -124,7 +117,6 @@ public class User implements Serializable {
             }
         } else {
             System.out.println("Not enough coins to purchase the equipment.");
-            return true;
         }
         // If the equipment was not added, return false
         return false;
@@ -162,7 +154,7 @@ public class User implements Serializable {
     public void setCoins(double coins) {
         this.coins += coins;
     }
-    public void setXp(double xp) {
+    public void setXp(int xp) {
         this.xp += xp;
     }
 }

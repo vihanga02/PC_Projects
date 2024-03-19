@@ -1,11 +1,14 @@
 public class Mage extends Character {
     public Mage(String name){
-        super(name);
-        this.createArcher(name);
+        super(name); // Call superclass constructor
+        this.createArcher(name); // Call createArcher method
     }
+
+    // Method to create Archer based on name
     private void createArcher(String name){
         switch (name){
             case "warlock":
+                // Set attributes for warlock
                 this.setPrice(100);
                 this.setAttack(12);
                 this.setDefence(7);
@@ -14,6 +17,7 @@ public class Mage extends Character {
                 this.setCharacterType("Marshlander");
                 break;
             case "illusionist":
+                // Set attributes for illusionist
                 this.setPrice(120);
                 this.setAttack(13);
                 this.setDefence(8);
@@ -22,6 +26,7 @@ public class Mage extends Character {
                 this.setCharacterType("Mystic");
                 break;
             case "enchanter":
+                // Set attributes for enchanter
                 this.setPrice(160);
                 this.setAttack(16);
                 this.setDefence(10);
@@ -30,6 +35,7 @@ public class Mage extends Character {
                 this.setCharacterType("Highlander");
                 break;
             case "conjurer":
+                // Set attributes for conjurer
                 this.setPrice(195);
                 this.setAttack(18);
                 this.setDefence(15);
@@ -38,6 +44,7 @@ public class Mage extends Character {
                 this.setCharacterType("Highlander");
                 break;
             case "eldritch":
+                // Set attributes for eldritch
                 this.setPrice(270);
                 this.setAttack(19);
                 this.setDefence(17);
