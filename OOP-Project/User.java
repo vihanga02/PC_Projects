@@ -1,5 +1,6 @@
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class User implements Serializable {
@@ -83,6 +84,7 @@ public class User implements Serializable {
     }
     public boolean addEquipment(Character troop, Equipment equipment) {
         // Check if the user has enough coins to purchase the equipment
+        System.out.println("Balance after the purchas: " + coins + " - " + equipment.getPrice());
         if (coins - equipment.getPrice() >= 0) {
             // Check if the equipment is an Artefact
             if (equipment instanceof Artefact) {
@@ -116,7 +118,6 @@ public class User implements Serializable {
             }
         } else {
             System.out.println("Not enough coins to purchase the equipment.");
-            return true;
         }
         // If the equipment was not added, return false
         return false;
