@@ -401,19 +401,19 @@ public class War {
             }
 
             if(turn > 10){
-                System.out.println("\n-------WarEnded------\n");
                 break;
             }
         }
 
+        System.out.println("\n-------War Ended------\n");
         System.out.println("------Result----------");
         if(opponentArmyAttackingArray.isEmpty()) {
-            System.out.println(initialChallenger.getName().toUpperCase() + "Won!" );
+            System.out.println(initialChallenger.getName().toUpperCase() + " Won!" );
             initialChallenger.setXp(1);
             initialChallenger.setCoins((int) (initialOpponent.getCoins()*0.1));
             initialOpponent.setCoins((int)(-initialOpponent.getCoins()*0.1));
         } else if (challengerArmyAttackingArray.isEmpty()) {
-            System.out.println(initialOpponent.getName().toUpperCase() +"Won!" );
+            System.out.println(initialOpponent.getName().toUpperCase() +" Won! " );
             initialOpponent.setXp(1);
             initialOpponent.setCoins((int) (initialChallenger.getCoins()*0.1));
             initialChallenger.setCoins((int) (-initialChallenger.getCoins()*0.1));
