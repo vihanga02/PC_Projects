@@ -22,55 +22,57 @@ public class Menu implements MenuInterface{
         loadFile();
     }
     public void displayMenu() {
-        System.out.println(""
-        + "╔═══════════════════╗\n"
-        + "   Ｍａｉｎ Ｍｅｎｕ  \n"
-        + "╚═══════════════════╝\n"
-        + "1. New Adventure\n"
-        + "2. Add a Custom Profile\n"
-        + "3. Load Your Journey\n"
-        + "4. View Your Journey\n"
-        + "5. View Your Army\n"
-        + "6. Reinforce Army\n"
-        + "7. Initiate a Battle\n"
-        + "8. Exit Arena\n"
-        + "═════════════════════");
-
         while (true) {
+            System.out.println(""
+                    + "╔═══════════════════╗\n"
+                    + "   Ｍａｉｎ Ｍｅｎｕ  \n"
+                    + "╚═══════════════════╝\n"
+                    + "1. New Adventure\n"
+                    + "2. Add a Custom Profile\n"
+                    + "3. Load Your Journey\n"
+                    + "4. View Your Journey\n"
+                    + "5. View Your Army\n"
+                    + "6. Reinforce Army\n"
+                    + "7. Initiate a Battle\n"
+                    + "8. Exit Arena\n"
+                    + "═════════════════════");
             try {
                 int choice = scanner.nextInt();
 
                 switch (choice) {
                     case 1:
                         this.createNewProfile();
-                        return;
+                        break;
                     case 2:
                         this.createPreviousProfile();
-                        return;
+                        break;
                     case 3:
                         this.loadProfile();
-                        return;
+                        break;
                     case 4:
                         this.printUserData(currentUser);
                         this.waitForInput();
-                        this.displayMenu();
-                        return;
+                        break;
                     case 5:
                         this.printUserDetailsinWar(currentUser);
+                        this.waitForInput();
+                        break;
                     case 6:
                         this.reinforceArmy();
-                        return;
+                        this.waitForInput();
+                        break;
                     case 7:
                         this.initiateBattle();
+                        break;
                     case 8:
                         saveUserList();
                         System.out.println("Exiting program...");
                         System.exit(0);
                     default:
-                        System.out.println("Invalid choice, Please enter a digit from 1 to 6\n");
+                        System.out.println("Invalid choice, Please enter a digit from 1 to 8\n");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input, Please enter a digit from 1 to 6\n");
+                System.out.println("Invalid input, Please enter a digit from 1 to 8\n");
                 scanner.next();
             }
         }
@@ -90,6 +92,10 @@ public class Menu implements MenuInterface{
     public void loadFile() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.ser"))){
             userList = (List<User>) in.readObject();
+            userNames.clear(); // Clear the list before populating
+            for (User user : userList) {
+                userNames.add(user.getUserName()); // Add each user's username to the list
+            }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("errorrrrrrrrrrrr");
             e.printStackTrace();
@@ -686,8 +692,10 @@ public class Menu implements MenuInterface{
         System.out.println("Press Enter to continue...");
         try {
             System.in.read(); // Wait for user to press Enter
+            return;
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         }
     }
 }
