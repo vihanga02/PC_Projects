@@ -39,7 +39,7 @@ public class User implements Serializable {
         // checks whether troop is already in the army
         if (isAbsent(troop)){
             // checks whether user have enough money
-            if ((coins - troop.getPrice()) > 0){
+            if ((coins - troop.getPrice()) >= 0){
                 myArmy.add(troop);
                 myArmyMap.put(troop.getClass().getName(), troop);
                 // decrease the total coins
@@ -62,13 +62,13 @@ public class User implements Serializable {
         }
 
         // Calculate the total cost difference after selling the old troop and buying the new one
-        int costDifference = (int) (newTroop.getPrice() - oldTroop.getPrice()*0.9);
+        int costDifference = (int) (-newTroop.getPrice() + oldTroop.getPrice()*0.9);
 
         // Check if the user has enough coins to perform the replacement
-        if (coins + costDifference >= 0) {
+        if (this.coins + costDifference >= 0) {
             // Sell the current troop
             myArmy.remove(oldTroop);
-            this.setCoins(costDifference);
+            this.setCoins(oldTroop.getPrice()*0.9);
             System.out.println(oldTroop.getName() + " is sold");
 
             // Add the new troop to the army
@@ -92,7 +92,6 @@ public class User implements Serializable {
     }
     public boolean addEquipment(Character troop, Equipment equipment) {
         // Check if the user has enough coins to purchase the equipment
-        System.out.println("Balance after the purchas: " + coins + " - " + equipment.getPrice());
         if (coins - equipment.getPrice() >= 0) {
             // Check if the equipment is an Artefact
             if (equipment instanceof Artefact) {
