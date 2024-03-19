@@ -53,7 +53,7 @@ public class User implements Serializable {
         }
 
         // Calculate the total cost difference after selling the old troop and buying the new one
-        int costDifference = (int) (newTroop.getPrice() - oldTroop.getPrice()*0.9;
+        int costDifference = (int) (newTroop.getPrice() - oldTroop.getPrice()*0.9);
 
         // Check if the user has enough coins to perform the replacement
         if (coins + costDifference >= 0) {
