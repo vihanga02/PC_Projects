@@ -173,7 +173,6 @@ public class Menu implements MenuInterface{
             }
             System.out.println("You have only " + newUser.getCoins() + " coins remaining\n");
         }
-
         System.out.println("PERFECT!! Your legion is now complete");
         userList.add(newUser);
         saveUserList();
@@ -228,30 +227,30 @@ public class Menu implements MenuInterface{
                     changeCharacters(curretUser);
                 }
                 while (true) {
-                    System.out.print("Enter character name to replace with the c: ");
-                    String newCharacterName = scanner.next();
+                    System.out.print("Enter character name to replace with the current character: ");
+                    String newCharacterName = scanner.next().toLowerCase().strip();
                     if (charactertype == 1) {
-                        if (archers.contains(newCharacterName.toLowerCase().strip())) {
+                        if (archers.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("Archer"), new Archer(newCharacterName));
                             break;
                         }
                     } else if (charactertype == 2) {
-                        if (knights.contains(newCharacterName.toLowerCase().strip())) {
+                        if (knights.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("Knight"), new Knight(newCharacterName));
                             break;
                         }
                     } else if (charactertype == 3) {
-                        if (mages.contains(newCharacterName.toLowerCase().strip())) {
+                        if (mages.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("Mage"), new Mage(newCharacterName));
                             break;
                         }
                     } else if (charactertype == 4) {
-                        if (healers.contains(newCharacterName.toLowerCase().strip())) {
+                        if (healers.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("Healer"), new Healer(newCharacterName));
                             break;
                         }
                     } else {
-                        if (mythicalCreatures.contains(newCharacterName.toLowerCase().strip())) {
+                        if (mythicalCreatures.contains(newCharacterName)) {
                             curretUser.replaceTroop(curretUser.getMyArmyMap().get("MythicalCreature"), new MythicalCreature(newCharacterName));
                             break;
                         }

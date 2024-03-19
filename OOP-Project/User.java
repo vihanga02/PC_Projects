@@ -6,7 +6,7 @@ public class User implements Serializable {
     private static int userCount = 0;
     private String name;
     private final String userName;
-    private int coins;
+    private double coins;
     private final String userID;
     private double xp;
     private final String homeGround;
@@ -72,8 +72,6 @@ public class User implements Serializable {
         }
     }
 
-
-
     private boolean isAbsent(Character troop) {
         // checks whether troop is already in the army
         for (Character existingTroop : myArmy) {
@@ -135,7 +133,7 @@ public class User implements Serializable {
     public String getUserName() {
         return userName;
     }
-    public int getCoins() {
+    public double getCoins() {
         return coins;
     }
     public String getUserID() {
@@ -153,7 +151,7 @@ public class User implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public void setCoins(int coins) {
+    public void setCoins(double coins) {
         this.coins += coins;
     }
     public void setXp(double xp) {
