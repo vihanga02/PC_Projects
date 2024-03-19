@@ -675,7 +675,7 @@ public class Menu implements MenuInterface{
         }
         else {
             System.out.println("You don't have an active profile yet\n"+
-                    "Please create a new profile or load a profile to change troops\n");
+                    "Please create a new profile or load a profile\n");
             System.out.println("Directing back to Main Menu...\n");
             displayMenu();
         }

@@ -218,8 +218,8 @@ public class War {
 
                     System.out.println(String.format("-- %s's %s's health: %s",
                             initialChallenger.getUserName(),
-                            challengerArmyAttackingArray.getFirst().getName(),
-                            challengerArmyAttackingArray.getFirst().getHealth()));
+                            challengerArmyAttackingArray.get(ci).getName(),
+                            challengerArmyAttackingArray.get(ci).getHealth()));
 
                     if(opponentArmyDefendingArray.getFirst().getHealth() <= 0){
                         System.out.println(initialOpponent.getUserName() + "'s " + opponentArmyDefendingArray.getFirst().getName()+" Died!");
