@@ -188,7 +188,7 @@ public class War {
             if (!attackingSide) {
                 System.out.println("\nTurn " + turn + ": " + initialChallenger.getUserName());
 
-                if(!(challengerArmyAttackingArray.getFirst() instanceof Healer)) {
+                if(!(challengerArmyAttackingArray.get(ci) instanceof Healer)) {
                     System.out.println(String.format("** %s's %s attacks %s's %s **",
                             initialChallenger.getUserName(),
                             challengerArmyAttackingArray.get(ci).getName(),
@@ -274,7 +274,7 @@ public class War {
             else{
                 System.out.println("\nTurn " + turn + ": " + initialOpponent.getUserName());
 
-                if(!(opponentArmyAttackingArray.getFirst() instanceof Healer)) {
+                if(!(opponentArmyAttackingArray.get(oi) instanceof Healer)) {
                     System.out.println(String.format("** %s's %s attacks %s's %s **",
                             initialOpponent.getUserName(),
                             opponentArmyAttackingArray.get(oi).getName(),
@@ -394,7 +394,7 @@ public class War {
             System.out.println("Drawn!");
         }
         System.out.println("----------------------");
-        System.out.println(initialChallenger.getUserName()  + " | XP: " + Math.round(initialChallenger.getXp()) + " | gold coins: " + Math.round(initialChallenger.getCoins()));
-        System.out.println(initialOpponent.getUserName() + " | XP: " + Math.round(initialOpponent.getXp()) + " | gold coins: " + Math.round(initialOpponent.getCoins()));
+        System.out.println(initialChallenger.getUserName()  + " | XP: " + (initialChallenger.getXp()) + " | gold coins: " + Math.round(initialChallenger.getCoins()));
+        System.out.println(initialOpponent.getUserName() + " | XP: " + (initialOpponent.getXp()) + " | gold coins: " + Math.round(initialOpponent.getCoins()));
     }
 }
