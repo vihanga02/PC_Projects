@@ -3,16 +3,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-
 class POS {
     Scanner scanner=new Scanner(System.in);
     public  static ArrayList<Bill> pendingBill;
 
-    public GlocerItem getItemDetails(Database database) {
+    public GroceryItem getItemDetails(Database database) {
         InputStreamReader r = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(r);
-        GlocerItem item = null;
+        GroceryItem item = null;
 
         while (true) {
             try {
@@ -30,19 +28,16 @@ class POS {
                 System.out.println("An error occurred while reading input. Please try again.");
             }
         }
-
         try {
             br.close();
             r.close();
         } catch (IOException e) {
             System.out.println("An error occurred while closing input stream.");
         }
-
         return item;
     }
-
-    public GlocerItem findItemInDatabase(int itemCode, Database database) throws ItemCodeNotFondException {
-        for (GlocerItem item : database.getDatabase()) {
+    public GroceryItem findItemInDatabase(int itemCode, Database database) throws ItemCodeNotFondException {
+        for (GroceryItem item : database.getDatabase()) {
             if (item.getItemCode() == itemCode) {
                 return item;
             }

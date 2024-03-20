@@ -1,4 +1,4 @@
-public class GlocerItem {
+public class GroceryItem {
     private  int itemCode;
     private double price;
     private double weight;
@@ -8,12 +8,12 @@ public class GlocerItem {
     private  double discount;
     private String name;
 
-    GlocerItem(int itemCode,double price,double weight,String date_Of_Exp,String date_of_Man, String manufactue_Name,double discount,String name){
-        this.itemCode=itemCode;
-        this.price=price;
-        this.weight=weight;
-        this.date_Of_Exp=date_Of_Exp;
-        this.date_of_Man=date_of_Man;
+    GroceryItem(int itemCode, double price, double weight, String date_Of_Exp, String date_of_Man, String manufactue_Name, double discount, String name){
+        this.itemCode = itemCode;
+        this.price = price;
+        this.weight = weight;
+        this.date_Of_Exp = date_Of_Exp;
+        this.date_of_Man = date_of_Man;
         this.manufactue_Name=manufactue_Name;
         this.discount=discount;
         this.name=name;

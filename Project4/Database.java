@@ -1,16 +1,19 @@
-
-
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 public class Database {
-    public static ArrayList<GlocerItem> database=new ArrayList<>();
-    public void addItem(int itemCode,double price,double weight,String date_Of_Exp,String date_of_Man, String manufactue_Name,double discount,String Name){
-        GlocerItem g1=new GlocerItem( itemCode, price,weight,date_Of_Exp, date_of_Man,manufactue_Name,discount,Name) ;
-        database.add(g1);
+    private ArrayList<GroceryItem> itemDataBase = new ArrayList<>();
+    private ArrayList<String> registeredCustumerList = new ArrayList<>();
 
+    public void addItem(int itemCode,double price,double weight,String dateOfExp,String dateofMan, String manufactueName,double discount,String Name){
+        this.itemDataBase.add(new GroceryItem( itemCode, price,weight,dateOfExp, dateofMan,manufactueName,discount,Name));
     }
-
-
-    public ArrayList<GlocerItem> getDatabase() {
-        return database;
+    public void addCustumer(String name){
+        registeredCustumerList.add(name);
+    }
+    public ArrayList<GroceryItem> getDatabase() {
+        return itemDataBase;
+    }
+    public ArrayList<String> getRegisteredCustumerList(){
+        return registeredCustumerList;
     }
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.time.LocalDateTime;
@@ -8,28 +7,22 @@ public class Bill {
     private String cashierName;
     private String branch;
     private String customerName;
-    boolean rejistered;
-    private Map<GlocerItem,Integer> billitem;
-
+    private boolean isRegistered;
+    private Map<GroceryItem,Integer> billItem = new HashMap<>();;
 
     public Bill(String cashierName, String branch) {
         this.cashierName = cashierName;
         this.branch = branch;
-        this.billitem=new HashMap<>();
-        this.rejistered=false;
-
+        this.isRegistered = false;
     }
-
     public Bill(String cashierName, String branch, String customerName) {
         this.cashierName = cashierName;
         this.branch = branch;
         this.customerName = customerName;
-        this.billitem=new HashMap<>();
-        this.rejistered=true;
+        this.isRegistered = true;
     }
-    public void addBill(GlocerItem G1,Integer quantity){
-        billitem.put(G1,quantity);
-
+    public void addBill(GroceryItem groceryItem, Integer quantity){
+        billItem.put(groceryItem,quantity);
     }
     public void printBill(){
         LocalDateTime currentDateTime=LocalDateTime.now();
@@ -42,11 +35,11 @@ public class Bill {
         System.out.println("Current date and time=" + formattedDateTime);
         System.out.println("Cashier Name = "+cashierName);
         System.out.println("Branch = "+branch);
-        if(rejistered){
+        if(isRegistered){
             System.out.println("Customer name = "+customerName);
         }
-        for(Map.Entry<GlocerItem,Integer> entry:billitem.entrySet()){
-            GlocerItem g1=entry.getKey();
+        for(Map.Entry<GroceryItem,Integer> entry: billItem.entrySet()){
+            GroceryItem g1=entry.getKey();
             Integer q1= entry.getValue();
             System.out.println("Item Name = "+g1.getName()+"Unit Prize = "+g1.getPrice()+"Quantity = "+q1+"Discount = "+g1.getPrice()*g1.getDiscount()+"Netprize = "+(g1.getPrice()-g1.getPrice()*g1.getDiscount()));
             total+=g1.getPrice();
@@ -56,7 +49,5 @@ public class Bill {
         System.out.println("Total Discoutn = "+discount);
         System.out.println("Final Price = " + (total-discount));
         System.out.println("ThankYou!");
-
     }
-
 }
