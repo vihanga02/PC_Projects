@@ -1,0 +1,188 @@
+Index: Menu.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\nimport java.util.Scanner;\nimport java.util.*;\n\npublic class Menu {\n    static List<User> userList = new ArrayList<>();\n    static List<String> userNames = new ArrayList<>();\n    private final List<String> archers = List.of(\"shooter\", \"ranger\", \"sunfire\", \"zing\", \"sagittarius\");\n    private final List<String> knights = List.of(\"squire\", \"cavalier\", \"templar\", \"zoro\", \"swiftblade\");\n    private final List<String> mages = List.of(\"warlock\", \"illusionist\", \"enchanter\", \"conjurer\", \"eldritch\");\n    private final List<String> healers = List.of(\"soother\", \"medic\", \"alchemist\", \"saint\", \"lightbringer\");\n    private final List<String> mythicalCreatures = List.of(\"dragon\", \"basilisk\", \"hydra\", \"phoenix\", \"pegasus\");\n    private final List<String> armours = List.of(\"chainmail\", \"regalia\", \"fleece\");\n    private final List<String> artefacts = List.of(\"excalibur\", \"amulet\", \"crystal\");\n    Scanner scanner = new Scanner(System.in);\n    private User currentUser;\n    private User challenger;\n\n    public Menu() {\n    }\n\n    public void displayMenu() {\n        System.out.println(\"-----Menu-----\\n\" +\n                \"1. New Profile.\\n\" +\n                \"2. Load Profile.\");\n        int choice = scanner.nextInt();\n\n        switch (choice) {\n            case 1:\n                this.createProfile();\n                break;\n            case 2:\n                this.loadProfile();\n                break;\n            default:\n                System.out.println(\"Enter a number!!\");\n        }\n    }\n\n    private void createProfile() {\n        System.out.print(\"Enter Your Name: \");\n        String name = scanner.next();\n\n        String userName;\n        System.out.println(\"Now choose a USERNAME. This must be UNIQUE and you can't change this later.\");\n        while (true) {\n            System.out.println(\"Enter Username: \");\n            userName = scanner.next();\n            if (userNames.contains(userName)) {\n                System.out.println(\"Username Already Exists!\");\n            } else {\n                userNames.add(userName);\n                break;\n            }\n        }\n        System.out.println(\"Now choose a home ground for your army\\n\" +\n                \"1. Hillcrest\\n\" +\n                \"2. Marshland\\n\" +\n                \"3. Desert\\n\" +\n                \"4. Arcane\");\n\n        int homeGroundChoice = scanner.nextInt();\n        while (4 < homeGroundChoice || 1 > homeGroundChoice) {\n            System.out.println(\"Wrong Choice. Prompt again!!!!\");\n            homeGroundChoice = scanner.nextInt();\n        }\n\n        User newUser;\n        if (homeGroundChoice == 1) {\n            newUser = new User(name, userName, \"Hillcrest\");\n        } else if (homeGroundChoice == 2) {\n            newUser = new User(name, userName, \"Marshland\");\n        } else if (homeGroundChoice == 3) {\n            newUser = new User(name, userName, \"Desert\");\n        } else {\n            newUser = new User(name, userName, \"Arcane\");\n        }\n\n        System.out.println(\"Perfect! You're on the verge of your first battle. Let's now enforce your army\");\n        System.out.println(\"Here's a detailed table about troops. Be mindful to choose only one character from each type\");\n        System.out.println();\n        Table.displayTroopsTable();\n        System.out.println();\n        System.out.println(\"You have only \" + newUser.getCoins() + \" remaining\");\n\n        while (newUser.getArmy().size() < 5) {\n\n            System.out.print(\"Enter the name of the character from the categories above: \");\n            String characterName = scanner.next().toLowerCase();\n            if (archers.contains(characterName)) {\n                newUser.addTroopToArmy(new Archer(characterName));\n            } else if (knights.contains(characterName)) {\n                newUser.addTroopToArmy(new Knight(characterName));\n            } else if (mages.contains(characterName)) {\n                newUser.addTroopToArmy(new Mage(characterName));\n            } else if (healers.contains(characterName)) {\n                newUser.addTroopToArmy(new Healer(characterName));\n            } else if (mythicalCreatures.contains(characterName)) {\n                newUser.addTroopToArmy(new MythicalCreature(characterName));\n            } else {\n                System.out.println(\"Enter a valid character name!!\");\n            }\n            System.out.println(\"You have only \" + newUser.getCoins() + \" coins remaining\");\n            System.out.println();\n        }\n\n        System.out.println(\"PERFECT!! Now you have your own army\");\n        System.out.println();\n        userList.add(newUser);\n        System.out.println(\"New profile creation DONE!!\");\n        printUserData(newUser);\n        this.loadProfile();\n    }\n    public void changeCharacters(User curretUser) {\n        Table.displayTroopsTable();\n        System.out.print(\"Choose replacing character type.\\n\" +\n                \"1. Archer\\n\" +\n                \"2. Knghit\\n\" +\n                \"3. Mage\\n\" +\n                \"4. Healer\\n\" +\n                \"5. Mythical Creature\");\n        int charactertype = scanner.nextInt();\n        while (1 > charactertype || charactertype > 5) {\n            changeCharacters(curretUser);\n        }\n        while (true) {\n            System.out.print(\"Enter character name: \");\n            String newCharacterName = scanner.next();\n            if (charactertype == 1) {\n                if (archers.contains(newCharacterName.toLowerCase().strip())) {\n                    curretUser.replaceTroop(curretUser.getMyArmyMap().get(\"Archer\"), new Archer(newCharacterName));\n                    break;\n                }\n            } else if (charactertype == 2) {\n                if (knights.contains(newCharacterName.toLowerCase().strip())) {\n                    curretUser.replaceTroop(curretUser.getMyArmyMap().get(\"Knight\"), new Knight(newCharacterName));\n                    break;\n                }\n            } else if (charactertype == 3) {\n                if (mages.contains(newCharacterName.toLowerCase().strip())) {\n                    curretUser.replaceTroop(curretUser.getMyArmyMap().get(\"Mage\"), new Mage(newCharacterName));\n                    break;\n                }\n            } else if (charactertype == 4) {\n                if (healers.contains(newCharacterName.toLowerCase().strip())) {\n                    curretUser.replaceTroop(curretUser.getMyArmyMap().get(\"Healer\"), new Healer(newCharacterName));\n                    break;\n                }\n            } else {\n                if (mythicalCreatures.contains(newCharacterName.toLowerCase().strip())) {\n                    curretUser.replaceTroop(curretUser.getMyArmyMap().get(\"MythicalCreature\"), new MythicalCreature(newCharacterName));\n                    break;\n                }\n            }\n        }\n        System.out.println(\"New character added successfully!!\");\n    }\n\n    private void loadProfile() {\n        boolean validUsernameEntered = false;\n        userList.add(new User(\"Muthumala\", \"muthu\", \"HillCrest\"));\n        userList.add(new User(\"Rusiru\", \"russ\", \"Marshland\"));\n        userList.add(new User(\"Rivindu\", \"rivi\", \"Desert\"));\n        userList.add(new User(\"Thrinith\", \"wick\", \"Arcane\"));\n        while (!validUsernameEntered) {\n            System.out.println(\"Select a profile to load from below\");\n            for (User user : userList) {\n                System.out.println(user.getUserName() + \"  \" + user.getXp() + \"Xp | \");\n            }\n            System.out.print(\"Enter the username of the profile you want to load: \");\n            String userNameToLoad = scanner.next();\n\n            for (User user : userList) {\n                if (user.getUserName().equals(userNameToLoad)) {\n                    System.out.println(\"Profile loaded successfully!\");\n                    printUserData(user);\n                    setCurrentUser(user);\n                    validUsernameEntered = true; // Valid username entered, exit the loop\n                    break;\n                }\n            }\n\n            if (!validUsernameEntered) {\n                System.out.println(\"Profile with username '\" + userNameToLoad + \"' not found. Please try again.\");\n            }\n        }\n\n    }\n\n    private void addEquipments() {\n        System.out.println(\"Here's a detailed table about Equipments available.\\n\");\n        Table.displayEquipmentTable();\n        System.out.println(\"You currently have: \");\n        for (Character character : currentUser.getArmy()) {\n            System.out.println(\"                 \" + character.getName() + \" with \" + character.armourCount + \" armour and \"\n                    + character.artefactCount + \" artefact\");\n        }\n        System.out.println(\"Select the character to enforce with equipment\\n\");\n        System.out.print(\"ARCHER [enter 1], KNIGHT [enter 2], MAGE [enter 3], HEALER [enter 4], MYTHICAL_CREATURE [enter 5]: \");\n        int choice = scanner.nextInt();\n        System.out.print(\"Enter the name of the equipment: \");\n        String equipment = scanner.next();\n        Armour armour = null;\n        Artefact artefact = null;\n        if (armours.contains(equipment)) {\n            armour = new Armour(equipment);\n        } else {\n            artefact = new Artefact(equipment);\n        }\n\n        switch (choice) {\n            case 1:\n                currentUser.addEquipment(currentUser.getMyArmyMap().get(\"Archer\"), armour != null ? armour : artefact);\n                break;\n            case 2:\n                currentUser.addEquipment(currentUser.getMyArmyMap().get(\"Knight\"), armour != null ? armour : artefact);\n                break;\n            case 3:\n                currentUser.addEquipment(currentUser.getMyArmyMap().get(\"Mage\"), armour != null ? armour : artefact);\n                break;\n            case 4:\n                currentUser.addEquipment(currentUser.getMyArmyMap().get(\"Healer\"), armour != null ? armour : artefact);\n                break;\n            case 5:\n                currentUser.addEquipment(currentUser.getMyArmyMap().get(\"Mythical Creature\"), armour != null ? armour : artefact);\n                break;\n            default:\n                System.out.println(\"Invalid choice!\");\n                break;\n        }\n    }\n\n    public User getCurrentUser() {\n        return currentUser;\n    }\n\n    public void setCurrentUser(User user) {\n        currentUser = user;\n    }\n\n    private void printUserData(User user) {\n        System.out.println(\"Username: \" + user.getUserName());\n        System.out.println(\"UserID: \" + user.getUserID());\n        System.out.println(\"Coins Remaining: \" + user.getCoins());\n        System.out.println(\"Xp: \" + user.getXp());\n        if (user.getArmy() != null) {\n            for (Character character : user.getArmy()) {\n                if (character instanceof Archer) {\n                    System.out.println(\"Archer: \" + character.getName());\n                } else if (character instanceof Knight) {\n                    System.out.println(\"Knight: \" + character.getName());\n                } else if (character instanceof Mage) {\n                    System.out.println(\"Mage: \" + character.getName());\n                } else if (character instanceof Healer) {\n                    System.out.println(\"Healer: \" + character.getName());\n                } else {\n                    System.out.println(\"Mythical Creature: \" + character.getName());\n                }\n            }\n        }\n        System.out.println(\"\\n\");\n    }\n\n    private void challenge() {\n        for (User user : userList) {\n            if (!user.equals(currentUser)) {\n                printUserData(user);\n                while (true) {\n                    System.out.print(\"Challenge or Skip (C/S): \");\n                    String decisiom = scanner.next();\n                    if (decisiom.toLowerCase().equals(\"c\")) {\n                        challenger = user;\n                        break;\n                    } else if (decisiom.toLowerCase().equals(\"s\")) {\n                        break;\n                    }\n                }\n            }\n            if (challenger != null){\n                break;\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Menu.java b/Menu.java
+--- a/Menu.java	(revision 50f7af52fd272c70dd68d616b9430ac83105e43a)
++++ b/Menu.java	(date 1710019821867)
+@@ -21,8 +21,12 @@
+ 
+     public void displayMenu() {
+         System.out.println("-----Menu-----\n" +
+-                "1. New Profile.\n" +
+-                "2. Load Profile.");
++                "1. New Profile\n" +
++                "2. Load Profile\n" +
++                "3. View Profile\n" +
++                "4. Edit Profile\n" +
++                "5. Start War\n" +
++                "6. Exit");
+         int choice = scanner.nextInt();
+ 
+         switch (choice) {
+@@ -32,8 +36,16 @@
+             case 2:
+                 this.loadProfile();
+                 break;
++            case 3:
++                this.printUserData(currentUser);
++            case 4:
++                this.addEquipments();
++                this.changeCharacters(currentUser);
++            case 5:
++                this.challenge();
+             default:
+-                System.out.println("Enter a number!!");
++                System.out.println("Enter a valid number!!");
++                this.displayMenu();
+         }
+     }
+ 
+@@ -111,80 +123,79 @@
+         printUserData(newUser);
+         this.loadProfile();
+     }
+-    public void changeCharacters(User curretUser) {
++    private void loadProfile() {
++        boolean validUsernameEntered = false;
++        userList.add(new User("Muthumala", "muthu", "HillCrest"));
++        userList.add(new User("Rusiru", "russ", "Marshland"));
++        userList.add(new User("Rivindu", "rivi", "Desert"));
++        userList.add(new User("Thrinith", "wick", "Arcane"));
++        while (!validUsernameEntered) {
++            System.out.println("Select a profile to load from below");
++            for (User user : userList) {
++                System.out.println(user.getUserName() + "  " + user.getXp() + "Xp | ");
++            }
++            System.out.print("Enter the username of the profile you want to load: ");
++            String userNameToLoad = scanner.next();
++
++            for (User user : userList) {
++                if (user.getUserName().equals(userNameToLoad)) {
++                    System.out.println("Profile loaded successfully!");
++                    printUserData(user);
++                    setCurrentUser(user);
++                    validUsernameEntered = true; // Valid username entered, exit the loop
++                    break;
++                }
++            }
++            if (!validUsernameEntered) {
++                System.out.println("Profile with username '" + userNameToLoad + "' not found. Please try again.");
++            }
++        }
++        this.displayMenu();
++    }
++    public void changeCharacters(User user) {
+         Table.displayTroopsTable();
+         System.out.print("Choose replacing character type.\n" +
+                 "1. Archer\n" +
+-                "2. Knghit\n" +
++                "2. Knight\n" +
+                 "3. Mage\n" +
+                 "4. Healer\n" +
+                 "5. Mythical Creature");
+         int charactertype = scanner.nextInt();
+-        while (1 > charactertype || charactertype > 5) {
+-            changeCharacters(curretUser);
++        if (1 > charactertype || charactertype > 5) {
++            changeCharacters(user);
+         }
+         while (true) {
+             System.out.print("Enter character name: ");
+             String newCharacterName = scanner.next();
+             if (charactertype == 1) {
+                 if (archers.contains(newCharacterName.toLowerCase().strip())) {
+-                    curretUser.replaceTroop(curretUser.getMyArmyMap().get("Archer"), new Archer(newCharacterName));
++                    user.replaceTroop(user.getMyArmyMap().get("Archer"), new Archer(newCharacterName));
+                     break;
+                 }
+             } else if (charactertype == 2) {
+                 if (knights.contains(newCharacterName.toLowerCase().strip())) {
+-                    curretUser.replaceTroop(curretUser.getMyArmyMap().get("Knight"), new Knight(newCharacterName));
++                    user.replaceTroop(user.getMyArmyMap().get("Knight"), new Knight(newCharacterName));
+                     break;
+                 }
+             } else if (charactertype == 3) {
+                 if (mages.contains(newCharacterName.toLowerCase().strip())) {
+-                    curretUser.replaceTroop(curretUser.getMyArmyMap().get("Mage"), new Mage(newCharacterName));
++                    user.replaceTroop(user.getMyArmyMap().get("Mage"), new Mage(newCharacterName));
+                     break;
+                 }
+             } else if (charactertype == 4) {
+                 if (healers.contains(newCharacterName.toLowerCase().strip())) {
+-                    curretUser.replaceTroop(curretUser.getMyArmyMap().get("Healer"), new Healer(newCharacterName));
++                    user.replaceTroop(user.getMyArmyMap().get("Healer"), new Healer(newCharacterName));
+                     break;
+                 }
+             } else {
+                 if (mythicalCreatures.contains(newCharacterName.toLowerCase().strip())) {
+-                    curretUser.replaceTroop(curretUser.getMyArmyMap().get("MythicalCreature"), new MythicalCreature(newCharacterName));
++                    user.replaceTroop(user.getMyArmyMap().get("MythicalCreature"), new MythicalCreature(newCharacterName));
+                     break;
+                 }
+             }
+         }
+-        System.out.println("New character added successfully!!");
+-    }
+-
+-    private void loadProfile() {
+-        boolean validUsernameEntered = false;
+-        userList.add(new User("Muthumala", "muthu", "HillCrest"));
+-        userList.add(new User("Rusiru", "russ", "Marshland"));
+-        userList.add(new User("Rivindu", "rivi", "Desert"));
+-        userList.add(new User("Thrinith", "wick", "Arcane"));
+-        while (!validUsernameEntered) {
+-            System.out.println("Select a profile to load from below");
+-            for (User user : userList) {
+-                System.out.println(user.getUserName() + "  " + user.getXp() + "Xp | ");
+-            }
+-            System.out.print("Enter the username of the profile you want to load: ");
+-            String userNameToLoad = scanner.next();
+-
+-            for (User user : userList) {
+-                if (user.getUserName().equals(userNameToLoad)) {
+-                    System.out.println("Profile loaded successfully!");
+-                    printUserData(user);
+-                    setCurrentUser(user);
+-                    validUsernameEntered = true; // Valid username entered, exit the loop
+-                    break;
+-                }
+-            }
+-
+-            if (!validUsernameEntered) {
+-                System.out.println("Profile with username '" + userNameToLoad + "' not found. Please try again.");
+-            }
+-        }
+-
++        System.out.println("\n");
++        this.displayMenu();
+     }
+ 
+     private void addEquipments() {
+@@ -235,7 +246,7 @@
+     }
+ 
+     public void setCurrentUser(User user) {
+-        currentUser = user;
++        this.currentUser = user;
+     }
+ 
+     private void printUserData(User user) {
+@@ -259,6 +270,7 @@
+             }
+         }
+         System.out.println("\n");
++        this.displayMenu();
+     }
+ 
+     private void challenge() {
+@@ -280,5 +292,6 @@
+                 break;
+             }
+         }
++        this.displayMenu();
+     }
+ }

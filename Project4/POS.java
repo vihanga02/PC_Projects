@@ -36,13 +36,6 @@ class POS {
         itemCode = br.readLine();
 
         try {
-            br.close();
-            r.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while closing input stream.");
-        }
-
-        try {
             for (GroceryItem item : database.getItemDatabase()) {
                 if (item.getItemCode().equals(itemCode)) {
                     return item;
@@ -52,6 +45,13 @@ class POS {
         } catch (ItemCodeNotFondException e){
             System.out.println("Item not found.");
             return getItemDetails();
+        } finally {
+            try {
+                br.close();
+                r.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred while closing input stream.");
+            }
         }
     }
     private void collectCashierDetails() {
@@ -116,8 +116,13 @@ class POS {
             int quantity;
             while (true) {
                 try {
-                    quantity = scanner.nextInt();
-                    break;
+                    if (scanner.hasNextInt()) {
+                        quantity = scanner.nextInt();
+                        break;
+                    } else {
+                        scanner.nextLine(); // consume the newline
+                        throw new InputMismatchException();
+                    }
                 } catch (InputMismatchException e) {
                     System.out.println("Enter an integer value.");
                 }

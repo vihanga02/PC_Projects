@@ -1,0 +1,10 @@
+Index: META-INF/MANIFEST.MF
+===================================================================
+diff --git a/META-INF/MANIFEST.MF b/META-INF/MANIFEST.MF
+deleted file mode 100644
+--- a/META-INF/MANIFEST.MF	(revision 97911ea7452beaf1c3238ae7a88a4e9894bac092)
++++ /dev/null	(revision 97911ea7452beaf1c3238ae7a88a4e9894bac092)
+@@ -1,3 +0,0 @@
+-Manifest-Version: 1.0
+-Main-Class: Main
+-

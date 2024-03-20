@@ -1,0 +1,65 @@
+Index: Character.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public abstract class Character {\n    private String name;\n    private double price;\n    private double attack;\n    private double defence;\n    private double health;\n    private double speed;\n    private String characterType;\n\n    public Character(String name){\n        this.name = name;\n    }\n\n    public String getName() {\n        return name;\n    }\n    public double getPrice() {\n        return price;\n    }\n    public double getAttack() {\n        return attack;\n    }\n    public double getDefence() {\n        return defence;\n    }\n\n    public double getHealth() {\n        return health;\n    }\n\n    public double getSpeed() {\n        return speed;\n    }\n\n    public void setHealth(double health) {\n        this.health = health;\n    }\n\n    public void setPrice(double price) {\n        this.price = price;\n    }\n\n    public void setDefence(double defence) {\n        this.defence = defence;\n    }\n\n    public void setAttack(double attack) {\n        this.attack = attack;\n    }\n\n    public void setSpeed(double speed) {\n        this.speed = speed;\n    }\n\n    public String getCharacterType() {\n        return characterType;\n    }\n\n    public void setCharacterType(String characterType) {\n        if (this.characterType == null) {\n            this.characterType = characterType;\n        }\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Character.java b/Character.java
+--- a/Character.java	(revision ccd0373a3329dd5af3ab561a1ce58bfc01ef8ec8)
++++ b/Character.java	(date 1709896676703)
+@@ -61,5 +61,4 @@
+             this.characterType = characterType;
+         }
+     }
+-
+ }
+Index: User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.Vector;\n\npublic class User {\n    private static int userCount = 1;\n    private String name;\n    private final String userName;\n    private double coins;\n    private final String userID;\n    private double xp;\n    private final String homeGround;\n    private Vector<Character> myArmy;\n    public User(String name, String userName, String homeGround){\n        this.name = name;\n        this.userName = userName;\n        this.homeGround = homeGround;\n        this.coins = 500;\n        this.xp = 0;\n        this.userID = userName.substring(0, Math.min(userName.length(), 2)).toUpperCase() +\n                String.format(\"%03d\", userCount);\n        userCount++;\n    }\n    public void addTroopToArmy(Character troop) {\n        if (!isAbsent(troop)){\n            if ((coins - troop.getPrice()) > 0){\n                myArmy.add(troop);\n                coins -= troop.getPrice();\n                System.out.println(\"You Purchased a New\" + troop.getName());\n            }\n            else {\n                System.out.println(\"Not Enough Coins\");\n            }\n        }\n        else {\n            System.out.println(\"Troop of type \" + troop.getClass().getName() + \" Already Exists in Your Army\" );\n        }\n\n    }\n\n    public void replaceTroop(Character oldTroop, Character newTroop){\n        if (isAbsent(oldTroop)){\n            System.out.println(\"Troop You Want to Sell is not in Your Army\");\n        }\n        else {\n            sellTroop(oldTroop);\n            System.out.println(oldTroop.getName() + \" is Sold\");\n        }\n        addTroopToArmy(newTroop);\n    }\n\n    private void sellTroop(Character troop) {\n        if (!isAbsent(troop)){\n            myArmy.remove(troop);\n            coins += troop.getPrice();\n        }\n    }\n\n    private boolean isAbsent(Character troop) {\n        for (Character existingTroop : myArmy) {\n            if (existingTroop.getClass().equals(troop.getClass())) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public int addEquipment(){\n        return 0;\n    }\n    public Vector<Character> getArmy(){\n        return myArmy;\n    }\n    public String getName() {\n        return name;\n    }\n    public String getUserName() {\n        return userName;\n    }\n    public double getCoins() {\n        return coins;\n    }\n    public String getUserID() {\n        return userID;\n    }\n    public double getXp() {\n        return xp;\n    }\n    public static int getUserCount() {\n        return userCount;\n    }\n    public String getHomeGround() {\n        return homeGround;\n    }\n    public void setName(String name) {\n        this.name = name;\n    }\n    public void setCoins(double coins) {\n        this.coins = coins;\n    }\n    public void setXp(double xp) {\n        this.xp = xp;\n    }\n\n\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/User.java b/User.java
+--- a/User.java	(revision ccd0373a3329dd5af3ab561a1ce58bfc01ef8ec8)
++++ b/User.java	(date 1709897861388)
+@@ -99,8 +99,5 @@
+     public void setXp(double xp) {
+         this.xp = xp;
+     }
+-
+-
+-
+ }
+ 
+Index: War.java
+===================================================================
+diff --git a/War.java b/War.java
+deleted file mode 100644
+--- a/War.java	(revision ccd0373a3329dd5af3ab561a1ce58bfc01ef8ec8)
++++ /dev/null	(revision ccd0373a3329dd5af3ab561a1ce58bfc01ef8ec8)
+@@ -1,23 +0,0 @@
+-public class War {
+-    User intialChallenger;
+-    User intialDefender;
+-    User challenger;
+-    User defender;
+-    public War(User intialChallenger,User intialDefender){
+-        this.intialChallenger = intialChallenger;
+-        this.intialDefender = intialDefender;
+-
+-
+-
+-    }
+-    void startWar(){
+-        this.challenger = intialChallenger;
+-        this.defender = intialDefender;
+-        String homeGround = challenger.homeGround;
+-        if(homeGround=="Hillcrest")
+-
+-
+-
+-
+-    }
+-}

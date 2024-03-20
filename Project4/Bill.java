@@ -3,7 +3,7 @@ import java.util.Map;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Bill {
+public class Bill{
     private String cashierName;
     private String branch;
     private String customerName;

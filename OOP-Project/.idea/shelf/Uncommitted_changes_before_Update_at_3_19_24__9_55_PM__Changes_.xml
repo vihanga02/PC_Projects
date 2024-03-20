@@ -1,0 +1,59 @@
+<changelist name="Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]" date="1710865592889" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 3/19/24, 9:55 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Army.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Archer.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Archer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Archer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Armour.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Armour.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Armour.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Artefact.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Artefact.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Artefact.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Menu.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Menu.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Menu.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/User.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/User.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/User.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Character.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Character.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Character.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/War.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/War.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/War.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/MythicalCreature.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/MythicalCreature.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/MythicalCreature.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/artifacts/OOP_Project_jar/OOP-Project.jar" />
+    <option name="AFTER_PATH" value="out/artifacts/OOP_Project_jar/OOP-Project.jar" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/OOP-Project.jar" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP-Project/Mage.class" />
+    <option name="AFTER_PATH" value="out/production/OOP-Project/Mage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_19_24,_9_55_PM_[Changes]/Mage.class" />
+  </binary>
+</changelist>
