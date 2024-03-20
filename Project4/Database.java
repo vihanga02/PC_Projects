@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 public class Database {
     private ArrayList<GroceryItem> itemDataBase = new ArrayList<>();
@@ -10,7 +9,7 @@ public class Database {
     public void addCustumer(String name){
         registeredCustumerList.add(name);
     }
-    public ArrayList<GroceryItem> getDatabase() {
+    public ArrayList<GroceryItem> getItemDatabase() {
         return itemDataBase;
     }
     public ArrayList<String> getRegisteredCustumerList(){

@@ -37,7 +37,7 @@ class POS {
         return item;
     }
     public GroceryItem findItemInDatabase(int itemCode, Database database) throws ItemCodeNotFondException {
-        for (GroceryItem item : database.getDatabase()) {
+        for (GroceryItem item : database.getItemDatabase()) {
             if (item.getItemCode() == itemCode) {
                 return item;
             }
