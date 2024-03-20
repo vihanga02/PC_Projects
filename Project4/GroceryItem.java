@@ -2,9 +2,9 @@ public class GroceryItem {
     private  int itemCode;
     private double price;
     private double weight;
-    private  String date_Of_Exp;
-    private String date_of_Man;
-    private String manufactue_Name;
+    private  String dateOfExp;
+    private String dateOfMan;
+    private String manufactueName;
     private  double discount;
     private String name;
 
@@ -12,11 +12,11 @@ public class GroceryItem {
         this.itemCode = itemCode;
         this.price = price;
         this.weight = weight;
-        this.date_Of_Exp = date_Of_Exp;
-        this.date_of_Man = date_of_Man;
-        this.manufactue_Name=manufactue_Name;
-        this.discount=discount;
-        this.name=name;
+        this.dateOfExp = date_Of_Exp;
+        this.dateOfMan = date_of_Man;
+        this.manufactueName = manufactue_Name;
+        this.discount = discount;
+        this.name = name;
     }
 
     public int getItemCode() {
@@ -31,12 +31,12 @@ public class GroceryItem {
         return weight;
     }
 
-    public String getDate_Of_Exp() {
-        return date_Of_Exp;
+    public String getDateOfExp() {
+        return dateOfExp;
     }
 
-    public String getDate_of_Man() {
-        return date_of_Man;
+    public String getDateOfMan() {
+        return dateOfMan;
     }
 
     public void setItemCode(int itemCode) {
@@ -51,30 +51,28 @@ public class GroceryItem {
         this.weight = weight;
     }
 
-    public void setDate_Of_Exp(String date_Of_Exp) {
-        this.date_Of_Exp = date_Of_Exp;
+    public void setDateOfExp(String dateOfExp) {
+        this.dateOfExp = dateOfExp;
     }
 
-    public void setDate_of_Man(String date_of_Man) {
-        this.date_of_Man = date_of_Man;
+    public void setDateOfMan(String dateOfMan) {
+        this.dateOfMan = dateOfMan;
     }
 
-    public void setManufactue_Name(String manufactue_Name) {
-        this.manufactue_Name = manufactue_Name;
+    public void setManufactueName(String manufactueName) {
+        this.manufactueName = manufactueName;
     }
 
-    public String getManufactue_Name() {
-        return manufactue_Name;
+    public String getManufactueName() {
+        return manufactueName;
     }
     public void setDiscount(double discount){
-        this.discount=discount;
-
+        this.discount = discount;
     }
     public  double getDiscount(){
         return discount;
     }
     public String getName(){
         return name;
-
     }
 }
