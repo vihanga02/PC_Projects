@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 class POS {
     Scanner scanner = new Scanner(System.in);
@@ -13,7 +14,7 @@ class POS {
     String customerName = "";
     Database database = new Database();
     private String itemCode;
-    public  static ArrayList<Bill> pendingBill;
+    public  static Map<String, Bill> pendingBill;
 
     POS(){
         this.database.addItem("1", 2.99, 1.5, "2024-04-01", "2024-03-15", "Manufacturer 1", 0.1, "Item 1");
@@ -24,10 +25,9 @@ class POS {
         this.database.addItem("6", 3.99, 1.8, "2024-04-25", "2024-03-25", "Manufacturer 6", 0.12, "Item 6");
     }
 
-    public void displayFunctions(){
+    public void displayFunctions() throws IOException, ItemCodeNotFondException {
         collectCashierDetails();
         collectCustomerDetails();
-        shopping();
     }
     public GroceryItem getItemDetails() throws IOException, ItemCodeNotFondException {
         InputStreamReader r = new InputStreamReader(System.in);
@@ -35,28 +35,24 @@ class POS {
         System.out.println("Enter item code: ");
         itemCode = br.readLine();
 
-        GroceryItem item = null;
-        item = findItemInDatabase(itemCode);
-
         try {
             br.close();
             r.close();
         } catch (IOException e) {
             System.out.println("An error occurred while closing input stream.");
         }
-        return item;
-    }
-    public GroceryItem findItemInDatabase(String itemCode) throws ItemCodeNotFondException {
 
-        for (GroceryItem item : database.getItemDatabase()) {
+        try {
+            for (GroceryItem item : database.getItemDatabase()) {
                 if (item.getItemCode().equals(itemCode)) {
                     return item;
                 }
             }
             throw new ItemCodeNotFondException();
-    }
-    public void addPendingBill(Bill b1){
-        pendingBill.add(b1);
+        } catch (ItemCodeNotFondException e){
+            System.out.println("Item not found.");
+            return getItemDetails();
+        }
     }
     private void collectCashierDetails() {
         System.out.println("Welcome");
@@ -80,46 +76,74 @@ class POS {
         }
     }
 
-    private void collectCustomerDetails() {
+    private void collectCustomerDetails() throws IOException, ItemCodeNotFondException {
         while (customerName.trim().isEmpty()) {
             System.out.print("Enter Customer Name: ");
             customerName = scanner.nextLine();
             if (customerName.trim().isEmpty()) {
                 System.out.println("Customer Name cannot be empty. Please enter again.\n");
-            } else {
-                break;
+            } else if (pendingBill != null){
+                if (pendingBill.containsKey(customerName)) {
+                    this.bill = pendingBill.get(customerName);
+                    shopping();
+                }else{
+                    if (database.getRegisteredCustumerList().contains(customerName)) {
+                        bill = new Bill(cashierName, branch, customerName);
+                    } else {
+                        bill = new Bill(cashierName, branch);
+                    }
+                    shopping();
+                }
+            }
+            else{
+                if (database.getRegisteredCustumerList().contains(customerName)) {
+                    bill = new Bill(cashierName, branch, customerName);
+                } else {
+                    bill = new Bill(cashierName, branch);
+                }
+                shopping();
             }
         }
-        if (database.getRegisteredCustumerList().contains(customerName)) {
-            bill = new Bill(cashierName, branch, customerName);
-        } else {
-            bill = new Bill(cashierName, branch);
-        }
+
     }
 
     private void shopping() throws IOException, ItemCodeNotFondException {
         boolean continueShopping = true;
-
         while (continueShopping) {
-            // int itemcode = 0;
             GroceryItem item = getItemDetails();
-            try {
-                i = this.findItemInDatabase(itemcode, database);
 
-            } catch (ItemCodeNotFondException exception) {
-                System.out.println("Enter a Valid Code");
-                break;
-            }
             System.out.println("Enter Quantity: ");
-            int quantity = scanner.nextInt();
-            bill.addBill(i, quantity);
-            System.out.println("Do you want to Continue Shopping? (Y/N): ");
-            String answer = scanner.nextLine();
-            if (answer == "N") {
-                continueShopping = false;
+            int quantity;
+            while (true) {
+                try {
+                    quantity = scanner.nextInt();
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter an integer value.");
+                }
+            }
+            bill.addBill(item, quantity);
+            System.out.println("Do you want to Continue Shopping? Yes [Y]/ No [N]/ Hold bill [H]: ");
+            while (true) {
+                String answer = scanner.nextLine();
+
+                if (answer.equalsIgnoreCase("N")) {
+                    continueShopping = false;
+                    if (pendingBill.containsKey(customerName)){
+                        pendingBill.remove(customerName);
+                    }
+                    bill.printBill();
+                    break;
+                }else if (answer.equalsIgnoreCase("H")){
+                    continueShopping = false;
+                    pendingBill.put(customerName, bill);
+                    break;
+                }
+                else if (!answer.equalsIgnoreCase("Y")) {
+                    System.out.println("Choose only from Y and N.");
+                }
             }
         }
-        bill.printBill();
     }
 }
 
