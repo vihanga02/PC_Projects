@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 class Main {
     public static void main(String[] args) {
-        Menu menu = new Menu();
+       POS pos = new POS();
+       pos.displayFunctions();
     }
 }

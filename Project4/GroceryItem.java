@@ -1,5 +1,5 @@
 public class GroceryItem {
-    private  int itemCode;
+    private  String itemCode;
     private double price;
     private double weight;
     private  String dateOfExp;
@@ -8,7 +8,7 @@ public class GroceryItem {
     private  double discount;
     private String name;
 
-    GroceryItem(int itemCode, double price, double weight, String date_Of_Exp, String date_of_Man, String manufactue_Name, double discount, String name){
+    GroceryItem(String  itemCode, double price, double weight, String date_Of_Exp, String date_of_Man, String manufactue_Name, double discount, String name){
         this.itemCode = itemCode;
         this.price = price;
         this.weight = weight;
@@ -19,7 +19,7 @@ public class GroceryItem {
         this.name = name;
     }
 
-    public int getItemCode() {
+    public String getItemCode() {
         return itemCode;
     }
 
@@ -39,7 +39,7 @@ public class GroceryItem {
         return dateOfMan;
     }
 
-    public void setItemCode(int itemCode) {
+    public void setItemCode(String itemCode) {
         this.itemCode = itemCode;
     }
 
