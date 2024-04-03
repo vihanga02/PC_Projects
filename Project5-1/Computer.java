@@ -20,8 +20,7 @@ public class Computer {
             throw new TypeNotSupportedException("File type not supported: " + fileType);
         }
     }
-
-    public ArrayList<String> getFiletypeList (){
+    public static ArrayList<String> getFiletypeList (){
         return filetypes;
     }
 }

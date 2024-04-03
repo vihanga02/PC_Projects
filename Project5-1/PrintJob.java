@@ -12,11 +12,9 @@ public class PrintJob {
         this.content = content;
         this.printStatus = false;
     }
-
     public String getId() {
         return id;
     }
-
     public String getFileType() {
         return fileType;
     }

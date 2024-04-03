@@ -19,12 +19,11 @@ public class Printer {
     }
 
     public void print(PrintJob printJob) throws TypeNotSupportedException {
-        if (compatibleTypes.contains(printJob.getFileType())) {
+        if (Computer.getFiletypeList().contains(printJob.getFileType())) {
             System.out.println("Printing ");
             setPrintStatus(true);
         } else {
             throw new TypeNotSupportedException("File type not supported for printing");
         }
     }
-
 }

@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SharedQueue {
-    private Queue<PrintJob> queue;
+    private final Queue<PrintJob> queue;
     private static final int capacity = 5;
     public SharedQueue(){
         this.queue = new LinkedList<>();
