@@ -31,13 +31,15 @@ public class Printer extends Thread{
     }
 
     public synchronized void print(PrintJob printJob) throws TypeNotSupportedException, InterruptedException {
-        if (Computer.getFiletypeList().contains(printJob.getFileType())) {
-            System.out.println("Printing ");
-            setPrintStatus(true);
-            sleep(1000);
-            SharedQueue.dequeue();
-        } else {
-            throw new TypeNotSupportedException("File type not supported for printing");
+        if (printJob != null) {
+            if (Computer.getFiletypeList().contains(printJob.getFileType())) {
+                System.out.println("Printing ");
+                setPrintStatus(true);
+                sleep(2000);
+                SharedQueue.dequeue();
+            } else {
+                throw new TypeNotSupportedException("File type not supported for printing");
+            }
         }
-    }
+        }
 }

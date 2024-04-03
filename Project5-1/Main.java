@@ -24,6 +24,7 @@ public class Main {
         computer3.start();
 
         try {
+            //these are the jobs comiing from web interface
             SharedQueue.enqueue(computer1.createPrintJob("1", "File1.txt", "txt", new TextFile("File1.txt")));
             SharedQueue.enqueue(computer2.createPrintJob("2", "File2.txt", "txt", new TextFile("File2.txt")));
             SharedQueue.enqueue(computer3.createPrintJob("3", "File3.txt", "txt", new TextFile("File3.txt")));
