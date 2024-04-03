@@ -2,12 +2,10 @@ import java.util.ArrayList;
 
 public class Printer {
     private String printerName;
-    private ArrayList<String> compatibleTypes;
     private boolean printStatus;
 
-    public Printer(String printerName, ArrayList<String> compatibleTypes){
+    public Printer(String printerName){
         this.printerName = printerName;
-        this.compatibleTypes = compatibleTypes;
     }
 
     public boolean isPrinting() {

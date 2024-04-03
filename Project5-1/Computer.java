@@ -13,12 +13,14 @@ public class Computer {
     public void setComputerName(String computerName) {
         this.computerName = computerName;
     }
-    public void createPrintJob(String fileId,String fileName,String fileType,TextFile content ) throws TypeNotSupportedException{
+    public PrintJob createPrintJob(String fileId, String fileName, String fileType, TextFile content ) throws TypeNotSupportedException{
+        PrintJob printJob;
         if(filetypes.contains(fileType)){
-            new PrintJob(fileId, fileName, fileType, content);
+            printJob = new PrintJob(fileId, fileName, fileType, content);
         }else{
             throw new TypeNotSupportedException("File type not supported: " + fileType);
         }
+        return printJob;
     }
     public static ArrayList<String> getFiletypeList (){
         return filetypes;

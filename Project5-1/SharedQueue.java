@@ -21,7 +21,7 @@ public class SharedQueue {
         if (queue.isEmpty()) {
             System.out.println("Queue is empty.");
         }
-        else if (queue.contains(job)) {
+        else if (!queue.contains(job)) {
             System.out.println("This job is not in the queue.");
         }
         else{
