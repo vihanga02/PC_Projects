@@ -11,18 +11,14 @@ public class Computer extends Thread{
     public void run() {
 
         while (true) {
-            System.out.println("here at computer......");
             try {
                 // Create print job
                 PrintJob printJob = createPrintJob("1", "File1.txt", "txt", new TextFile("File1.txt"));
 
                 // Enqueue the print job to the shared queue
                 SharedQueue.enqueue(printJob);
-
-                // Sleep for some time before creating the next print job
-                Thread.sleep(1000); // Example sleep time
-            } catch (InterruptedException | TypeNotSupportedException e) {
-                e.printStackTrace();
+            } catch (TypeNotSupportedException e) {
+                throw new RuntimeException(e);
             }
         }
     }

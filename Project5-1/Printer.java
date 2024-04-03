@@ -12,7 +12,6 @@ public class Printer extends Thread{
         while (true) {
             try {
                 // Dequeue a print job from the shared queue
-                System.out.println("here at printer......");
                 PrintJob printJob = SharedQueue.dequeue();
 
                 // Process and print the job
@@ -33,13 +32,13 @@ public class Printer extends Thread{
     public synchronized void print(PrintJob printJob) throws TypeNotSupportedException, InterruptedException {
         if (printJob != null) {
             if (Computer.getFiletypeList().contains(printJob.getFileType())) {
-                System.out.println("Printing ");
                 setPrintStatus(true);
-                sleep(2000);
+                sleep(10);
+                System.out.println("Printing Done!");
                 SharedQueue.dequeue();
             } else {
                 throw new TypeNotSupportedException("File type not supported for printing");
             }
         }
-        }
+    }
 }
