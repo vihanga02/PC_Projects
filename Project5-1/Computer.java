@@ -7,13 +7,32 @@ public class Computer extends Thread{
     public Computer(String computerName) {
         this.computerName = computerName;
     }
+    @Override
+    public void run() {
+
+        while (true) {
+            System.out.println("here at computer......");
+            try {
+                // Create print job
+                PrintJob printJob = createPrintJob("1", "File1.txt", "txt", new TextFile("File1.txt"));
+
+                // Enqueue the print job to the shared queue
+                SharedQueue.enqueue(printJob);
+
+                // Sleep for some time before creating the next print job
+                Thread.sleep(1000); // Example sleep time
+            } catch (InterruptedException | TypeNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public String getComputerName() {
         return computerName;
     }
     public void setComputerName(String computerName) {
         this.computerName = computerName;
     }
-    public PrintJob createPrintJob(String fileId, String fileName, String fileType, TextFile content ) throws TypeNotSupportedException{
+    public synchronized PrintJob createPrintJob(String fileId, String fileName, String fileType, TextFile content ) throws TypeNotSupportedException{
         PrintJob printJob;
         if(filetypes.contains(fileType)){
             printJob = new PrintJob(fileId, fileName, fileType, content);

@@ -16,7 +16,7 @@ public class PrintJob {
         return id;
     }
     public String getFileType() {
-        return fileType;
+        return this.fileType;
     }
     public String getFileName() {
         return fileName;

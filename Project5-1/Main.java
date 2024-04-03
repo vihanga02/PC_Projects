@@ -14,10 +14,19 @@ public class Main {
 
         SharedQueue queue = new SharedQueue();
 
+        // Start printer threads
+        printer1.start();
+        printer2.start();
+
+        // Start computer threads
+        computer1.start();
+        computer2.start();
+        computer3.start();
+
         try {
-            queue.enqueue(computer1.createPrintJob("1", "File1.txt", "txt", new TextFile("File1.txt")));
-            queue.enqueue(computer2.createPrintJob("2", "File2.pdf", "pdf", new TextFile("File2.pdf")));
-            queue.enqueue(computer3.createPrintJob("3", "File3.docx", "docx", new TextFile("File3.docx")));
+            SharedQueue.enqueue(computer1.createPrintJob("1", "File1.txt", "txt", new TextFile("File1.txt")));
+            SharedQueue.enqueue(computer2.createPrintJob("2", "File2.txt", "txt", new TextFile("File2.txt")));
+            SharedQueue.enqueue(computer3.createPrintJob("3", "File3.txt", "txt", new TextFile("File3.txt")));
         } catch (TypeNotSupportedException e) {
             System.out.println("Error: " + e.getMessage());
         }

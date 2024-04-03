@@ -4,8 +4,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class TextFile {
-    String content;
-    String fileType;
+    private String content;
+
 
     StringBuilder contentBuilder = new StringBuilder();
     public TextFile(String filePath) {
