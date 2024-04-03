@@ -20,27 +20,21 @@ public class PrintJob {
     public String getFileType() {
         return fileType;
     }
-
     public String getFileName() {
         return fileName;
     }
-
     public TextFile getContent() {
         return content;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
-
     public void setContent(TextFile content) {
         this.content = content;
     }
-
     public void setFileType(String fileType) {
         this.fileType = fileType;
     }
