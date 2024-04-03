@@ -1,17 +1,18 @@
 public class PrintJob {
+    // Creating attributes of the printJob
     private String id;
     private String fileName;
     private String fileType;
     private TextFile content;
-    private boolean printStatus;
 
+    // Adding values to the constructor via the constructor
     public PrintJob(String id, String fileName, String fileType, TextFile content){
         this.id = id;
         this.fileName = fileName;
         this.fileType = fileType;
         this.content = content;
-        this.printStatus = false;
     }
+    // Getter and setter methods for the PrintJob
     public String getId() {
         return id;
     }
