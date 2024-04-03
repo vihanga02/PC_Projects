@@ -2,10 +2,10 @@ public class PrintJob {
     private String id;
     private String fileName;
     private String fileType;
-    private Byte[] content;
+    private TextFile content;
     private boolean printStatus;
 
-    public PrintJob(String id, String fileName, String fileType, Byte[] content){
+    public PrintJob(String id, String fileName, String fileType, TextFile content){
         this.id = id;
         this.fileName = fileName;
         this.fileType = fileType;
@@ -25,7 +25,7 @@ public class PrintJob {
         return fileName;
     }
 
-    public Byte[] getContent() {
+    public TextFile getContent() {
         return content;
     }
 
@@ -37,7 +37,7 @@ public class PrintJob {
         this.fileName = fileName;
     }
 
-    public void setContent(Byte[] content) {
+    public void setContent(TextFile content) {
         this.content = content;
     }
 
