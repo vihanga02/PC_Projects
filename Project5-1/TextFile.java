@@ -24,9 +24,4 @@ public class TextFile {
             this.content = contentBuilder.toString();
         }
     }
-
-    public void getFileType(String fileType){
-
-    }
-
 }

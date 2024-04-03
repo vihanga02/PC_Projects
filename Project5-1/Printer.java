@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Printer {
+public class Printer extends Thread{
     private String printerName;
     private boolean printStatus;
 
