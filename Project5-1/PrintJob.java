@@ -3,12 +3,14 @@ public class PrintJob {
     private String fileName;
     private String fileType;
     private Byte[] content;
+    private boolean printStatus;
 
     public PrintJob(String id, String fileName, String fileType, Byte[] content){
         this.id = id;
         this.fileName = fileName;
         this.fileType = fileType;
         this.content = content;
+        this.printStatus = false;
     }
 
     public String getId() {
