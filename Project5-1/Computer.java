@@ -1,11 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Computer {
     private String computerName;
-    private static ArrayList<String> filetypes=new ArrayList<>();
+    private static final ArrayList<String> filetypes = new ArrayList<>(Arrays.asList("pdf","docs","txt"));
     public Computer(String computerName) {
         this.computerName = computerName;
-
     }
     public String getComputerName() {
         return computerName;
@@ -19,5 +19,9 @@ public class Computer {
         }else{
             throw new TypeNotSupportedException("File type not supported: " + fileType);
         }
+    }
+
+    public ArrayList<String> getFiletypeList (){
+        return filetypes;
     }
 }
