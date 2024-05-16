@@ -1,4 +1,4 @@
-package AbstractFactory;
+package Factory;
 
 import java.util.*;
 
@@ -80,6 +80,7 @@ public class Application {
         else{
             dialog = new HtmlDialog();
         }
+        scanner.close();
     }
 
     // client only works with the corresponding factory object and call its methods
