@@ -1,4 +1,4 @@
-package Interpreter;
+package Iterator;
 
 // This interface ensures that every expression has its
 // own interpreter
