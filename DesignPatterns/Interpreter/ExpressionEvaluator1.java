@@ -1,19 +1,19 @@
 // This interface ensures that every expression has its
-    // own interpreter
-    interface Expression {
+// own interpreter
+interface Expression {
      public boolean interpreter(String context);
-    }
-    // This is a leaf-level expression that evaluate values
-    // and in this instance returns a boolean value
-    class TerminalExpression implements Expression {
-     private String data;
-     public TerminalExpression(String data) { this.data = data; }
-     public boolean interpreter(String context) {
-      if(context.contains(data))
-       return true;
-      else
-       return false;
-     }
+}
+// This is a leaf-level expression that evaluate values
+// and in this instance returns a boolean value
+class TerminalExpression implements Expression {
+  private String data;
+  public TerminalExpression(String data) { this.data = data; }
+  public boolean interpreter(String context) {
+  if(context.contains(data))
+    return true;
+  else
+    return false;
+  }
 }
 
 // This is a composite expression that evaluate other
